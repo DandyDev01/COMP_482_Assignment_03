@@ -4,9 +4,43 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COMP_482_Assignment_03"
+        xmlns:vm="clr-namespace:COMP_482_Assignment_03.ViewModels"
+        xmlns:v="clr-namespace:COMP_482_Assignment_03.Views"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File"/>
+            <MenuItem Header="Edit"/>
+            <MenuItem Header="Sign Out" HorizontalAlignment="Right"/>
+        </Menu>
+
+        <TabControl Grid.Row="1">
+            <TabItem Header="Order">
+                <v:OrderView/>
+            </TabItem>
+            <TabItem Header="Orders">
+                <v:OrdersView/>
+            </TabItem>
+            <TabItem Header="Inventory">
+                <v:InventoryView/>
+            </TabItem>
+            <TabItem Header="Order Issue">
+                <v:OrderIssueView/>
+            </TabItem>
+            <TabItem Header="Employees">
+                <v:EmployeesView/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>
