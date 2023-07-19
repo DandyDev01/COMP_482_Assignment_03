@@ -1,12 +1,12 @@
-﻿using System;
+﻿using COMP_482_Assignment_03.Utility;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace COMP_482_Assignment_03.ViewModels
+ namespace COMP_482_Assignment_03.ViewModels
 {
-	internal class OrderIssueViewModel
+	public class OrderIssueViewModel : ObservableObject
 	{
 	}
 }

@@ -12,7 +12,7 @@
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -32,20 +32,28 @@
         </Menu>
 
         <TabControl Grid.Row="1">
-            <TabItem Header="Order">
-                <v:OrderView/>
+            <TabItem Header="Order" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="3.467"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
+                <v:OrderView DataContext="{Binding OrderVM}"/>
             </TabItem>
             <TabItem Header="Orders">
-                <v:OrdersView/>
+                <v:OrdersView DataContext="{Binding OrdersVM}"/>
             </TabItem>
             <TabItem Header="Inventory">
-                <v:InventoryView/>
+                <v:InventoryView DataContext="{Binding InventoryVM}"/>
             </TabItem>
             <TabItem Header="Order Issue">
-                <v:OrderIssueView/>
+                <v:OrderIssueView DataContext="{Binding OrderIssueVM}"/>
             </TabItem>
             <TabItem Header="Employees">
-                <v:EmployeesView/>
+                <v:EmployeesView DataContext="{Binding EmployeesVM}"/>
             </TabItem>
         </TabControl>
     </Grid>
