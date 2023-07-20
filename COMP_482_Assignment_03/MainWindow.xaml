@@ -7,7 +7,7 @@
         xmlns:vm="clr-namespace:COMP_482_Assignment_03.ViewModels"
         xmlns:v="clr-namespace:COMP_482_Assignment_03.Views"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
 
     <Window.DataContext>
         <vm:MainWindowViewModel/>
@@ -25,22 +25,22 @@
                     <DockPanel HorizontalAlignment="Stretch"/>
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
-            <MenuItem Header="File"/>
-            <MenuItem Header="Edit"/>
-            <MenuItem Header="Help"/>
+            <MenuItem Header="File">
+                <MenuItem Header="Print"/>
+                <MenuItem Header="Create Order"/>
+                <MenuItem Header="Create Inventory Item"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="Order"/>
+            </MenuItem>
+            <MenuItem Header="Help">
+            </MenuItem>
             <MenuItem Header="Sign Out" HorizontalAlignment="Right"/>
         </Menu>
 
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1"
+                    Margin="20">
             <TabItem Header="Order" RenderTransformOrigin="0.5,0.5">
-                <TabItem.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="3.467"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TabItem.RenderTransform>
                 <v:OrderView DataContext="{Binding OrderVM}"/>
             </TabItem>
             <TabItem Header="Orders">

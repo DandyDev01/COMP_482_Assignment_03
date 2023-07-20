@@ -18,7 +18,6 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public ObservableCollection<Object> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
-
 		public string Date { get; }
 
 		private string searchTerm;

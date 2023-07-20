@@ -21,7 +21,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ObservableCollection<Object> OpenOrderIssues { get; }
 		public ICollectionView OpenOrderIssuesCollectionView { get; }
 		public Array IssueTypes { get; } = Enum.GetValues(typeof(IssueType));
-
 		public string Date { get; }
 
 		private IssueType selectedIssueType;
@@ -50,8 +49,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StringBuilder issueDescription;
-		public StringBuilder IssueDescription
+		private string issueDescription;
+		public string IssueDescription
 		{
 			get
 			{
@@ -63,8 +62,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StringBuilder empoyeeName;
-		public StringBuilder EmpoyeeName
+		private string empoyeeName;
+		public string EmpoyeeName
 		{
 			get
 			{
@@ -76,8 +75,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StringBuilder emloyeeNumber;
-		public StringBuilder EmployeeNumber
+		private string emloyeeNumber;
+		public string EmployeeNumber
 		{
 			get
 			{
