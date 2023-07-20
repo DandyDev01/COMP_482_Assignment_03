@@ -16,12 +16,23 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CreateItemCommand { get; }
 		public ICommand DeleteItemCommand { get; }
 
-		public string SearchTerm { get; set; }
-
 		public ObservableCollection<Object> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 
 		public string Date { get; }
+
+		private string searchTerm;
+		public string SearchTerm
+		{
+			get
+			{
+				return searchTerm;
+			}
+			set
+			{
+				OnPropertyChanged(ref searchTerm, value);
+			}
+		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 

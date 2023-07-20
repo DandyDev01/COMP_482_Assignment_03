@@ -9,10 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
-public enum StoreDepartments { Grocery, Produce, Meat, Deliy, Bakery };
 
 namespace COMP_482_Assignment_03.ViewModels
 {
+	public enum StoreDepartment { Grocery, Produce, Meat, Deliy, Bakery };
+	
 	public class OrderViewModel : ObservableObject
 	{
 		public ICommand AddItemsCommand { get; }
@@ -23,8 +24,21 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ObservableCollection<Object> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 
-		public Array Departments = Enum.GetValues(typeof(StoreDepartments));
+		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
 		public string Date { get; }
+
+		private StoreDepartment selectedDepartment;
+		public StoreDepartment SelectedDepartment
+		{
+			get
+			{
+				return selectedDepartment;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedDepartment, value);
+			}
+		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 
