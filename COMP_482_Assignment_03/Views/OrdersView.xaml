@@ -39,7 +39,7 @@
                   ItemsSource="{Binding OrdersCollectionView}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Order ID" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -47,7 +47,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Status" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -55,7 +55,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Weight" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -63,7 +63,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Cost" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -71,7 +71,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="100">
+                    <GridViewColumn Width="150">
                         <GridViewColumnHeader Content="Exp Delivery Date" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -79,7 +79,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="75">
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Date Ordered" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -87,7 +87,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="75">
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Department" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

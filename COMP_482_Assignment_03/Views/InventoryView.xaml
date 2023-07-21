@@ -38,7 +38,7 @@
                   ItemsSource="{Binding ItemsCollectionView}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Name" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -46,7 +46,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Item ID" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -54,7 +54,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Brand" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -62,7 +62,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn>
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Size" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -78,7 +78,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="75">
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Price" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -86,7 +86,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="75">
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Department" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
@@ -94,7 +94,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Width="75">
+                    <GridViewColumn Width="100">
                         <GridViewColumnHeader Content="Item Type" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
