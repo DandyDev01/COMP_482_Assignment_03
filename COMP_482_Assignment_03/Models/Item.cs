@@ -20,7 +20,8 @@ namespace COMP_482_Assignment_03.Models
 		public float Cost { get; set; }
 		public ItemCategory Category { get; set;  }
 
-		public Item(string _name, string _id, string _price, string _brand, string _size, int _quantity, float _retailCost, float _cost, ItemCategory _category)
+		public Item(string _name, string _id, string _price, string _brand, string _size, int _quantity, 
+			float _retailCost, float _cost, ItemCategory _category)
 		{
 			Name = _name;
 			ID = _id;

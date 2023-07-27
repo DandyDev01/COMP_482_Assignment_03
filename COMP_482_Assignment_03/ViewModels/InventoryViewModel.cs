@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Utility;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,7 +17,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CreateItemCommand { get; }
 		public ICommand DeleteItemCommand { get; }
 
-		public ObservableCollection<Object> Items { get; }
+		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 		public string Date { get; }
 
@@ -34,13 +35,15 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		private readonly List<ObservableItem> observableItems;
 
-		public InventoryViewModel()
+		public InventoryViewModel(Inventory _inventory)
 		{
-			Items = new ObservableCollection<Object>();
+			Items = new ObservableCollection<Item>(_inventory.Items);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
+			observableItems = _inventory.Items.GetObservableItems();
 
 			Date = DateTime.Now.ToString();
 		}

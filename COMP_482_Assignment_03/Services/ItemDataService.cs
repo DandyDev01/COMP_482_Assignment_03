@@ -11,7 +11,26 @@ namespace COMP_482_Assignment_03.Services
 	{
 		public List<Item> GetAll()
 		{
-			return null;
+			return new List<Item>
+			{
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+			};
 		}
 	}
 }

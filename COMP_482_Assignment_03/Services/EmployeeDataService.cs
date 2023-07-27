@@ -11,7 +11,7 @@ namespace COMP_482_Assignment_03.Services
 	{
 		public List<Employee> GetAll()
 		{
-			return null;
+			return new List<Employee>();
 		}
 	}
 }

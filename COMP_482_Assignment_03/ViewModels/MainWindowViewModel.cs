@@ -43,7 +43,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			OrderVM = new OrderViewModel();
 			OrdersVM = new OrdersViewModel();
-			InventoryVM = new InventoryViewModel();
+			InventoryVM = new InventoryViewModel(inventory);
 			OrderIssueVM = new OrderIssueViewModel();
 			EmployeesVM = new EmployeesViewModel();
 		}

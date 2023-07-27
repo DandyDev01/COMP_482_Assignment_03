@@ -42,7 +42,7 @@
                         <GridViewColumnHeader Content="Name" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Name}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -50,7 +50,7 @@
                         <GridViewColumnHeader Content="Item ID" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding ID}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -58,7 +58,7 @@
                         <GridViewColumnHeader Content="Brand" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Brand}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -66,7 +66,7 @@
                         <GridViewColumnHeader Content="Size" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Size}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -74,7 +74,7 @@
                         <GridViewColumnHeader Content="Quantity" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Quantity}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -82,7 +82,7 @@
                         <GridViewColumnHeader Content="Price" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Price}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
