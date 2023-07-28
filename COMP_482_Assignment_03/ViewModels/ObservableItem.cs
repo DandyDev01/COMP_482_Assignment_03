@@ -136,6 +136,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private StoreDepartment department;
+		public StoreDepartment Department
+		{
+			get
+			{
+				return department;
+			}
+			set
+			{
+				OnPropertyChanged(ref department, value);
+			}
+		}
+
 		public Item Item { get; }
 
 		public ObservableItem(Item _item)
@@ -151,6 +164,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			cost = Item.Cost;
 			quantity = Item.Quantity;
 			category = Item.Category;
+			department = Item.Department;
 		}
 	}
 }
