@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Models;
+﻿using COMP_482_Assignment_03.Commands;
+using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
@@ -35,7 +36,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
-		private readonly List<ObservableItem> observableItems;
+		private readonly ObservableCollection<ObservableItem> observableItems;
 
 		public InventoryViewModel(Inventory _inventory)
 		{
@@ -46,6 +47,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			observableItems = _inventory.Items.GetObservableItems();
 
 			Date = DateTime.Now.ToString();
+
+			CreateItemCommand = new CreateItemCommand(_inventory, this);
 		}
 	}
 }

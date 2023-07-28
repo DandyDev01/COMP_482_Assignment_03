@@ -20,7 +20,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref name, value);
-				item.Name = value;
+				Item.Name = value;
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref id, value);
-				item.ID = value;
+				Item.ID = value;
 			}
 		}
 
@@ -48,7 +48,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref price, value);
-				item.Price = value;
+				Item.Price = value;
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref brand, value);
-				item.Brand = value;
+				Item.Brand = value;
 			}
 		}
 
@@ -76,7 +76,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref size, value);
-				item.Size = value;
+				Item.Size = value;
 			}
 		}
 
@@ -90,7 +90,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref retailCost, value);
-				item.RetailCost = value;
+				Item.RetailCost = value;
 			}
 		}
 
@@ -104,7 +104,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref cost, value);
-				item.Cost = value;
+				Item.Cost = value;
 			}
 		}
 
@@ -118,7 +118,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref quantity, value);
-				item.Quantity = value;
+				Item.Quantity = value;
 			}
 		}
 
@@ -132,24 +132,25 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref category, value);
-				item.Category = value;
+				Item.Category = value;
 			}
 		}
 
-		private Item item;
+		public Item Item { get; }
 
 		public ObservableItem(Item _item)
 		{
-			item = _item;
-			name = item.Name;
-			id = item.ID;
-			price = item.Price;
-			brand = item.Brand;
-			size = item.Size;
-			retailCost = item.RetailCost;
-			cost = item.Cost;
-			quantity = item.Quantity;
-			category = item.Category;
+			Item = _item;
+
+			name = Item.Name;
+			id = Item.ID;
+			price = Item.Price;
+			brand = Item.Brand;
+			size = Item.Size;
+			retailCost = Item.RetailCost;
+			cost = Item.Cost;
+			quantity = Item.Quantity;
+			category = Item.Category;
 		}
 	}
 }

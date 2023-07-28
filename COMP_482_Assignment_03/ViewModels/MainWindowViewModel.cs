@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Models;
+﻿using COMP_482_Assignment_03.Commands;
+using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Services;
 using COMP_482_Assignment_03.Utility;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace COMP_482_Assignment_03.ViewModels
 {
@@ -16,6 +18,10 @@ namespace COMP_482_Assignment_03.ViewModels
 		public InventoryViewModel InventoryVM { get; }
 		public OrderIssueViewModel OrderIssueVM { get; }
 		public EmployeesViewModel EmployeesVM { get; }
+
+		public ICommand CreateOrderCommand{ get; }
+		public ICommand CreateItemCommand { get; }
+		public ICommand CreateEmployeeCommand { get; }
 
 		private readonly Store store;
 		private readonly Inventory inventory;
@@ -46,6 +52,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			InventoryVM = new InventoryViewModel(inventory);
 			OrderIssueVM = new OrderIssueViewModel();
 			EmployeesVM = new EmployeesViewModel();
+
+			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
 		}
 	}
 }

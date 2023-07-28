@@ -27,8 +27,16 @@
             </Menu.ItemsPanel>
             <MenuItem Header="File">
                 <MenuItem Header="Print"/>
-                <MenuItem Header="Create Order"/>
-                <MenuItem Header="Create Inventory Item"/>
+                <MenuItem Header="Create">
+                    <MenuItem Header="Order"/>
+                    <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
+                    <MenuItem Header="Employee"/>
+                </MenuItem>
+                <MenuItem Header="Delete">
+                    <MenuItem Header="Order"/>
+                    <MenuItem Header="Item"/>
+                    <MenuItem Header="Employee"/>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
                 <MenuItem Header="Order"/>
