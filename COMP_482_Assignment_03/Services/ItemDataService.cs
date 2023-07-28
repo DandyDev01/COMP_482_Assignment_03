@@ -1,4 +1,5 @@
 ﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,23 +14,23 @@ namespace COMP_482_Assignment_03.Services
 		{
 			return new List<Item>
 			{
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
-				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
+				new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery),
 			};
 		}
 	}

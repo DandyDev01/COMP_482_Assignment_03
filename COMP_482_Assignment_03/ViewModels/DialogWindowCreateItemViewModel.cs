@@ -17,6 +17,9 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public ObservableItem ObservableItem { get; }
 
+		public Array Categories { get; } = Enum.GetValues(typeof(ItemCategory));
+		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
+
 		private readonly Item item;
 		private readonly Window window;
 
@@ -24,7 +27,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		{
 			window = _window;
 
-			item = new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one);
+			item = new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.one, StoreDepartment.Grocery);
 			ObservableItem = new ObservableItem(item);
 
 			CreateCommand = new RelayCommand(Create);

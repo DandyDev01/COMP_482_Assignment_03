@@ -90,15 +90,15 @@
                         <GridViewColumnHeader Content="Department" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Department}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Item Type" Command=""/>
+                        <GridViewColumnHeader Content="Categoty" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding Category}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
