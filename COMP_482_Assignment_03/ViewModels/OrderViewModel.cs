@@ -1,4 +1,6 @@
-﻿using COMP_482_Assignment_03.Utility;
+﻿using COMP_482_Assignment_03.Commands;
+using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -21,7 +23,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CancelCommand { get; }
 		public ICommand CreateCommand { get; }
 
-		public ObservableCollection<Object> Items { get; }
+		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
@@ -40,16 +42,28 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		public StoreOrder Order;
 
-		public OrderViewModel()
+		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		private readonly Inventory inventory;
+		private readonly OrderTracker orderTracker;
+
+		public OrderViewModel(Inventory _inventory, OrderTracker _orderTracker)
 		{
-			Items = new ObservableCollection<Object>();
+			inventory = _inventory;
+			orderTracker = _orderTracker;
+
+			Items = new ObservableCollection<Item>();
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 
 			Date = DateTime.Now.ToString();
+			Order = new StoreOrder();
+			orderTracker.Add(Order);
+
+			AddItemsCommand = new SelectItemsCommand(inventory, orderTracker, Items);
+			CreateCommand = new CreateOrderCommand(orderTracker, this);
 		}
 	}
 }

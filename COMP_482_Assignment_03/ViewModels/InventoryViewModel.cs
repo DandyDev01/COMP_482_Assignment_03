@@ -55,6 +55,8 @@ namespace COMP_482_Assignment_03.ViewModels
 		{
 			Items = new ObservableCollection<Item>(_inventory.Items);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
+			selectedItem = Items[0];
+			searchTerm = string.Empty;
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 			observableItems = _inventory.Items.GetObservableItems();

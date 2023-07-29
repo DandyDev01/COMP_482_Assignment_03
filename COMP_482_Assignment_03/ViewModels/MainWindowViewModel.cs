@@ -47,7 +47,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			orderIssueTracker = new OrderIssueTracker(orderIssueDataService.GetAll().ToArray());
 			store = new Store(orderIssueTracker, inventory, employeesManager, orderTracker);
 
-			OrderVM = new OrderViewModel();
+			OrderVM = new OrderViewModel(inventory, orderTracker);
 			OrdersVM = new OrdersViewModel();
 			InventoryVM = new InventoryViewModel(inventory);
 			OrderIssueVM = new OrderIssueViewModel();

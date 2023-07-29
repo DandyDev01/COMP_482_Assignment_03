@@ -32,7 +32,7 @@ namespace COMP_482_Assignment_03.Commands
 
 			window.ShowDialog();
 
-			if (window.DialogResult == false) return;
+			if (window.DialogResult == false) return; 
 
 			inventory.Add(dialogContext.ObservableItem.Item);
 			inventoryVM.Items.Add(dialogContext.ObservableItem.Item);

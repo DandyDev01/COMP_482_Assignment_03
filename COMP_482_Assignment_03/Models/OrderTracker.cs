@@ -10,6 +10,8 @@ namespace COMP_482_Assignment_03.Models
 	{
 		public StoreOrder[] Orders { get { return orders.ToArray(); } }
 
+		public StoreOrder Last { get { return orders[orders.Count - 1]; } }
+
 		private readonly List<StoreOrder> orders;
 
 		public OrderTracker(StoreOrder[] _orders)
@@ -21,6 +23,8 @@ namespace COMP_482_Assignment_03.Models
 		{
 			// validation should be done already
 			// do null check
+
+			orders.Add(order);
 		}
 
 		public StoreOrder Remove(string ID)

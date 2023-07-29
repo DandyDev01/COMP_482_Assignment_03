@@ -149,6 +149,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private bool isSelected;
+		public bool IsSelected
+		{
+			get
+			{
+				return isSelected;
+			}
+			set
+			{
+				OnPropertyChanged(ref isSelected, value);
+			}
+		}
+
 		public Item Item { get; }
 
 		public ObservableItem(Item _item)
@@ -165,6 +178,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			quantity = Item.Quantity;
 			category = Item.Category;
 			department = Item.Department;
+			isSelected = false;
 		}
 	}
 }
