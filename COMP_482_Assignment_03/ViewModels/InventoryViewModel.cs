@@ -22,6 +22,19 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICollectionView ItemsCollectionView { get; }
 		public string Date { get; }
 
+		private Item selectedItem;
+		public Item SelectedItem
+		{
+			get
+			{
+				return selectedItem;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedItem, value);
+			}
+		}
+
 		private string searchTerm;
 		public string SearchTerm
 		{
@@ -49,6 +62,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			Date = DateTime.Now.ToString();
 
 			CreateItemCommand = new CreateItemCommand(_inventory, this);
+			DeleteItemCommand = new DeleteItemCommand(_inventory, this);
 		}
 	}
 }

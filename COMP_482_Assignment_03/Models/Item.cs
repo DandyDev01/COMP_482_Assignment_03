@@ -7,7 +7,7 @@ using COMP_482_Assignment_03.ViewModels;
 
 namespace COMP_482_Assignment_03.Models
 {
-	public enum ItemCategory { one, two, three }
+	public enum ItemCategory { Frozen, Baking, Spice, Chips, Pop, Candy, Vegitable, Fruit, Meat, Dry, Pets }
 
 	public class Item
 	{
@@ -47,7 +47,7 @@ namespace COMP_482_Assignment_03.Models
 			Quantity = 0;
 			RetailCost = 0;
 			Cost = 0;
-			Category = ItemCategory.one;
+			Category = ItemCategory.Frozen;
 			Department = StoreDepartment.Grocery;
 		}
 	}

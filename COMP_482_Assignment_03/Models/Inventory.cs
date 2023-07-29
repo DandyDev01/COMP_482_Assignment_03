@@ -25,7 +25,17 @@ namespace COMP_482_Assignment_03.Models
 
 		public Item Remove(string ID)
 		{
-			return null;
+			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
+				return null;
+
+			Item item = items.Where(x => x.ID == ID).FirstOrDefault();
+			
+			if (item == null) 
+				return null;
+
+			items.Remove(item);
+
+			return item;
 		}
 
 		public Item Get(string ID)
