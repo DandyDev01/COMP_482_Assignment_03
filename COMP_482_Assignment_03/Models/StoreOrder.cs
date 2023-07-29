@@ -8,6 +8,8 @@ namespace COMP_482_Assignment_03.Models
 {
 	public class StoreOrder
 	{
+		public Item[] Items { get { return items.ToArray(); } }
+
 		private readonly List<Item> items;
 
 		public StoreOrder()
@@ -18,6 +20,11 @@ namespace COMP_482_Assignment_03.Models
 		public void Add(Item item)
 		{
 			items.Add(item);	
+		}
+
+		public void Remove(Item item)
+		{
+			items.Remove(item);
 		}
 	}
 }

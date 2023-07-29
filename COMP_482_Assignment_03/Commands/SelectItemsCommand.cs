@@ -13,15 +13,11 @@ namespace COMP_482_Assignment_03.Commands
 {
 	public class SelectItemsCommand : BaseCommand
 	{
-		private readonly Inventory inventory;
-		private readonly OrderTracker orderTracker;
-		private readonly ObservableCollection<Item> items;
+		private readonly SelectItemsDataBase selectItemsData;
 
-		public SelectItemsCommand(Inventory _inventory, OrderTracker _orderTracker, ObservableCollection<Item> _items)
+		public SelectItemsCommand(SelectItemsDataBase _selectItemsData)
 		{
-			inventory = _inventory; 
-			orderTracker = _orderTracker;
-			items = _items;
+			selectItemsData = _selectItemsData;
 		}
 
 		public override void Execute(object parameter)
@@ -30,7 +26,7 @@ namespace COMP_482_Assignment_03.Commands
 
 			Window window = new SelectItemsDialogWindow();
 			DialogWindowSelectedItemsViewModel dialogContext =
-				new DialogWindowSelectedItemsViewModel(window, inventory, orderTracker, items);
+				new DialogWindowSelectedItemsViewModel(window, selectItemsData);
 			window.DataContext = dialogContext;
 
 			window.ShowDialog();

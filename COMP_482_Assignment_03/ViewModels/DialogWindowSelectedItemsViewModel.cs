@@ -37,21 +37,16 @@ namespace COMP_482_Assignment_03.ViewModels
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly ObservableCollection<ObservableItem> observableItems;
 		private readonly Window window;
-		private readonly Inventory inventory;
-		private readonly OrderTracker orderTracker;
-		private readonly ObservableCollection<Item> items;
+		private readonly SelectItemsDataBase selectItemsData;
 
-		public DialogWindowSelectedItemsViewModel(Window _window, Inventory _inventory, OrderTracker _orderTracker, 
-			ObservableCollection<Item> _items)
+		public DialogWindowSelectedItemsViewModel(Window _window, SelectItemsDataBase _selectItemsData)
 		{
 			window = _window;
-			inventory = _inventory;
-			orderTracker = _orderTracker;
-			items = _items;
+			selectItemsData = _selectItemsData;
 
-			observableItems = _inventory.Items.GetObservableItems();
+			observableItems = selectItemsData.ItemsToSelectFrom.GetObservableItems();
 
-			Items = new ObservableCollection<Item>(_inventory.Items);
+			Items = new ObservableCollection<Item>(selectItemsData.ItemsToSelectFrom);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(observableItems);
 			
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
@@ -70,14 +65,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		{
 			window.DialogResult = true;
 
-			StoreOrder order = orderTracker.Last;
-
-			List<ObservableItem> selectedItems = observableItems.Where(x => x.IsSelected).ToList();
-			foreach (ObservableItem observableItem in selectedItems)
-			{
-				order.Add(observableItem.Item);
-				items.Add(observableItem.Item);
-			}
+			selectItemsData.ManipulateData(observableItems);
 		}
 	}
 }
