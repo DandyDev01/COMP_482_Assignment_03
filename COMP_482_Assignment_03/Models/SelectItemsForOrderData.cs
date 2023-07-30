@@ -22,7 +22,7 @@ namespace COMP_482_Assignment_03.Models
 			destinationCollection = _destinationCollection;
 		}
 
-		public Item[] ItemsToSelectFrom => inventory.Items.ToArray();
+		public Item[] ItemsSource => inventory.Items.ToArray();
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{

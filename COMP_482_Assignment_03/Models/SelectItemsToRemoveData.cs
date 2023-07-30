@@ -10,7 +10,7 @@ namespace COMP_482_Assignment_03.Models
 {
 	public class SelectItemsToRemoveData : SelectItemsDataBase
 	{
-		public Item[] ItemsToSelectFrom => orderTracker.Last.Items;
+		public Item[] ItemsSource => orderTracker.Last.Items;
 
 		private readonly OrderTracker orderTracker;
 		private readonly ObservableCollection<Item> sourceCollection;

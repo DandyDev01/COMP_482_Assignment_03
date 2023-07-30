@@ -10,7 +10,7 @@ namespace COMP_482_Assignment_03.Models
 {
 	public interface SelectItemsDataBase
 	{
-		public Item[] ItemsToSelectFrom { get; }
+		public Item[] ItemsSource { get; }
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom);
 	}

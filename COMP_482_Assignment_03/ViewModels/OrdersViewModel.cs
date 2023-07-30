@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Utility;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,16 +19,30 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EditOrderCommand { get; }
 		public ICommand CancelOrderCommand { get; }
 
-		public ObservableCollection<Object> Orders { get; }
+		private StoreOrder selectedOrder;
+		public StoreOrder SelectedOrder
+		{
+			get
+			{
+				return selectedOrder;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedOrder, value);
+			}
+		}
+
+		public ObservableCollection<StoreOrder> Orders { get; }
 		public ICollectionView OrdersCollectionView { get; }
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 
 		public OrdersViewModel()
 		{
-			Orders = new ObservableCollection<Object>();
+			Orders = new ObservableCollection<StoreOrder>();
 			OrdersCollectionView = CollectionViewSource.GetDefaultView(Orders);
 
+			selectedOrder = Orders.FirstOrDefault();
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 		}
 	}

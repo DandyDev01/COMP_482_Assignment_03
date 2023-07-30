@@ -125,7 +125,7 @@
                 Content="Cancel"
                 Command="{Binding CancelCommand}"/>
         <Button Grid.Column="6" Grid.Row="11" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                Content="Add"
-                Command="{Binding AddCommand}"/>
+                Content="Submit"
+                Command="{Binding SubmitCommand}"/>
     </Grid>
 </Window>

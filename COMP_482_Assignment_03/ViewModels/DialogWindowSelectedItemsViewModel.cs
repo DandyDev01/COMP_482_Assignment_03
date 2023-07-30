@@ -15,7 +15,7 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public class DialogWindowSelectedItemsViewModel : ObservableObject
 	{
-		public ICommand AddCommand { get; }
+		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
 
 		public ObservableCollection<Item> Items { get; }
@@ -44,15 +44,15 @@ namespace COMP_482_Assignment_03.ViewModels
 			window = _window;
 			selectItemsData = _selectItemsData;
 
-			observableItems = selectItemsData.ItemsToSelectFrom.GetObservableItems();
+			observableItems = selectItemsData.ItemsSource.GetObservableItems();
 
-			Items = new ObservableCollection<Item>(selectItemsData.ItemsToSelectFrom);
+			Items = new ObservableCollection<Item>(selectItemsData.ItemsSource);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(observableItems);
 			
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 			searchTerm = string.Empty;
 
-			AddCommand = new RelayCommand(Add);
+			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
 		}
 
@@ -61,7 +61,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			window.DialogResult = false;
 		}
 
-		private void Add()
+		private void Submit()
 		{
 			window.DialogResult = true;
 

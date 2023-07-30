@@ -45,13 +45,15 @@ namespace COMP_482_Assignment_03.ViewModels
 		public StoreOrder Order;
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		private readonly OrdersViewModel ordersVM;
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
 
-		public OrderViewModel(Inventory _inventory, OrderTracker _orderTracker)
+		public OrderViewModel(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM)
 		{
 			inventory = _inventory;
 			orderTracker = _orderTracker;
+			ordersVM = _ordersVM;
 
 			Items = new ObservableCollection<Item>();
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
@@ -64,7 +66,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, Items));
 			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveData(orderTracker, Items));
-			CreateCommand = new CreateOrderCommand(orderTracker, this);
+			CreateCommand = new CreateOrderCommand(orderTracker, ordersVM, this);
 		}
 	}
 }
