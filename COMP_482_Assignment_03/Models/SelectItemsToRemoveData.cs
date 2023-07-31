@@ -11,14 +11,15 @@ namespace COMP_482_Assignment_03.Models
 	public class SelectItemsToRemoveData : SelectItemsDataBase
 	{
 		public Item[] ItemsSource => orderTracker.Last.Items;
+		public OrderTracker OrderTracker => orderTracker;
+		public readonly ObservableCollection<Item> SourceCollection;
 
 		private readonly OrderTracker orderTracker;
-		private readonly ObservableCollection<Item> sourceCollection;
 
 		public SelectItemsToRemoveData(OrderTracker _orderTracker, ObservableCollection<Item> _sourceCollection)
 		{
 			orderTracker = _orderTracker;
-			sourceCollection = _sourceCollection;
+			SourceCollection = _sourceCollection;
 		}
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
@@ -29,7 +30,7 @@ namespace COMP_482_Assignment_03.Models
 			foreach (ObservableItem observableItem in selectedItems)
 			{
 				order.Remove(observableItem.Item);
-				sourceCollection.Remove(observableItem.Item);
+				SourceCollection.Remove(observableItem.Item);
 			}
 		}
 	}

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
+using COMP_482_Assignment_03.ViewModels;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +26,25 @@ namespace COMP_482_Assignment_03.Windows
 		public SelectItemsDialogWindow()
 		{
 			InitializeComponent();
+
+			this.InputBindings.Add(new KeyBinding(new RelayCommand(Delete), Key.Delete, ModifierKeys.None));
+			list.SelectionChanged += ToggleItemSelection;
+		}
+
+		private void ToggleItemSelection(object sender, SelectionChangedEventArgs e)
+		{
+			ObservableItem item = list.SelectedItem as ObservableItem;
+			item.IsSelected = !item.IsSelected;
+		}
+
+		private void Delete()
+		{
+			DialogWindowSelectedItemsViewModel viewModel = (DialogWindowSelectedItemsViewModel)DataContext;
+
+			if (viewModel.SelectItemsData is SelectItemsForOrderData)
+				return;
+
+			viewModel.SubmitCommand.Execute(null);
 		}
 	}
 }

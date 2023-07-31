@@ -1,4 +1,7 @@
-﻿using System;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
+using COMP_482_Assignment_03.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,17 @@ namespace COMP_482_Assignment_03.Views
 		public InventoryView()
 		{
 			InitializeComponent();
+			this.InputBindings.Add(new KeyBinding(new RelayCommand(Delete), Key.Delete, ModifierKeys.None));
 		}
+
+		private void Delete()
+		{
+			InventoryViewModel viewModel = (InventoryViewModel)DataContext;
+
+			while (list.SelectedItems.Count > 0)
+			{
+				viewModel.SelectedItem = list.SelectedItems[0] as Item;
+				viewModel.DeleteItemCommand.Execute(null);
+			}		}
 	}
 }

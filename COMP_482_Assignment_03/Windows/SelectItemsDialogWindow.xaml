@@ -38,8 +38,9 @@
                  Text="{Binding SearchTerm, FallbackValue=Search}"/>
 
         <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="10"
+                  Name="list"
                   VerticalAlignment="Stretch"
-                  SelectionMode="Multiple"
+                  SelectionMode="Single"
                   SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ItemsCollectionView}">
             <ListView.View>

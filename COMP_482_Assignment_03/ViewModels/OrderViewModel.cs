@@ -23,11 +23,23 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CancelCommand { get; }
 		public ICommand CreateCommand { get; }
 
+		private string date;
+		public string Date
+		{
+			get
+			{
+				return date;
+			}
+			set
+			{
+				OnPropertyChanged(ref date, value);
+			}
+		}
+
 		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
-		public string Date { get; }
 
 		private StoreDepartment selectedDepartment;
 		public StoreDepartment SelectedDepartment

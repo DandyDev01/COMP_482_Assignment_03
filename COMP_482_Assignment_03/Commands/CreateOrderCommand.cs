@@ -27,6 +27,7 @@ namespace COMP_482_Assignment_03.Commands
 			orderVM.Order = new StoreOrder();
 			orderTracker.Add(orderVM.Order);
 			orderVM.Items.Clear();
+			orderVM.Date = DateTime.Now.ToString();
 		}
 	}
 }

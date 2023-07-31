@@ -20,6 +20,21 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
+		public SelectItemsDataBase SelectItemsData { get { return selectItemsData; } }
+		public readonly ObservableCollection<ObservableItem> ObservableItems;
+
+		private ObservableItem selectedItem;
+		public ObservableItem SelectedItem
+		{
+			get
+			{
+				return selectedItem;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedItem, value);
+			}
+		}
 
 		private string searchTerm;
 		public string SearchTerm
@@ -35,7 +50,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
-		private readonly ObservableCollection<ObservableItem> observableItems;
 		private readonly Window window;
 		private readonly SelectItemsDataBase selectItemsData;
 
@@ -44,10 +58,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			window = _window;
 			selectItemsData = _selectItemsData;
 
-			observableItems = selectItemsData.ItemsSource.GetObservableItems();
+			ObservableItems = selectItemsData.ItemsSource.GetObservableItems();
 
 			Items = new ObservableCollection<Item>(selectItemsData.ItemsSource);
-			ItemsCollectionView = CollectionViewSource.GetDefaultView(observableItems);
+			ItemsCollectionView = CollectionViewSource.GetDefaultView(ObservableItems);
 			
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 			searchTerm = string.Empty;
@@ -65,7 +79,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		{
 			window.DialogResult = true;
 
-			selectItemsData.ManipulateData(observableItems);
+			selectItemsData.ManipulateData(ObservableItems);
 		}
 	}
 }
