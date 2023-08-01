@@ -35,7 +35,7 @@
         <Label Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                HorizontalAlignment="Right"
                Content="{Binding Date}"
-               ToolTip="dd/mm/yyyy"/>
+               ToolTip="yyyy/mm/dd"/>
 
         <ComboBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
                   ItemsSource="{Binding IssueTypes}"

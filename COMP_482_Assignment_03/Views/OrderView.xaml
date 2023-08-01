@@ -34,7 +34,7 @@
                  Command="{Binding RemoveItemsCommand}"/>
         <Label Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="{Binding Date}"
-               ToolTip="dd/mm/yyyy"/>
+               ToolTip="yyyy/mm/dd"/>
 
         <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="1"
                   VerticalAlignment="Stretch"

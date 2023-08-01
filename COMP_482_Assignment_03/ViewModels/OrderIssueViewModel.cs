@@ -97,7 +97,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			collectionViewPropertySort = new CollectionViewPropertySort(OpenOrderIssuesCollectionView);
 
-			Date = DateTime.Now.ToString();
+			Date = DateTime.Now.ToString("yyyy-MMM-ddd-dd");
 		}
 	}
 }

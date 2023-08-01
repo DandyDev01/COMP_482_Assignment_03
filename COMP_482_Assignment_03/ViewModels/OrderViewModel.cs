@@ -106,14 +106,14 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 
-			Date = DateTime.Now.ToString();
+			Date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
 			Order = new StoreOrder();
 			orderTracker.Add(Order);
 
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, Items));
 			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, Items));
 			CreateCommand = new CreateOrderCommand(orderTracker, ordersVM, this);
-			CancelCommand = new ClearOrderCommand(orderTracker, ordersVM, this);
+			CancelCommand = new ClearOrderCommand(this);
 
 			Items.CollectionChanged += Validate;
 

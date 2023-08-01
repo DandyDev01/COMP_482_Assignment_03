@@ -10,14 +10,10 @@ namespace COMP_482_Assignment_03.Commands
 {
 	public class ClearOrderCommand : BaseCommand
 	{
-		private readonly OrderTracker orderTracker;
-		private readonly OrdersViewModel ordersVM;
 		private readonly OrderViewModel orderVM;
 
-		public ClearOrderCommand(OrderTracker _orderTracker, OrdersViewModel _ordersVM, OrderViewModel _orderViewModel)
+		public ClearOrderCommand(OrderViewModel _orderViewModel)
 		{
-			orderTracker = _orderTracker;
-			ordersVM = _ordersVM;
 			orderVM = _orderViewModel;
 		}
 
