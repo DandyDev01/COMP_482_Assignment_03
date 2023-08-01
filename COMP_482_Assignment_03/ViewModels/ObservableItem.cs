@@ -100,6 +100,7 @@ namespace COMP_482_Assignment_03.ViewModels
 				Item.RetailCost = value;
 
 				CostToRetailCostValidation(retailCost, cost);
+				CostValidation(nameof(RetailCost), RetailCost);
 			}
 		}
 
@@ -116,6 +117,7 @@ namespace COMP_482_Assignment_03.ViewModels
 				Item.Cost = value;
 
 				CostToRetailCostValidation(retailCost, cost);
+				CostValidation(nameof(Cost), Cost);
 			}
 		}
 
@@ -210,6 +212,13 @@ namespace COMP_482_Assignment_03.ViewModels
 			isSelected = false;
 
 			propertyNameToError = new Dictionary<string, List<string>>();
+			
+			BasicStringFieldValidation(nameof(Name), Name);
+			BasicStringFieldValidation(nameof(Brand), Brand);
+			BasicStringFieldValidation(nameof(ID), ID);
+			CostToRetailCostValidation(RetailCost, Cost);
+			CostValidation(nameof(RetailCost), RetailCost);
+			CostValidation(nameof(Cost), Cost);
 		}
 
 		public IEnumerable GetErrors(string? propertyName)
@@ -269,6 +278,25 @@ namespace COMP_482_Assignment_03.ViewModels
 			if (propertyNameToError[nameof(Cost)].Any() == false)
 			{
 				propertyNameToError.Remove(nameof(Cost));
+			}
+
+			IsValid = !HasErrors;
+		}
+
+		private void CostValidation(string propertyName, float value)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (value < 0.01)
+			{
+				propertyNameToError[propertyName].Add("must have cost at least 1 cent");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
 			}
 
 			IsValid = !HasErrors;
