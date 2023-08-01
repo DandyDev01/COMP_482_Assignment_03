@@ -98,6 +98,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref retailCost, value);
 				Item.RetailCost = value;
+
+				CostToRetailCostValidation(retailCost, cost);
 			}
 		}
 
@@ -112,6 +114,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref cost, value);
 				Item.Cost = value;
+
+				CostToRetailCostValidation(retailCost, cost);
 			}
 		}
 
@@ -221,19 +225,50 @@ namespace COMP_482_Assignment_03.ViewModels
 			propertyNameToError.Add(propertyName, errors);
 			if (string.IsNullOrEmpty(propertyValue) || string.IsNullOrWhiteSpace(propertyValue))
 			{
-				propertyNameToError[propertyName].Add("Name cannot be empty or white space");
+				propertyNameToError[propertyName].Add("Cannot be empty or white space");
 				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 			}
 
 			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
 			{
-				propertyNameToError[propertyName].Add("Name start with white space");
+				propertyNameToError[propertyName].Add("Cannot start with white space");
 				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 			}
 
 			if (propertyNameToError[propertyName].Any() == false)
 			{
 				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
+		}
+
+		private void CostToRetailCostValidation(float retailCost, float cost)
+		{
+			propertyNameToError.Remove(nameof(RetailCost));
+			propertyNameToError.Remove(nameof(Cost));
+
+			List<string> retailErrors = new List<string>();
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(nameof(RetailCost), retailErrors);
+			propertyNameToError.Add(nameof(Cost), errors);
+			if (cost < retailCost)
+			{
+				propertyNameToError[nameof(RetailCost)].Add("cost cannot be less than retail cost");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(RetailCost)));
+
+				propertyNameToError[nameof(Cost)].Add("retail cost cannot be greater than cost");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Cost)));
+			}
+
+			if (propertyNameToError[nameof(RetailCost)].Any() == false)
+			{
+				propertyNameToError.Remove(nameof(RetailCost));
+			}
+
+			if (propertyNameToError[nameof(Cost)].Any() == false)
+			{
+				propertyNameToError.Remove(nameof(Cost));
 			}
 
 			IsValid = !HasErrors;
