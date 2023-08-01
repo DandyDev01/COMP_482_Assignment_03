@@ -33,6 +33,11 @@ namespace COMP_482_Assignment_03.Models
 			items = new List<Item>();
 		}
 
+		public void Clear()
+		{
+			items.Clear();
+		}
+
 		public void Add(Item item)
 		{
 			items.Add(item);

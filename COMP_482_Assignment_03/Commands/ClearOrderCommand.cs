@@ -12,18 +12,19 @@ namespace COMP_482_Assignment_03.Commands
 	{
 		private readonly OrderTracker orderTracker;
 		private readonly OrdersViewModel ordersVM;
-		private readonly OrderViewModel orderViewModel;
+		private readonly OrderViewModel orderVM;
 
 		public ClearOrderCommand(OrderTracker _orderTracker, OrdersViewModel _ordersVM, OrderViewModel _orderViewModel)
 		{
 			orderTracker = _orderTracker;
 			ordersVM = _ordersVM;
-			orderViewModel = _orderViewModel;
+			orderVM = _orderViewModel;
 		}
 
 		public override void Execute(object parameter)
 		{
-			
+			orderVM.Order.Clear();
+			orderVM.Items.Clear();
 		}
 	}
 }
