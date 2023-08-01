@@ -1,14 +1,16 @@
 ﻿using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Utility;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace COMP_482_Assignment_03.ViewModels
 {
-	public class ObservableItem : ObservableObject
+	public class ObservableItem : ObservableObject, INotifyDataErrorInfo
 	{
 		private string name;
 		public string Name
@@ -21,6 +23,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref name, value);
 				Item.Name = value;
+
+				BasicStringFieldValidation(nameof(Name), Name);
 			}
 		}
 
@@ -35,6 +39,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref id, value);
 				Item.ID = value;
+
+				BasicStringFieldValidation(nameof(ID), ID);
 			}
 		}
 
@@ -63,6 +69,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref brand, value);
 				Item.Brand = value;
+				BasicStringFieldValidation(nameof(Brand), Brand);
 			}
 		}
 
@@ -162,7 +169,25 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private bool isValid;
+		public bool IsValid
+		{
+			get
+			{
+				return isValid;
+			}
+			set
+			{
+				OnPropertyChanged(ref isValid, value);
+			}
+		}
+
 		public Item Item { get; }
+
+		public bool HasErrors => propertyNameToError.Any();
+		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+		private readonly Dictionary<string, List<string>> propertyNameToError;
 
 		public ObservableItem(Item _item)
 		{
@@ -179,6 +204,39 @@ namespace COMP_482_Assignment_03.ViewModels
 			category = Item.Category;
 			department = Item.Department;
 			isSelected = false;
+
+			propertyNameToError = new Dictionary<string, List<string>>();
+		}
+
+		public IEnumerable GetErrors(string? propertyName)
+		{
+			return propertyNameToError.GetValueOrDefault(propertyName, new List<string>());
+		}
+
+		private void BasicStringFieldValidation(string propertyName, string propertyValue)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (string.IsNullOrEmpty(propertyValue) || string.IsNullOrWhiteSpace(propertyValue))
+			{
+				propertyNameToError[propertyName].Add("Name cannot be empty or white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
+			{
+				propertyNameToError[propertyName].Add("Name start with white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
 		}
 	}
 }

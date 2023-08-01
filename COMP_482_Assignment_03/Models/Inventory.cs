@@ -21,6 +21,8 @@ namespace COMP_482_Assignment_03.Models
 		{
 			// data validation should already be done
 			// do a null check
+
+			items.Add(item);
 		}
 
 		public Item Remove(string ID)

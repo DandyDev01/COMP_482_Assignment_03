@@ -37,6 +37,7 @@ namespace COMP_482_Assignment_03.Views
 			{
 				viewModel.SelectedItem = list.SelectedItems[0] as Item;
 				viewModel.DeleteItemCommand.Execute(null);
-			}		}
+			}		
+		}
 	}
 }
