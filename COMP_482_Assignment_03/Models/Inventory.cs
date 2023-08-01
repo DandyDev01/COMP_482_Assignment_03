@@ -19,8 +19,8 @@ namespace COMP_482_Assignment_03.Models
 
 		public void Add(Item item)
 		{
-			// data validation should already be done
-			// do a null check
+			if (item == null) 
+				return;
 
 			items.Add(item);
 		}
@@ -42,7 +42,15 @@ namespace COMP_482_Assignment_03.Models
 
 		public Item Get(string ID)
 		{
-			return null;
+			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
+				return null;
+
+			Item item = items.Where(x => x.ID == ID).FirstOrDefault();
+
+			if (item == null)
+				return null;
+
+			return item;
 		}
 
 	}

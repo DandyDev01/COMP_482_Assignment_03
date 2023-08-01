@@ -21,20 +21,38 @@ namespace COMP_482_Assignment_03.Models
 
 		public void Add(StoreOrder order)
 		{
-			// validation should be done already
-			// do null check
+			if (order == null)
+				return;
 
 			orders.Add(order);
 		}
 
 		public StoreOrder Remove(string ID)
 		{
-			return null;
+			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
+				return null;
+
+			StoreOrder order = orders.Where(x => x.ID == ID).FirstOrDefault();
+
+			if (order == null)
+				return null;
+
+			orders.Remove(order);
+
+			return order;
 		}
 
 		public StoreOrder Get(string ID)
 		{
-			return null;
+			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
+				return null;
+
+			StoreOrder order = orders.Where(x => x.ID == ID).FirstOrDefault();
+
+			if (order == null)
+				return null;
+
+			return order;
 		}
 	}
 }

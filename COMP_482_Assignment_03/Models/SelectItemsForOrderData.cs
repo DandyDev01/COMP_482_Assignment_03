@@ -10,6 +10,8 @@ namespace COMP_482_Assignment_03.Models
 {
 	public class SelectItemsForOrderData : SelectItemsDataBase
 	{
+		public Item[] ItemsSource => inventory.Items.ToArray();
+		
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
 		private readonly ObservableCollection<Item> destinationCollection;
@@ -21,8 +23,6 @@ namespace COMP_482_Assignment_03.Models
 			orderTracker = _orderTracker;
 			destinationCollection = _destinationCollection;
 		}
-
-		public Item[] ItemsSource => inventory.Items.ToArray();
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{
