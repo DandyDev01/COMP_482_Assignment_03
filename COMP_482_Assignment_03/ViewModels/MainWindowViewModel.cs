@@ -48,7 +48,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			store = new Store(orderIssueTracker, inventory, employeesManager, orderTracker);
 
 			OrdersVM = new OrdersViewModel();
-			InventoryVM = new InventoryViewModel(inventory);
+			InventoryVM = new InventoryViewModel(inventory, orderTracker);
 			OrderIssueVM = new OrderIssueViewModel();
 			EmployeesVM = new EmployeesViewModel();
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);

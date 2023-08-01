@@ -51,7 +51,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly ObservableCollection<ObservableItem> observableItems;
 
-		public InventoryViewModel(Inventory _inventory)
+		public InventoryViewModel(Inventory _inventory, OrderTracker _orderTracker)
 		{
 			Items = new ObservableCollection<Item>(_inventory.Items);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
@@ -64,7 +64,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			Date = DateTime.Now.ToString();
 
 			CreateItemCommand = new CreateItemCommand(_inventory, this);
-			DeleteItemCommand = new DeleteItemCommand(_inventory, this);
+			DeleteItemCommand = new SelectItemsCommand(new SelectItemsToRemoveFromInventoryData(_inventory, Items));
 		}
 	}
 }

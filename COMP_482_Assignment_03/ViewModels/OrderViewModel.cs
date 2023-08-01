@@ -77,7 +77,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			orderTracker.Add(Order);
 
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, Items));
-			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveData(orderTracker, Items));
+			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, Items));
 			CreateCommand = new CreateOrderCommand(orderTracker, ordersVM, this);
 		}
 	}

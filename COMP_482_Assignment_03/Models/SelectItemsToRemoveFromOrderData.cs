@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace COMP_482_Assignment_03.Models
 {
-	public class SelectItemsToRemoveData : SelectItemsDataBase
+	public class SelectItemsToRemoveFromOrderData : SelectItemsDataBase
 	{
 		public Item[] ItemsSource => orderTracker.Last.Items;
+
 		public OrderTracker OrderTracker => orderTracker;
-		public readonly ObservableCollection<Item> SourceCollection;
 
 		private readonly OrderTracker orderTracker;
+		private readonly ObservableCollection<Item> sourceCollection;
 
-		public SelectItemsToRemoveData(OrderTracker _orderTracker, ObservableCollection<Item> _sourceCollection)
+		public SelectItemsToRemoveFromOrderData(OrderTracker _orderTracker, ObservableCollection<Item> _sourceCollection)
 		{
 			orderTracker = _orderTracker;
-			SourceCollection = _sourceCollection;
+			sourceCollection = _sourceCollection;
 		}
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
@@ -30,7 +31,7 @@ namespace COMP_482_Assignment_03.Models
 			foreach (ObservableItem observableItem in selectedItems)
 			{
 				order.Remove(observableItem.Item);
-				SourceCollection.Remove(observableItem.Item);
+				sourceCollection.Remove(observableItem.Item);
 			}
 		}
 	}
