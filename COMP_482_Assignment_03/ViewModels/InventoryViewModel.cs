@@ -17,6 +17,14 @@ namespace COMP_482_Assignment_03.ViewModels
 	{
 		public ICommand CreateItemCommand { get; }
 		public ICommand DeleteItemCommand { get; }
+		public ICommand NameSort { get; }
+		public ICommand IDSort { get; }
+		public ICommand BrandSort { get; }
+		public ICommand SizeSort { get; }
+		public ICommand QuantitySort { get; }
+		public ICommand PriceSort { get; }
+		public ICommand DepartmentSort { get; }
+		public ICommand CategorySort { get; }
 
 		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
@@ -63,8 +71,18 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			Date = DateTime.Now.ToString();
 
+			Item temp = new Item();
+
 			CreateItemCommand = new CreateItemCommand(_inventory, this);
 			DeleteItemCommand = new SelectItemsCommand(new SelectItemsToRemoveFromInventoryData(_inventory, Items));
+			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Name));
+			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.ID));
+			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Brand));
+			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Size));
+			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Quantity));
+			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Price));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Department));
+			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Category));
 		}
 	}
 }

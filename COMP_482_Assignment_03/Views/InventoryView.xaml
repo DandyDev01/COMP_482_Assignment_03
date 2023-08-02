@@ -41,7 +41,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Name" Command=""/>
+                        <GridViewColumnHeader Content="Name" Command="{Binding NameSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Name}"/>
@@ -49,7 +49,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Item ID" Command=""/>
+                        <GridViewColumnHeader Content="Item ID" Command="{Binding IDSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding ID}"/>
@@ -57,7 +57,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Brand" Command=""/>
+                        <GridViewColumnHeader Content="Brand" Command="{Binding BrandSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Brand}"/>
@@ -65,7 +65,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Size" Command=""/>
+                        <GridViewColumnHeader Content="Size" Command="{Binding SizeSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Size}"/>
@@ -73,7 +73,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Quantity" Command=""/>
+                        <GridViewColumnHeader Content="Quantity" Command="{Binding QuantitySort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Quantity}"/>
@@ -81,7 +81,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Price" Command=""/>
+                        <GridViewColumnHeader Content="Price" Command="{Binding PriceSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Price}"/>
@@ -89,7 +89,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Department" Command=""/>
+                        <GridViewColumnHeader Content="Department" Command="{Binding DepartmentSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Department}"/>
@@ -97,7 +97,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Categoty" Command=""/>
+                        <GridViewColumnHeader Content="Categoty" Command="{Binding CategorySort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Category}"/>

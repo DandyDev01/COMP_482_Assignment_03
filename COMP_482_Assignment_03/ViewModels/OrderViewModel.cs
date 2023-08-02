@@ -24,6 +24,14 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand RemoveItemsCommand { get; }
 		public ICommand CancelCommand { get; }
 		public ICommand CreateCommand { get; }
+		public ICommand NameSort { get; }
+		public ICommand IDSort { get; }
+		public ICommand BrandSort { get; }
+		public ICommand SizeSort { get; }
+		public ICommand QuantitySort { get; }
+		public ICommand PriceSort { get; }
+		public ICommand DepartmentSort { get; }
+		public ICommand CategorySort { get; }
 
 		private string date;
 		public string Date
@@ -110,10 +118,20 @@ namespace COMP_482_Assignment_03.ViewModels
 			Order = new StoreOrder();
 			orderTracker.Add(Order);
 
+			Item temp = new Item();
+
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, Items));
 			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, Items));
 			CreateCommand = new CreateOrderCommand(orderTracker, ordersVM, this);
 			CancelCommand = new ClearOrderCommand(this);
+			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Name));
+			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.ID));
+			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Brand));
+			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Size));
+			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Quantity));
+			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Price));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Department));
+			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Category));
 
 			Items.CollectionChanged += Validate;
 
