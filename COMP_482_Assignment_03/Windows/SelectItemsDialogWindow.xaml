@@ -35,7 +35,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="1"
-                 Text="{Binding SearchTerm, FallbackValue=Search}"/>
+                 Text="{Binding SearchTerm, FallbackValue=Search, UpdateSourceTrigger=PropertyChanged}"/>
 
         <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="10"
                   Name="list"

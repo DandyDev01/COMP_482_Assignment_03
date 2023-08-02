@@ -55,6 +55,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref searchTerm, value);
+				ItemsCollectionView.Refresh();
 			}
 		}
 
@@ -75,18 +76,20 @@ namespace COMP_482_Assignment_03.ViewModels
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
 			searchTerm = string.Empty;
 
-			Item temp = new Item();
+			ItemsCollectionView.Filter = Filter;
+			ItemsCollectionView.SortDescriptions.Add(
+				new SortDescription(nameof(selectedItem.Name), ListSortDirection.Ascending));
 
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
-			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Name));
-			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.ID));
-			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Brand));
-			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Size));
-			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Price));
-			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Department));
-			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Category));
+			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Name));
+			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.ID));
+			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Brand));
+			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Size));
+			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Quantity));
+			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Price));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Department));
+			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Category));
 		}
 
 		private void Cancel()
@@ -99,6 +102,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			window.DialogResult = true;
 
 			selectItemsData.ManipulateData(ObservableItems);
+		}
+
+		private bool Filter(object obj)
+		{
+			if (obj is ObservableItem observableItem)
+			{
+
+				if (searchTerm.Equals(string.Empty)) return true;
+
+				if (observableItem.Item.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+			}
+
+			return false;
 		}
 	}
 }
