@@ -15,8 +15,10 @@ namespace COMP_482_Assignment_03.Models
 		public string EmployeeName { get; set; }
 		public string EmployeeNumber { get; set; }
 		public StoreDepartment Departement { get; set; }
+		public IssueType IssueType { get; set; }
 	
-		public OrderIssue(string _id, string _orderID, string _description, string _employeeName, string _employeeNumber, StoreDepartment _depatement)
+		public OrderIssue(string _id, string _orderID, string _description, string _employeeName, string _employeeNumber, 
+			StoreDepartment _depatement, IssueType _issueType)
 		{
 			ID = _id;
 			OrderID = _orderID;
@@ -24,6 +26,7 @@ namespace COMP_482_Assignment_03.Models
 			EmployeeName = _employeeName;
 			EmployeeNumber = _employeeNumber;
 			Departement = _depatement;
+			IssueType = _issueType;
 		}
 
 		public OrderIssue()
@@ -34,6 +37,7 @@ namespace COMP_482_Assignment_03.Models
 			EmployeeName = string.Empty;
 			EmployeeNumber = string.Empty;
 			Departement = StoreDepartment.Grocery;
+			IssueType = IssueType.Missing_Item;
 		}
 	}
 }

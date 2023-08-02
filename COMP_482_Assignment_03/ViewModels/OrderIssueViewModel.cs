@@ -1,5 +1,7 @@
-﻿using COMP_482_Assignment_03.Utility;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,14 +15,15 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public enum IssueType { Missing_Item, Order_not_Received, Payment_Issue }
 	
-	public class OrderIssueViewModel : ObservableObject
+	public class OrderIssueViewModel : ObservableObject, INotifyDataErrorInfo
 	{
 		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
 
-		public ObservableCollection<Object> OpenOrderIssues { get; }
+		public ObservableCollection<OrderIssue> OpenOrderIssues { get; }
 		public ICollectionView OpenOrderIssuesCollectionView { get; }
 		public Array IssueTypes { get; } = Enum.GetValues(typeof(IssueType));
+		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
 		public string Date { get; }
 
 		private IssueType selectedIssueType;
@@ -36,16 +39,16 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StoreDepartment selectedEmpoyeeDepartment;
-		public StoreDepartment SelectedEmpoyeeDepartment
+		private StoreDepartment selectedDepartment;
+		public StoreDepartment SelectedDepartment
 		{
 			get
 			{
-				return selectedEmpoyeeDepartment;
+				return selectedDepartment;
 			}
 			set
 			{
-				OnPropertyChanged(ref selectedEmpoyeeDepartment, value);
+				OnPropertyChanged(ref selectedDepartment, value);
 			}
 		}
 
@@ -59,45 +62,133 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref issueDescription, value);
+				BasicStringFieldValidation(nameof(IssueDescription), IssueDescription);
 			}
 		}
 
-		private string empoyeeName;
-		public string EmpoyeeName
+		private string employeeName;
+		public string EmployeeName
 		{
 			get
 			{
-				return empoyeeName;
+				return employeeName;
 			}
 			set
 			{
-				OnPropertyChanged(ref empoyeeName, value);
+				OnPropertyChanged(ref employeeName, value);
+				BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
 			}
 		}
 
-		private string emloyeeNumber;
+		private string employeeNumber;
 		public string EmployeeNumber
 		{
 			get
 			{
-				return emloyeeNumber;
+				return employeeNumber;
 			}
 			set
 			{
-				OnPropertyChanged(ref emloyeeNumber, value);
+				OnPropertyChanged(ref employeeNumber, value);
+				BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
+			}
+		}
+
+		private bool isValid;
+		public bool IsValid
+		{
+			get
+			{
+				return isValid;
+			}
+			set
+			{
+				OnPropertyChanged(ref isValid, value);
 			}
 		}
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		private readonly OrderIssueTracker orderIssueTracker;
+		private readonly Dictionary<string, List<string>> propertyNameToError;
 
-		public OrderIssueViewModel()
+		public bool HasErrors => propertyNameToError.Any();
+		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker)
 		{
-			OpenOrderIssues = new ObservableCollection<Object>();
+			orderIssueTracker = _orderIssueTracker;
+
+			OpenOrderIssues = new ObservableCollection<OrderIssue>();
 			OpenOrderIssuesCollectionView = CollectionViewSource.GetDefaultView(OpenOrderIssues);
 
 			collectionViewPropertySort = new CollectionViewPropertySort(OpenOrderIssuesCollectionView);
+			propertyNameToError = new Dictionary<string, List<string>>();
 
 			Date = DateTime.Now.ToString("yyyy-MMM-ddd-dd");
+			employeeName = string.Empty;
+			employeeNumber = string.Empty;
+			issueDescription = string.Empty;
+
+			SubmitCommand = new RelayCommand(Submit);
+			CancelCommand = new RelayCommand(Cancel);
+
+			BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
+			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
+			BasicStringFieldValidation(nameof(IssueDescription), IssueDescription);
+		}
+
+		private void Cancel()
+		{
+			EmployeeName = string.Empty;
+			EmployeeNumber = string.Empty;
+			IssueDescription = string.Empty;
+		}
+
+		private void Submit()
+		{
+			Random random = new Random();
+
+			string issueID = random.Next(10000, 99999).ToString();
+			OrderIssue newIssue = new OrderIssue(issueID, issueID, IssueDescription, EmployeeName, employeeNumber,
+				SelectedDepartment, SelectedIssueType);
+
+			orderIssueTracker.Add(newIssue);
+			OpenOrderIssues.Add(newIssue);
+
+			EmployeeName = string.Empty;
+			EmployeeNumber = string.Empty;
+			IssueDescription = string.Empty;
+		}
+
+		public IEnumerable GetErrors(string? propertyName)
+		{
+			return propertyNameToError.GetValueOrDefault(propertyName, new List<string>());
+		}
+
+		private void BasicStringFieldValidation(string propertyName, string propertyValue)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (string.IsNullOrEmpty(propertyValue) || string.IsNullOrWhiteSpace(propertyValue))
+			{
+				propertyNameToError[propertyName].Add("Cannot be empty or white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
+			{
+				propertyNameToError[propertyName].Add("Cannot start with white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
 		}
 	}
 }

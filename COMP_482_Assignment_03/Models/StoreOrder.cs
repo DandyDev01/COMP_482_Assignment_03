@@ -28,7 +28,12 @@ namespace COMP_482_Assignment_03.Models
 			Random random = new Random();
 
 			ID = random.Next(10000, 99999).ToString();
-
+			Cost = 0f;
+			Weight = 0f;
+			DataCreated = DateTime.Now.ToString();
+			DataLastModified = DateTime.Now.ToString();
+			OrderStatus = OrderStatus.shipped;
+			Department = StoreDepartment.Grocery;
 
 			items = new List<Item>();
 		}
