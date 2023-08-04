@@ -150,12 +150,14 @@ namespace COMP_482_Assignment_03.ViewModels
 				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(ItemsCollectionView)));
 			}
 
+			// there are no errors for the ItemsCollectionView
 			if (propertyNameToError[nameof(ItemsCollectionView)].Any() == false)
 			{
 				propertyNameToError.Remove(nameof(ItemsCollectionView));
 				Errors = string.Empty;
 			}
 
+			// get errors for ItemsCollectionView to a string for display
 			foreach (string error in GetErrors(nameof(ItemsCollectionView)))
 			{
 				Errors += error + "\r\n";

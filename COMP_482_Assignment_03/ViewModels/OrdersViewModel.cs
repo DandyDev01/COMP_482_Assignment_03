@@ -36,10 +36,12 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICollectionView OrdersCollectionView { get; }
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
+		private readonly OrderTracker orderTracker;
 
-		public OrdersViewModel()
+		public OrdersViewModel(OrderTracker _orderTracker)
 		{
-			Orders = new ObservableCollection<StoreOrder>();
+			orderTracker = _orderTracker;
+			Orders = new ObservableCollection<StoreOrder>(orderTracker.Orders);
 			OrdersCollectionView = CollectionViewSource.GetDefaultView(Orders);
 
 			selectedOrder = Orders.FirstOrDefault();

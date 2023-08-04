@@ -1,4 +1,6 @@
-﻿using COMP_482_Assignment_03.Models;
+﻿using COMP_482_Assignment_03.Commands;
+using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Models.SelectOrderData;
 using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections;
@@ -19,6 +21,7 @@ namespace COMP_482_Assignment_03.ViewModels
 	{
 		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
+		public ICommand SelectOrderCommand { get; }
 
 		public ObservableCollection<OrderIssue> OpenOrderIssues { get; }
 		public ICollectionView OpenOrderIssuesCollectionView { get; }
@@ -94,6 +97,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private StoreOrder selectedOrder;
+		public StoreOrder SelectedOrder
+		{
+			get
+			{
+				return selectedOrder;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedOrder, value);
+			}
+		}
+
 		private bool isValid;
 		public bool IsValid
 		{
@@ -107,6 +123,45 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string issueDescriptionErrors;
+		public string IssueDescriptionErrors
+		{
+			get
+			{
+				return issueDescriptionErrors;
+			}
+			set
+			{
+				OnPropertyChanged(ref issueDescriptionErrors, value);
+			}
+		}
+
+		private string employeeNameErrors;
+		public string EmployeeNameErrors
+		{
+			get
+			{
+				return employeeNameErrors;
+			}
+			set
+			{
+				OnPropertyChanged(ref employeeNameErrors, value);
+			}
+		}
+
+		private string employeeNumberErrors;
+		public string EmployeeNumberErrors
+		{
+			get
+			{
+				return employeeNumberErrors;
+			}
+			set
+			{
+				OnPropertyChanged(ref employeeNumberErrors, value);
+			}
+		}
+
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrderIssueTracker orderIssueTracker;
 		private readonly Dictionary<string, List<string>> propertyNameToError;
@@ -114,7 +169,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public bool HasErrors => propertyNameToError.Any();
 		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker)
+		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker, OrderTracker _orderTracker)
 		{
 			orderIssueTracker = _orderIssueTracker;
 
@@ -129,8 +184,15 @@ namespace COMP_482_Assignment_03.ViewModels
 			employeeNumber = string.Empty;
 			issueDescription = string.Empty;
 
+			employeeNameErrors = string.Empty;
+			employeeNumberErrors = string.Empty;
+			issueDescriptionErrors = string.Empty;
+
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
+			SelectOrderCommand = new SelectOrderCommand(_orderTracker, new SelectOrderForOrderIssueData(this));
+
+			ErrorsChanged += UpdateErrorMessages;
 
 			BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
 			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
@@ -189,6 +251,28 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 
 			IsValid = !HasErrors;
+		}
+
+		private void UpdateErrorMessages(object? sender, DataErrorsChangedEventArgs e)
+		{
+			employeeNameErrors = string.Empty;
+			employeeNumberErrors = string.Empty;
+			issueDescriptionErrors = string.Empty;
+
+			foreach (var item in GetErrors(nameof(EmployeeName)))
+			{
+				EmployeeNameErrors += item + "\r\n";
+			}
+
+			foreach (var item in GetErrors(nameof(IssueDescription)))
+			{
+				IssueDescriptionErrors += item + "\r\n";
+			}
+
+			foreach (var item in GetErrors(nameof(EmployeeNumber)))
+			{
+				EmployeeNumberErrors += item + "\r\n";
+			}
 		}
 	}
 }

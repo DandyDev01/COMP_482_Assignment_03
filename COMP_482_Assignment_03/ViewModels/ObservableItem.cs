@@ -84,6 +84,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref size, value);
 				Item.Size = value;
+
+				BasicStringFieldValidation(nameof(Size), Size);
 			}
 		}
 
@@ -132,6 +134,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref quantity, value);
 				Item.Quantity = value;
+
+				QuantityValidation();
 			}
 		}
 
@@ -216,9 +220,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			BasicStringFieldValidation(nameof(Name), Name);
 			BasicStringFieldValidation(nameof(Brand), Brand);
 			BasicStringFieldValidation(nameof(ID), ID);
+			BasicStringFieldValidation(nameof(Size), Size);
 			CostToRetailCostValidation(RetailCost, Cost);
 			CostValidation(nameof(RetailCost), RetailCost);
 			CostValidation(nameof(Cost), Cost);
+			QuantityValidation();
 		}
 
 		public IEnumerable GetErrors(string? propertyName)
@@ -297,6 +303,27 @@ namespace COMP_482_Assignment_03.ViewModels
 			if (propertyNameToError[propertyName].Any() == false)
 			{
 				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
+		}
+	
+		private void QuantityValidation()
+		{
+			propertyNameToError.Remove(nameof(Quantity));
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(nameof(Quantity), errors);
+			if (Quantity < 0)
+			{
+				propertyNameToError[nameof(Quantity)].Add("Cannot be less than 0");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Quantity)));
+			}
+
+
+			if (propertyNameToError[nameof(Quantity)].Any() == false)
+			{
+				propertyNameToError.Remove(nameof(Quantity));
 			}
 
 			IsValid = !HasErrors;

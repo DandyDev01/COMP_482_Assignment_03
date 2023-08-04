@@ -86,6 +86,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string quantityErrors;
+		public string QuantityErrors
+		{
+			get
+			{
+				return quantityErrors;
+			}
+			set
+			{
+				OnPropertyChanged(ref quantityErrors, value);
+			}
+		}
+
 		private readonly Item item;
 		private readonly Window window;
 
@@ -96,6 +109,13 @@ namespace COMP_482_Assignment_03.ViewModels
 			item = new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.Frozen, StoreDepartment.Grocery);
 			ObservableItem = new ObservableItem(item);
 			ObservableItem.ErrorsChanged += UpdateErrorMessages;
+
+			nameErrors = string.Empty;
+			idErrors = string.Empty;
+			brandErrors = string.Empty;
+			retailCostErrors = string.Empty;
+			costErrors = string.Empty;
+			quantityErrors = string.Empty;
 
 			CreateCommand = new RelayCommand(Create);
 			CancelCommand = new RelayCommand(Cancel);
@@ -132,6 +152,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.Cost)))
 			{
 				CostErrors += item + "\r\n";
+			}
+
+			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.Quantity)))
+			{
+				QuantityErrors += item + "\r\n";
 			}
 		}
 
