@@ -71,18 +71,16 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			Date = DateTime.Now.ToString();
 
-			Item temp = new Item();
-
 			CreateItemCommand = new CreateItemCommand(_inventory, this);
 			DeleteItemCommand = new SelectItemsCommand(new SelectItemsToRemoveFromInventoryData(_inventory, Items));
-			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Name));
-			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.ID));
-			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Brand));
-			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Size));
-			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Price));
-			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Department));
-			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Category));
+			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Name));
+			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.ID));
+			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Brand));
+			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Size));
+			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Quantity));
+			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Price));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Department));
+			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
 		}
 	}
 }
