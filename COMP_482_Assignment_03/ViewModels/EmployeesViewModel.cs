@@ -21,9 +21,11 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand LastNameSort { get; }
 		public ICommand PhoneNumberSort{ get; }
 		public ICommand EmployeeNumberSort { get; }
+		public ICommand RoleSort { get; }
+		public ICommand DepartmentSort { get; }
 
-		public ObservableCollection<Employee> Employees;
-		public ICollectionView EmployeesCollectionView;
+		public ObservableCollection<Employee> Employees { get; }
+		public ICollectionView EmployeesCollectionView { get; }
 
 		private Employee selectedEmployee;
 		public Employee SelectedEmployee
@@ -54,6 +56,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			LastNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.LastName));
 			PhoneNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.PhoneNumber));
 			EmployeeNumberSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.EmployeeNumber));
+			RoleSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
+			DepartmentSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
 		}
 	}
 }

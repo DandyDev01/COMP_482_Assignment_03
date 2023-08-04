@@ -15,9 +15,7 @@ using System.Windows.Input;
 
 
 namespace COMP_482_Assignment_03.ViewModels
-{
-	public enum StoreDepartment { Grocery, Produce, Meat, Deliy, Bakery };
-	
+{	
 	public class OrderViewModel : ObservableObject, INotifyDataErrorInfo
 	{
 		public ICommand AddItemsCommand { get; }

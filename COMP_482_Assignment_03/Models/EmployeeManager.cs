@@ -19,18 +19,38 @@ namespace COMP_482_Assignment_03.Models
 
 		public void Add(Employee employee)
 		{
-			// validation should already be done
-			// do a null check
+			if (employees == null)
+				return;
+
+			employees.Add(employee);
 		}
 
 		public Employee Remove(string employeeNumnber)
 		{
-			return null;
+			if (string.IsNullOrEmpty(employeeNumnber) || string.IsNullOrWhiteSpace(employeeNumnber))
+				return null;
+
+			Employee employee = employees.Where(x => x.EmployeeNumber == employeeNumnber).FirstOrDefault();
+
+			if (employee == null)
+				return null;
+
+			employees.Remove(employee);
+
+			return employee;
 		}
 
 		public Employee Get(string employeeNumber)
 		{
-			return null;
+			if (string.IsNullOrEmpty(employeeNumber) || string.IsNullOrWhiteSpace(employeeNumber))
+				return null;
+
+			Employee employee = employees.Where(x => x.EmployeeNumber == employeeNumber).FirstOrDefault();
+
+			if (employee == null)
+				return null;
+
+			return employee;
 		}
 	}
 }

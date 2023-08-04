@@ -15,8 +15,6 @@ using System.Windows.Input;
 
 namespace COMP_482_Assignment_03.ViewModels
 {
-	public enum IssueType { Missing_Item, Order_not_Received, Payment_Issue }
-	
 	public class OrderIssueViewModel : ObservableObject, INotifyDataErrorInfo
 	{
 		public ICommand SubmitCommand { get; }
