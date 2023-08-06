@@ -1,10 +1,12 @@
 ﻿using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.ViewModels;
+using COMP_482_Assignment_03.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace COMP_482_Assignment_03.Commands
 {
@@ -21,17 +23,17 @@ namespace COMP_482_Assignment_03.Commands
 
 		public override void Execute(object parameter)
 		{
-			//Window window = new CreateItemDialogWindow();
-			//DialogWindowCreateItemViewModel dialogContext =
-			//	new DialogWindowCreateItemViewModel(window);
-			//window.DataContext = dialogContext;
+			Window window = new CreateEmployeeDialogWindow();
+			DialogWindowCreateEmployeeViewModel dialogContext =
+				new DialogWindowCreateEmployeeViewModel(window);
+			window.DataContext = dialogContext;
 
-			//window.ShowDialog();
+			window.ShowDialog();
 
-			//if (window.DialogResult == false) return;
+			if (window.DialogResult == false) return;
 
-			//inventory.Add(dialogContext.ObservableItem.Item);
-			//inventoryVM.Items.Add(dialogContext.ObservableItem.Item);
+			employeeManager.Add(dialogContext.Employee);
+			employeesVM.Employees.Add(dialogContext.Employee);
 		}
 	}
 }

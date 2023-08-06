@@ -15,7 +15,7 @@ namespace COMP_482_Assignment_03.Models
 		public string EmployeeNumber { get; set; }
 		public StoreDepartment Department { get; set; }
 		public EmployeeRole Role { get; set; }	
-		public EmployeeWorkTime WorkTime { get; }
+		public EmployeeWorkTime WorkTime { get; set; }
 
 		public Employee(string _firstName, string _lastName, string _phoneNumber, string _EmployeeNumber, 
 			StoreDepartment _storeDepartment, EmployeeRole _role, EmployeeWorkTime _workTime)
@@ -28,15 +28,5 @@ namespace COMP_482_Assignment_03.Models
 			Role = _role;
 			WorkTime = _workTime;
 		}
-
-		//public Employee()
-		//{
-		//	FirstName = string.Empty;
-		//	LastName = string.Empty;
-		//	PhoneNumber = string.Empty;
-		//	EmployeeNumber = string.Empty;
-		//	Department = StoreDepartment.Grocery;
-		//	Role = EmployeeRole.Employee;
-		//}
 	}
 }

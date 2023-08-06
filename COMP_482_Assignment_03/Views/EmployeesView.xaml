@@ -22,6 +22,7 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                Command="{Binding CreateEmployeeCommand}"
                 Content="Create"/>
         <Button Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 Content="Delete"/>
