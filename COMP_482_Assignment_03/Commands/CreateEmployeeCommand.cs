@@ -32,8 +32,8 @@ namespace COMP_482_Assignment_03.Commands
 
 			if (window.DialogResult == false) return;
 
-			employeeManager.Add(dialogContext.Employee);
-			employeesVM.Employees.Add(dialogContext.Employee);
+			employeeManager.Add(dialogContext.ObservableEmployee.Employee);
+			employeesVM.Employees.Add(dialogContext.ObservableEmployee.Employee);
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CreateCommand { get; }
 		public ICommand CancelCommand { get; }
 
-		public Employee Employee { get; }
+		public ObservableEmployee ObservableEmployee { get; }
 
 		public Array WorkTimes { get; } = Enum.GetValues(typeof(EmployeeWorkTime));
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
@@ -26,8 +26,9 @@ namespace COMP_482_Assignment_03.ViewModels
 		public DialogWindowCreateEmployeeViewModel(Window _window)
 		{
 			window = _window;
-			Employee = new Employee("","","","", StoreDepartment.Grocery, EmployeeRole.StoreManager, 
+			Employee employee = new Employee("","","","", StoreDepartment.Grocery, EmployeeRole.StoreManager, 
 				EmployeeWorkTime.FullTime);
+			ObservableEmployee = new ObservableEmployee(employee);
 
 			CreateCommand = new RelayCommand(Create);
 			CancelCommand = new RelayCommand(Cancel);
