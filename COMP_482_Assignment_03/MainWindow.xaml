@@ -28,9 +28,9 @@
             <MenuItem Header="File">
                 <MenuItem Header="Print"/>
                 <MenuItem Header="Create">
-                    <MenuItem Header="Order"/>
+                    <MenuItem Header="Order" Command="{Binding CreateOrderCommand}"/>
                     <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
-                    <MenuItem Header="Employee"/>
+                    <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Delete">
                     <MenuItem Header="Order"/>

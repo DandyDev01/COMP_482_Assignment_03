@@ -54,6 +54,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);
 
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
+			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
+			CreateOrderCommand = new CreateOrderCommand(orderTracker, OrdersVM, OrderVM);
 		}
 	}
 }

@@ -114,7 +114,6 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-
 		private bool isValid;
 		public bool IsValid
 		{
