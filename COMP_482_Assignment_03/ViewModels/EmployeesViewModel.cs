@@ -52,6 +52,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			collectionViewPropertySort = new CollectionViewPropertySort(EmployeesCollectionView);
 
+			CreateEmployeeCommand = new CreateEmployeeCommand(employeeManager, this);
 			FirstNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.FirstName));
 			LastNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.LastName));
 			PhoneNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.PhoneNumber));

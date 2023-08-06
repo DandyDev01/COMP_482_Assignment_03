@@ -14,7 +14,7 @@ namespace COMP_482_Assignment_03.Services
 		{
 			return new List<Employee>()
 			{
-				new Employee("James", "Bond", "780-345-3242", "000001", StoreDepartment.Grocery, EmployeeRole.Employee,
+				new Employee("James", "Bond", "780-345-3242", "007", StoreDepartment.Grocery, EmployeeRole.Employee,
 					EmployeeWorkTime.FullTime),
 				new Employee("Amy", "Davis", "124-421-4422", "000003", StoreDepartment.Deliy, EmployeeRole.Employee,
 					EmployeeWorkTime.FullTime),

@@ -48,6 +48,9 @@
         <Button Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 Command="{Binding SelectOrderCommand}"
                 Content="Select Order"/>
+        <Button Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                Command="{Binding ViewHistoryCommand}"
+                Content="History"/>
 
         <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Issue Description"/>
@@ -85,11 +88,80 @@
                 IsEnabled="{Binding IsValid}"
                 Content="Submit"/>
 
-        <Label Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Label Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Open Issues"/>
-        <ListView Grid.Column="5" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="7"
+        <ListView Grid.Column="4" Grid.Row="3" Grid.ColumnSpan="3" Grid.RowSpan="7"
                   VerticalAlignment="Stretch"
                   ItemsSource="{Binding OpenOrderIssuesCollectionView}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Issue ID" Command="{Binding IDSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding ID}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Order ID" Command="{Binding OrderIDSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding OrderID}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Description" Command="{Binding DescriptionSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Description}"
+                                           ToolTip="{Binding Description}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="163">
+                        <GridViewColumnHeader Content="Employee Name" Command="{Binding EmployeeNameSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EmployeeName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="130">
+                        <GridViewColumnHeader Content="Employee Number" Command="{Binding EmployeeNumberSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding EmployeeNumber}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Department" Command="{Binding DepartmentSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Departement}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Issue Type" Command="{Binding IssueTypeSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding IssueType}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Date Created" Command="{Binding DateCreatedSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DateCreated}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
         </ListView>
 
     </Grid>

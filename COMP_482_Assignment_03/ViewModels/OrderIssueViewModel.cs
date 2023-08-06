@@ -105,6 +105,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref selectedOrder, value);
+				SelectedOrderValidation(nameof(SelectedOrder), SelectedOrder);
 			}
 		}
 
@@ -195,7 +196,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
 			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
 			BasicStringFieldValidation(nameof(IssueDescription), IssueDescription);
+			SelectedOrderValidation(nameof(SelectedOrder), SelectedOrder);
 		}
+
+		
 
 		private void Cancel()
 		{
@@ -210,7 +214,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			string issueID = random.Next(10000, 99999).ToString();
 			OrderIssue newIssue = new OrderIssue(issueID, issueID, IssueDescription, EmployeeName, employeeNumber,
-				SelectedDepartment, SelectedIssueType);
+				Date, SelectedDepartment, SelectedIssueType);
 
 			orderIssueTracker.Add(newIssue);
 			OpenOrderIssues.Add(newIssue);
@@ -218,6 +222,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			EmployeeName = string.Empty;
 			EmployeeNumber = string.Empty;
 			IssueDescription = string.Empty;
+			SelectedOrder = null;
 		}
 
 		public IEnumerable GetErrors(string? propertyName)
@@ -240,6 +245,26 @@ namespace COMP_482_Assignment_03.ViewModels
 			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
 			{
 				propertyNameToError[propertyName].Add("Cannot start with white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
+		}
+
+		private void SelectedOrderValidation(string propertyName, StoreOrder propertyValue)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (propertyValue == null)
+			{
+				propertyNameToError[propertyName].Add("Cannot be null");
 				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 			}
 

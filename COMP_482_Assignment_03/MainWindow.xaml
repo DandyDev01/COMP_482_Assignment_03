@@ -60,7 +60,15 @@
             <TabItem Header="Order Issue">
                 <v:OrderIssueView DataContext="{Binding OrderIssueVM}"/>
             </TabItem>
-            <TabItem Header="Employees">
+            <TabItem Header="Employees" RenderTransformOrigin="0.5,0.5">
+                <TabItem.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="2.596"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TabItem.RenderTransform>
                 <v:EmployeesView DataContext="{Binding EmployeesVM}"/>
             </TabItem>
         </TabControl>

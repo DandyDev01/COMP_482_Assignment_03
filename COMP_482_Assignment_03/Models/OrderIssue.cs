@@ -14,17 +14,19 @@ namespace COMP_482_Assignment_03.Models
 		public string Description { get; }
 		public string EmployeeName { get; }
 		public string EmployeeNumber { get; }
+		public string DateCreated { get; }
 		public StoreDepartment Departement { get; }
 		public IssueType IssueType { get; }
 	
 		public OrderIssue(string _id, string _orderID, string _description, string _employeeName, string _employeeNumber, 
-			StoreDepartment _depatement, IssueType _issueType)
+			string _dateCreated, StoreDepartment _depatement, IssueType _issueType)
 		{
 			ID = _id;
 			OrderID = _orderID;
 			Description = _description;
 			EmployeeName = _employeeName;
 			EmployeeNumber = _employeeNumber;
+			DateCreated = _dateCreated;
 			Departement = _depatement;
 			IssueType = _issueType;
 		}
