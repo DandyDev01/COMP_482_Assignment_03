@@ -49,6 +49,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 
 			ViewOrderCommand = new ViewOrderCommand(this);
+			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
 		}
 	}
 }
