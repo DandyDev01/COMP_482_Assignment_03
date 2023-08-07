@@ -17,6 +17,7 @@ namespace COMP_482_Assignment_03.ViewModels
 	{
 		public ICommand CreateItemCommand { get; }
 		public ICommand DeleteItemCommand { get; }
+		public ICommand EditItemCommand { get; }
 
 		public ItemsListViewModel ItemsListVM { get; }
 		public string Date { get; }
@@ -62,6 +63,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			CreateItemCommand = new CreateItemCommand(_inventory, this);
 			DeleteItemCommand = new SelectItemsCommand(new SelectItemsToRemoveFromInventoryData(_inventory, 
 				ItemsListVM.Items));
+			EditItemCommand = new EditItemCommand(_inventory, this);
 		}
 	}
 }

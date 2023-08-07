@@ -13,7 +13,7 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public class DialogWindowCreateItemViewModel : ObservableObject
 	{
-		public ICommand CreateCommand { get; }
+		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
 
 		public ObservableItem ObservableItem { get; }
@@ -87,6 +87,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private string quantityErrors;
+
 		public string QuantityErrors
 		{
 			get
@@ -117,8 +118,13 @@ namespace COMP_482_Assignment_03.ViewModels
 			costErrors = string.Empty;
 			quantityErrors = string.Empty;
 
-			CreateCommand = new RelayCommand(Create);
+			SubmitCommand = new RelayCommand(Create);
 			CancelCommand = new RelayCommand(Cancel);
+		}
+
+		public DialogWindowCreateItemViewModel(Window _window, Item _item) : this(_window)
+		{
+			ObservableItem = new ObservableItem(_item);
 		}
 
 		private void UpdateErrorMessages(object? sender, DataErrorsChangedEventArgs e)
