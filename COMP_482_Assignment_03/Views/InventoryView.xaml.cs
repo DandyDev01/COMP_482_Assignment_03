@@ -35,7 +35,7 @@ namespace COMP_482_Assignment_03.Views
 
 			while (list.list.SelectedItems.Count > 0)
 			{
-				viewModel.SelectedItem = list.list.SelectedItems[0] as Item;
+				viewModel.ItemsListVM.SelectedItem = list.list.SelectedItems[0] as Item;
 				viewModel.DeleteItemCommand.Execute(null);
 			}		
 		}

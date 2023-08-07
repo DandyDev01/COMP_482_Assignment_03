@@ -22,6 +22,13 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CreateOrderCommand{ get; }
 		public ICommand CreateItemCommand { get; }
 		public ICommand CreateEmployeeCommand { get; }
+		public ICommand DeleteOrderCommand { get; }
+		public ICommand DeleteItemCommand { get; }
+		public ICommand DeleteEmployeeCommand { get; }
+		public ICommand EditOrderCommand { get; }
+		public ICommand EditItemCommand { get; }
+		public ICommand SignOutCommand { get; }
+		public ICommand HelpCommand { get; }
 
 		private readonly Store store;
 		private readonly Inventory inventory;
@@ -56,6 +63,12 @@ namespace COMP_482_Assignment_03.ViewModels
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
 			CreateOrderCommand = new CreateOrderCommand(orderTracker, OrdersVM, OrderVM);
+			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
+			DeleteOrderCommand = null;
+			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
+			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
+			SignOutCommand = null;
+			HelpCommand = null;
 		}
 	}
 }

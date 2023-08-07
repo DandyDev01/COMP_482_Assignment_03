@@ -33,17 +33,20 @@
                     <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Delete">
-                    <MenuItem Header="Order"/>
-                    <MenuItem Header="Item"/>
-                    <MenuItem Header="Employee"/>
+                    <MenuItem Header="Order" Command="{Binding DeleteOrderCommand}"/>
+                    <MenuItem Header="Item" Command="{Binding DeleteItemCommand}"/>
+                    <MenuItem Header="Employee" Command="{Binding DeleteEmployeeCommand}"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="Order"/>
+                <MenuItem Header="Order" Command="{Binding EditOrderCommand}"/>
+                <MenuItem Header="Item" Command="{Binding EditItemCommand}"/>
             </MenuItem>
-            <MenuItem Header="Help">
+            <MenuItem Header="Help" Command="{Binding HelpCommand}">
             </MenuItem>
-            <MenuItem Header="Sign Out" HorizontalAlignment="Right"/>
+            <MenuItem Header="Sign Out" 
+                      Command="{Binding SignOutCommand}"
+                      HorizontalAlignment="Right"/>
         </Menu>
 
         <TabControl Grid.Row="1"

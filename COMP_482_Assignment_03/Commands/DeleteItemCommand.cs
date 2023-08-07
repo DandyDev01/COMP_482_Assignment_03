@@ -23,8 +23,8 @@ namespace COMP_482_Assignment_03.Commands
 		{
 			//TODO: ADD VALIDATION
 
-			inventory.Remove(inventoryVM.SelectedItem.ID);
-			inventoryVM.ItemsListVM.Items.Remove(inventoryVM.SelectedItem);
+			inventory.Remove(inventoryVM.ItemsListVM.SelectedItem.ID);
+			inventoryVM.ItemsListVM.Items.Remove(inventoryVM.ItemsListVM.SelectedItem);
 		}
 	}
 }

@@ -25,27 +25,29 @@ namespace COMP_482_Assignment_03.Commands
 		{
 			Window window = new CreateItemDialogWindow();
 			DialogWindowCreateItemViewModel dialogContext =
-				new DialogWindowCreateItemViewModel(window, inventoryVM.SelectedItem);
+				new DialogWindowCreateItemViewModel(window, inventoryVM.ItemsListVM.SelectedItem);
 			window.DataContext = dialogContext;
 
-			Item temp = new Item(inventoryVM.SelectedItem.Name, inventoryVM.SelectedItem.ID, inventoryVM.SelectedItem.Price,
-				inventoryVM.SelectedItem.Brand, inventoryVM.SelectedItem.Size, inventoryVM.SelectedItem.Quantity,
-				inventoryVM.SelectedItem.RetailCost, inventoryVM.SelectedItem.Cost, inventoryVM.SelectedItem.Category,
-				inventoryVM.SelectedItem.Department);
+			Item selected = inventoryVM.ItemsListVM.SelectedItem;
+
+			Item temp = new Item(selected.Name, selected.ID, selected.Price,
+				selected.Brand, selected.Size, selected.Quantity,
+				selected.RetailCost, selected.Cost, selected.Category,
+				selected.Department);
 
 			window.ShowDialog();
 
 			if (window.DialogResult == false)
 			{
-				inventoryVM.SelectedItem.Name = temp.Name;
-				inventoryVM.SelectedItem.ID = temp.ID;
-				inventoryVM.SelectedItem.Price = temp.Price;
-				inventoryVM.SelectedItem.Brand = temp.Brand;
-				inventoryVM.SelectedItem.Size = temp.Size;
-				inventoryVM.SelectedItem.Quantity = temp.Quantity;
-				inventoryVM.SelectedItem.Cost = temp.Cost;
-				inventoryVM.SelectedItem.Category = temp.Category;
-				inventoryVM.SelectedItem.Department = temp.Department;
+				selected.Name = temp.Name;
+				selected.ID = temp.ID;
+				selected.Price = temp.Price;
+				selected.Brand = temp.Brand;
+				selected.Size = temp.Size;
+				selected.Quantity = temp.Quantity;
+				selected.Cost = temp.Cost;
+				selected.Category = temp.Category;
+				selected.Department = temp.Department;
 
 				inventoryVM.ItemsListVM.ItemsCollectionView.Refresh();
 				return;

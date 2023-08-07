@@ -22,19 +22,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ItemsListViewModel ItemsListVM { get; }
 		public string Date { get; }
 
-		private Item selectedItem;
-		public Item SelectedItem
-		{
-			get
-			{
-				return selectedItem;
-			}
-			set
-			{
-				OnPropertyChanged(ref selectedItem, value);
-			}
-		}
-
 		private string searchTerm;
 		public string SearchTerm
 		{
@@ -53,7 +40,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		public InventoryViewModel(Inventory _inventory, OrderTracker _orderTracker)
 		{
 			ItemsListVM = new ItemsListViewModel(_inventory.Items);
-			selectedItem = ItemsListVM.Items[0];
 			searchTerm = string.Empty;
 
 			observableItems = _inventory.Items.GetObservableItems();
