@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Models;
+﻿using COMP_482_Assignment_03.Commands;
+using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
@@ -46,6 +47,8 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			selectedOrder = Orders.FirstOrDefault();
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
+
+			ViewOrderCommand = new ViewOrderCommand(this);
 		}
 	}
 }
