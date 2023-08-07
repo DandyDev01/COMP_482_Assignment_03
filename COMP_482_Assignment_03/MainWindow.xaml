@@ -61,14 +61,6 @@
                 <v:OrderIssueView DataContext="{Binding OrderIssueVM}"/>
             </TabItem>
             <TabItem Header="Employees">
-                <TabItem.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </TabItem.RenderTransform>
                 <v:EmployeesView DataContext="{Binding EmployeesVM}"/>
             </TabItem>
         </TabControl>

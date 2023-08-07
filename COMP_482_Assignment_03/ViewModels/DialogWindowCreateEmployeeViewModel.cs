@@ -12,7 +12,7 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public class DialogWindowCreateEmployeeViewModel : ObservableObject
 	{
-		public ICommand CreateCommand { get; }
+		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
 
 		public ObservableEmployee ObservableEmployee { get; }
@@ -30,7 +30,16 @@ namespace COMP_482_Assignment_03.ViewModels
 				EmployeeWorkTime.FullTime);
 			ObservableEmployee = new ObservableEmployee(employee);
 
-			CreateCommand = new RelayCommand(Create);
+			SubmitCommand = new RelayCommand(Create);
+			CancelCommand = new RelayCommand(Cancel);
+		}
+
+		public DialogWindowCreateEmployeeViewModel(Window _window, Employee _employee)
+		{
+			window = _window;
+			ObservableEmployee = new ObservableEmployee(_employee);
+
+			SubmitCommand = new RelayCommand(Create);
 			CancelCommand = new RelayCommand(Cancel);
 		}
 

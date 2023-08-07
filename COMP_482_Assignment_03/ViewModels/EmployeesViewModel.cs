@@ -17,6 +17,7 @@ namespace COMP_482_Assignment_03.ViewModels
 	{
 		public ICommand CreateEmployeeCommand { get; }
 		public ICommand DeleteEmployeeCommand { get; }
+		public ICommand EditEmployeeCommand { get; }
 		public ICommand FirstNameSort { get; }
 		public ICommand LastNameSort { get; }
 		public ICommand PhoneNumberSort{ get; }
@@ -53,11 +54,13 @@ namespace COMP_482_Assignment_03.ViewModels
 			collectionViewPropertySort = new CollectionViewPropertySort(EmployeesCollectionView);
 			
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeeManager, this);
+			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeeManager, this);
+			EditEmployeeCommand = new EditEmployeeCommand(employeeManager, this);
 			FirstNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.FirstName));
 			LastNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.LastName));
 			PhoneNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.PhoneNumber));
 			EmployeeNumberSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.EmployeeNumber));
-			RoleSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
+			RoleSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
 			DepartmentSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
 		}
 	}

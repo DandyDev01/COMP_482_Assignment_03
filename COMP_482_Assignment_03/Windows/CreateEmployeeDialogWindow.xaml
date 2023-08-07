@@ -104,9 +104,9 @@
                 Content="Cancel"
                 Command="{Binding CanceCommand}"/>
         <Button Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                Content="Create"
+                Content="submit"
                 IsEnabled="{Binding ObservableEmployee.IsValid}"
-                Command="{Binding CreateCommand}"/>
+                Command="{Binding SubmitCommand}"/>
 
 
     </Grid>
