@@ -79,7 +79,18 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		public StoreOrder Order;
+		private StoreOrder order;
+		public StoreOrder Order
+		{
+			get
+			{
+				return order;
+			}
+			set
+			{
+				OnPropertyChanged(ref order, value);
+			}
+		}
 
 		private readonly OrdersViewModel ordersVM;
 		private readonly Inventory inventory;

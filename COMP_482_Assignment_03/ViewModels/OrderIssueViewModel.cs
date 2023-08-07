@@ -23,6 +23,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public ObservableCollection<OrderIssue> OpenOrderIssues { get; }
 		public ICollectionView OpenOrderIssuesCollectionView { get; }
+		public ItemsListViewModel ItemsListVM { get; }
 		public Array IssueTypes { get; } = Enum.GetValues(typeof(IssueType));
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
 		public string Date { get; }
@@ -106,6 +107,24 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref selectedOrder, value);
 				SelectedOrderValidation(nameof(SelectedOrder), SelectedOrder);
+				if (value != null)
+					ItemsListVM.Populate(selectedOrder.Items);
+				else
+					ItemsListVM.Clear();
+			}
+		}
+
+		private OrderIssue selectedIssue;
+		public OrderIssue SelectedIssue
+		{
+			get
+			{
+				return selectedIssue;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedIssue, value);
+				SelectedOrder = orderTracker.Get(selectedIssue.OrderID);
 			}
 		}
 
@@ -164,6 +183,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrderIssueTracker orderIssueTracker;
 		private readonly Dictionary<string, List<string>> propertyNameToError;
+		private readonly OrderTracker orderTracker;
 
 		public bool HasErrors => propertyNameToError.Any();
 		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
@@ -171,9 +191,11 @@ namespace COMP_482_Assignment_03.ViewModels
 		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker, OrderTracker _orderTracker)
 		{
 			orderIssueTracker = _orderIssueTracker;
+			orderTracker = _orderTracker;
 
 			OpenOrderIssues = new ObservableCollection<OrderIssue>();
 			OpenOrderIssuesCollectionView = CollectionViewSource.GetDefaultView(OpenOrderIssues);
+			ItemsListVM = new ItemsListViewModel();
 
 			collectionViewPropertySort = new CollectionViewPropertySort(OpenOrderIssuesCollectionView);
 			propertyNameToError = new Dictionary<string, List<string>>();
@@ -199,8 +221,6 @@ namespace COMP_482_Assignment_03.ViewModels
 			SelectedOrderValidation(nameof(SelectedOrder), SelectedOrder);
 		}
 
-		
-
 		private void Cancel()
 		{
 			EmployeeName = string.Empty;
@@ -213,7 +233,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			Random random = new Random();
 
 			string issueID = random.Next(10000, 99999).ToString();
-			OrderIssue newIssue = new OrderIssue(issueID, issueID, IssueDescription, EmployeeName, employeeNumber,
+			OrderIssue newIssue = new OrderIssue(issueID, SelectedOrder.ID, IssueDescription, EmployeeName, employeeNumber,
 				Date, SelectedDepartment, SelectedIssueType);
 
 			orderIssueTracker.Add(newIssue);

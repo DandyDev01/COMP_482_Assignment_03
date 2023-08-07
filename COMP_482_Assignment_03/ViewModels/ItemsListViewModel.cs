@@ -77,5 +77,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
 		}
+
+		public void Clear()
+		{
+			Items.Clear();
+		}
+
+		public void Populate(Item[] items)
+		{
+			Items.Clear();
+			foreach (var item in items)
+			{
+				Items.Add(item);
+			}
+		}
 	}
 }
