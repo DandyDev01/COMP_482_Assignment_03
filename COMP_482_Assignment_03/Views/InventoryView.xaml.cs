@@ -33,9 +33,9 @@ namespace COMP_482_Assignment_03.Views
 		{
 			InventoryViewModel viewModel = (InventoryViewModel)DataContext;
 
-			while (list.SelectedItems.Count > 0)
+			while (list.list.SelectedItems.Count > 0)
 			{
-				viewModel.SelectedItem = list.SelectedItems[0] as Item;
+				viewModel.SelectedItem = list.list.SelectedItems[0] as Item;
 				viewModel.DeleteItemCommand.Execute(null);
 			}		
 		}

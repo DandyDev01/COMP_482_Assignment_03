@@ -24,6 +24,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EmployeeNumberSort { get; }
 		public ICommand RoleSort { get; }
 		public ICommand DepartmentSort { get; }
+		public ICommand WorkTimeSort { get; }
 
 		public ObservableCollection<Employee> Employees { get; }
 		public ICollectionView EmployeesCollectionView { get; }
@@ -50,6 +51,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			Employees = new ObservableCollection<Employee>(employeeManager.Employees);
 			EmployeesCollectionView = CollectionViewSource.GetDefaultView(Employees);
+			selectedEmployee = Employees[0];
 
 			collectionViewPropertySort = new CollectionViewPropertySort(EmployeesCollectionView);
 			
@@ -61,7 +63,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			PhoneNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.PhoneNumber));
 			EmployeeNumberSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.EmployeeNumber));
 			RoleSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
-			DepartmentSort= new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
+			WorkTimeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.WorkTime));
 		}
 	}
 }

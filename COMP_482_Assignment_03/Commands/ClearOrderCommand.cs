@@ -20,7 +20,7 @@ namespace COMP_482_Assignment_03.Commands
 		public override void Execute(object parameter)
 		{
 			orderVM.Order.Clear();
-			orderVM.Items.Clear();
+			orderVM.ItemsListVM.Items.Clear();
 		}
 	}
 }

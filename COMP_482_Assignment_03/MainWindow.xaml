@@ -48,7 +48,7 @@
 
         <TabControl Grid.Row="1"
                     Margin="20">
-            <TabItem Header="Order" RenderTransformOrigin="0.5,0.5">
+            <TabItem Header="Order">
                 <v:OrderView DataContext="{Binding OrderVM}"/>
             </TabItem>
             <TabItem Header="Orders">

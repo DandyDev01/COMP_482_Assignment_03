@@ -24,7 +24,7 @@ namespace COMP_482_Assignment_03.Commands
 			//TODO: ADD VALIDATION
 
 			inventory.Remove(inventoryVM.SelectedItem.ID);
-			inventoryVM.Items.Remove(inventoryVM.SelectedItem);
+			inventoryVM.ItemsListVM.Items.Remove(inventoryVM.SelectedItem);
 		}
 	}
 }

@@ -19,7 +19,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public Array WorkTimes { get; } = Enum.GetValues(typeof(EmployeeWorkTime));
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
-		public Array Roles{ get; } = Enum.GetValues(typeof(EmployeeRole));
+		public Array Roles { get; } = Enum.GetValues(typeof(EmployeeRole));
 
 		private readonly Window window;
 

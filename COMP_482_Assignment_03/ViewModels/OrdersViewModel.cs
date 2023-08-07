@@ -19,8 +19,8 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EditOrderCommand { get; }
 		public ICommand CancelOrderCommand { get; }
 
-		private StoreOrder selectedOrder;
-		public StoreOrder SelectedOrder
+		private StoreOrder? selectedOrder;
+		public StoreOrder? SelectedOrder
 		{
 			get
 			{

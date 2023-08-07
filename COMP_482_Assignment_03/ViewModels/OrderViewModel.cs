@@ -22,14 +22,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand RemoveItemsCommand { get; }
 		public ICommand CancelCommand { get; }
 		public ICommand CreateCommand { get; }
-		public ICommand NameSort { get; }
-		public ICommand IDSort { get; }
-		public ICommand BrandSort { get; }
-		public ICommand SizeSort { get; }
-		public ICommand QuantitySort { get; }
-		public ICommand PriceSort { get; }
-		public ICommand DepartmentSort { get; }
-		public ICommand CategorySort { get; }
 
 		private string date;
 		public string Date
@@ -44,8 +36,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		public ObservableCollection<Item> Items { get; }
-		public ICollectionView ItemsCollectionView { get; }
+		public ItemsListViewModel ItemsListVM { get; }
 
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
 
@@ -90,7 +81,6 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public StoreOrder Order;
 
-		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrdersViewModel ordersVM;
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
@@ -104,59 +94,46 @@ namespace COMP_482_Assignment_03.ViewModels
 			inventory = _inventory;
 			orderTracker = _orderTracker;
 			ordersVM = _ordersVM;
+			ItemsListVM = new ItemsListViewModel();
 			propertyNameToError = new Dictionary<string, List<string>>();
 			isValid = false;
 
-			Items = new ObservableCollection<Item>();
-			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
-
-			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
-
-			Date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
+			errors = string.Empty;
+			date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
 			Order = new StoreOrder();
 			orderTracker.Add(Order);
 
-			Item temp = new Item();
-
-			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, Items));
-			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, Items));
+			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, ItemsListVM.Items));
+			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, ItemsListVM.Items));
 			CreateCommand = new CreateOrderCommand(orderTracker, ordersVM, this);
 			CancelCommand = new ClearOrderCommand(this);
-			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Name));
-			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.ID));
-			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Brand));
-			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Size));
-			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Price));
-			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Department));
-			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(temp.Category));
-
-			Items.CollectionChanged += Validate;
+			
+			ItemsListVM.ItemsCollectionView.CollectionChanged += Validate;
 
 			Validate(null, null);
 		}
 
 		private void Validate(object? sender, NotifyCollectionChangedEventArgs e)
 		{
-			propertyNameToError.Remove(nameof(ItemsCollectionView));
+			propertyNameToError.Remove(nameof(ItemsListVM.ItemsCollectionView));
 
 			List<string> errors = new List<string>();
-			propertyNameToError.Add(nameof(ItemsCollectionView), errors);
-			if (Items.Count <= 0)
+			propertyNameToError.Add(nameof(ItemsListVM.ItemsCollectionView), errors);
+			if (ItemsListVM.Items.Count <= 0)
 			{
-				propertyNameToError[nameof(ItemsCollectionView)].Add("Order must have at least 1 item");
-				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(ItemsCollectionView)));
+				propertyNameToError[nameof(ItemsListVM.ItemsCollectionView)].Add("Order must have at least 1 item");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(ItemsListVM.ItemsCollectionView)));
 			}
 
 			// there are no errors for the ItemsCollectionView
-			if (propertyNameToError[nameof(ItemsCollectionView)].Any() == false)
+			if (propertyNameToError[nameof(ItemsListVM.ItemsCollectionView)].Any() == false)
 			{
-				propertyNameToError.Remove(nameof(ItemsCollectionView));
+				propertyNameToError.Remove(nameof(ItemsListVM.ItemsCollectionView));
 				Errors = string.Empty;
 			}
 
 			// get errors for ItemsCollectionView to a string for display
-			foreach (string error in GetErrors(nameof(ItemsCollectionView)))
+			foreach (string error in GetErrors(nameof(ItemsListVM.ItemsCollectionView)))
 			{
 				Errors += error + "\r\n";
 			}

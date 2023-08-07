@@ -36,80 +36,9 @@
                Content="{Binding Date}"
                ToolTip="yyyy/mm/dd"/>
 
-        <ListView Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="1"
-                  VerticalAlignment="Stretch"
-                  ToolTip="{Binding Errors}"
-                  SelectedItem="{Binding SelectedItem}"
-                  ItemsSource="{Binding ItemsCollectionView}">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Name" Command="{Binding NameSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Name}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Item ID" Command="{Binding IDSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding ID}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Brand" Command="{Binding BrandSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Brand}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Size" Command="{Binding SizeSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Size}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Quantity" Command="{Binding QuantitySort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Quantity}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Price" Command="{Binding PriceSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Price}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Department" Command="{Binding DepartmentSort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Department}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Categoty" Command="{Binding CategorySort}"/>
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Category}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ContentControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="7" Grid.RowSpan="1">
+            <v:ItemsListView DataContext="{Binding ItemsListVM}"/>
+        </ContentControl>
 
         <Button  Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
                  Content="Cancel"
