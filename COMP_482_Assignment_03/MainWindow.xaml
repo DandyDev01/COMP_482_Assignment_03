@@ -57,15 +57,18 @@
             <TabItem Header="Orders">
                 <v:OrdersView DataContext="{Binding OrdersVM}"/>
             </TabItem>
-            <TabItem Header="Inventory">
+            <TabItem Header="Inventory"
+                     IsEnabled="{Binding LoggedInEmployee, Converter={StaticResource AuthenticationConverter}}">
                 <v:InventoryView DataContext="{Binding InventoryVM}"/>
             </TabItem>
             <TabItem Header="Order Issue">
                 <v:OrderIssueView DataContext="{Binding OrderIssueVM}"/>
             </TabItem>
-            <TabItem Header="Employees">
+            <TabItem Header="Employees"
+                     IsEnabled="{Binding LoggedInEmployee, Converter={StaticResource AuthenticationConverter}}">
                 <v:EmployeesView DataContext="{Binding EmployeesVM}"/>
             </TabItem>
+
         </TabControl>
     </Grid>
 </Window>

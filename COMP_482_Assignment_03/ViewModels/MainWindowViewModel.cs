@@ -30,6 +30,32 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand SignOutCommand { get; }
 		public ICommand HelpCommand { get; }
 
+		private Employee loggedInEmployee;
+		public Employee LoggedInEmployee
+		{
+			get
+			{
+				return loggedInEmployee;
+			}
+			set
+			{
+				OnPropertyChanged(ref loggedInEmployee, value);
+			}
+		}
+
+		private int myVar;
+		public int MyProperty
+		{
+			get
+			{
+				return myVar;
+			}
+			set
+			{
+				OnPropertyChanged(ref myVar, value);
+			}
+		}
+
 		private readonly Store store;
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
