@@ -29,11 +29,11 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EditOrderCommand { get; }
 		public ICommand EditItemCommand { get; }
 		public ICommand SignOutCommand { get; }
-		public ICommand SigninCommand { get; }
+		public ICommand SignInCommand { get; }
 		public ICommand HelpCommand { get; }
 
-		private Employee loggedInEmployee;
-		public Employee LoggedInEmployee
+		private Employee? loggedInEmployee;
+		public Employee? LoggedInEmployee
 		{
 			get
 			{
@@ -42,19 +42,24 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref loggedInEmployee, value);
+
+				if (value == null)
+					SignOutHeader = "Sign Out";
+				else
+					SignOutHeader = "Sign Out: " + value.EmployeeNumber;
 			}
 		}
 
-		private int myVar;
-		public int MyProperty
+		private string signOutHeader;
+		public string SignOutHeader
 		{
 			get
 			{
-				return myVar;
+				return signOutHeader;
 			}
 			set
 			{
-				OnPropertyChanged(ref myVar, value);
+				OnPropertyChanged(ref signOutHeader, value);
 			}
 		}
 
@@ -94,13 +99,14 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteOrderCommand = null;
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
+			EditOrderCommand = null;
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
 			SignOutCommand = new UserSignoutCommand(this);
-			SigninCommand = new RelayCommand(ReAuthenticate);
+			SignInCommand = new RelayCommand(UserSignIn);
 			HelpCommand = null;
 		}
 
-		public void ReAuthenticate()
+		public void UserSignIn()
 		{
 			UserLoginDialogWindow window = new UserLoginDialogWindow();
 			DialogWindowUserLoginViewModel dataContext =

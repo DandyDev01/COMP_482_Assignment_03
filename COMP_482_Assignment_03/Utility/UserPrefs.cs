@@ -8,6 +8,6 @@ namespace COMP_482_Assignment_03.Utility
 {
 	public static class UserPrefs
 	{
-		public static int ForcedLogOutTime = 5;
+		public static int ForcedLogOutTime = 15;
 	}
 }

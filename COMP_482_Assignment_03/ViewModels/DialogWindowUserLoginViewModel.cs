@@ -15,7 +15,6 @@ namespace COMP_482_Assignment_03.ViewModels
 	public class DialogWindowUserLoginViewModel : ObservableObject, INotifyDataErrorInfo
 	{
 		public ICommand SubmitCommand { get; }
-		public ICommand CancelCommand { get; }
 
 		private string employeeNumber;
 		public string EmployeeNumber
@@ -78,15 +77,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			password = string.Empty;
 
 			SubmitCommand = new RelayCommand(Submit);
-			CancelCommand = new RelayCommand(Cancel);
 
 			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
 			BasicStringFieldValidation(nameof(Password), Password);
-		}
-
-		private void Cancel()
-		{
-			window.DialogResult = false;
 		}
 
 		private void Submit()

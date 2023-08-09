@@ -1,4 +1,5 @@
 ﻿using COMP_482_Assignment_03.ViewModels;
+using COMP_482_Assignment_03.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace COMP_482_Assignment_03.Commands
 		public override void Execute(object parameter)
 		{
 			mainWindowVM.LoggedInEmployee = null;
+
+			mainWindowVM.UserSignIn();
 		}
 	}
 }

@@ -44,13 +44,13 @@
             </MenuItem>
             <MenuItem Header="Help" Command="{Binding HelpCommand}">
             </MenuItem>
-            <MenuItem Header="Sign Out" 
+            <MenuItem Header="{Binding SignOutHeader}" 
                       Visibility="{Binding LoggedInEmployee, Converter={StaticResource NullToVisibilityConverter}}"
                       Command="{Binding SignOutCommand}"
                       HorizontalAlignment="Right"/>
             <MenuItem Header="Sign In" 
                       Visibility="{Binding LoggedInEmployee, Converter={StaticResource InverseNullToVisibilityConverter}}"
-                      Command="{Binding SigninCommand}"
+                      Command="{Binding SignInCommand}"
                       HorizontalAlignment="Right"/>
         </Menu>
 

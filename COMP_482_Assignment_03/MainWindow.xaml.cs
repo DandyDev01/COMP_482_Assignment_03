@@ -44,7 +44,7 @@ namespace COMP_482_Assignment_03
 			MainWindowViewModel mainWindowVM = DataContext as MainWindowViewModel;
 
 			TimerCountDownDialogWindow window = new TimerCountDownDialogWindow();
-			window.OnTimerFinish += mainWindowVM.ReAuthenticate;
+			window.OnTimerFinish += mainWindowVM.UserSignIn;
 			window.ShowDialog();
 
 			notifyTimer.Start();
