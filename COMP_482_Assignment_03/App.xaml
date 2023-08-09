@@ -9,8 +9,11 @@
         <Utility:NullToVisibilityConverter x:Key="SelectedItemConverter"/>
         <Utility:InverseBooleanConverter x:Key="InverseBoolConverter"/>
         <Utility:NullToEnabledConverter x:Key="NullToEnabledConverter"/>
+        <Utility:InverseNullToEnabledConverter x:Key="InverseNullToEnabledConverter"/>
         <Utility:Authenticator x:Key="AuthenticationConverter"/>
-        
+        <Utility:NullToVisibilityConverter x:Key="NullToVisibilityConverter"/>
+        <Utility:InverseNullToVisibilityConverter x:Key="InverseNullToVisibilityConverter"/>
+
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="15"/>
         </Style>

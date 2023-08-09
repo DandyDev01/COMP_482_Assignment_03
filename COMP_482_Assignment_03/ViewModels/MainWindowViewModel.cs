@@ -95,12 +95,12 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteOrderCommand = null;
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
-			SignOutCommand = null;
-			SigninCommand = null;
+			SignOutCommand = new UserSignoutCommand(this);
+			SigninCommand = new RelayCommand(ReAuthenticate);
 			HelpCommand = null;
 		}
 
-		public void ReAuthenticate(object? sender, EventArgs e)
+		public void ReAuthenticate()
 		{
 			UserLoginDialogWindow window = new UserLoginDialogWindow();
 			DialogWindowUserLoginViewModel dataContext =

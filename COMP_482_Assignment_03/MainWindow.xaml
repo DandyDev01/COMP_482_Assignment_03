@@ -45,7 +45,12 @@
             <MenuItem Header="Help" Command="{Binding HelpCommand}">
             </MenuItem>
             <MenuItem Header="Sign Out" 
+                      Visibility="{Binding LoggedInEmployee, Converter={StaticResource NullToVisibilityConverter}}"
                       Command="{Binding SignOutCommand}"
+                      HorizontalAlignment="Right"/>
+            <MenuItem Header="Sign In" 
+                      Visibility="{Binding LoggedInEmployee, Converter={StaticResource InverseNullToVisibilityConverter}}"
+                      Command="{Binding SigninCommand}"
                       HorizontalAlignment="Right"/>
         </Menu>
 

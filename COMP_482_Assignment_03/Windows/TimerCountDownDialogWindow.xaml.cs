@@ -22,7 +22,7 @@ namespace COMP_482_Assignment_03.Windows
 	/// </summary>
 	public partial class TimerCountDownDialogWindow : Window
 	{
-		public Action<object?, EventArgs>? OnTimerFinish { get; set; }
+		public Action? OnTimerFinish { get; set; }
 
 		private readonly DispatcherTimer timer;
 		private int timeTillFinish = UserPrefs.ForcedLogOutTime;
@@ -56,7 +56,7 @@ namespace COMP_482_Assignment_03.Windows
 
 			if (timeTillFinish <= 0)
 			{
-				OnTimerFinish?.Invoke(null, null);
+				OnTimerFinish?.Invoke();
 				timer.Stop();
 				timeTillFinish = UserPrefs.ForcedLogOutTime;
 				Close();

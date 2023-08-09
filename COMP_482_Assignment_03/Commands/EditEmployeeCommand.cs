@@ -41,6 +41,7 @@ namespace COMP_482_Assignment_03.Commands
 				employeesVM.SelectedEmployee.LastName = temp.LastName;
 				employeesVM.SelectedEmployee.PhoneNumber = temp.PhoneNumber;
 				employeesVM.SelectedEmployee.EmployeeNumber = temp.EmployeeNumber;
+				employeesVM.SelectedEmployee.Password = temp.Password;
 				employeesVM.SelectedEmployee.Department = temp.Department;
 				employeesVM.SelectedEmployee.Role = temp.Role;
 				employeesVM.SelectedEmployee.WorkTime = temp.WorkTime;
