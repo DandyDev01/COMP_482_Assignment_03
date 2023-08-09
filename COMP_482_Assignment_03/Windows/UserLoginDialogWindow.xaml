@@ -5,8 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:COMP_482_Assignment_03.Windows"
         mc:Ignorable="d"
-        Title="UserLoginDialogWindow" Height="450" Width="800">
+        ResizeMode="NoResize"
+        ShowInTaskbar="false"
+        WindowStartupLocation="CenterOwner"
+        Title="UserLoginDialogWindow" Height="250" Width="600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1"
+               Content="Employee Number:"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="1"/>
+
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="1"
+               Content="Password:"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="1"/>
+
+        <Button Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                IsCancel="True"
+                Content="Cancel"/>
+        <Button Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                Content="Submit"/>
     </Grid>
 </Window>

@@ -49,9 +49,9 @@ namespace COMP_482_Assignment_03
 		
 		private void ReAuthenticateTimerTick(object? sender, EventArgs e)
 		{
-
-			MessageBox.Show("No user activity in the last 30 seconds, please re-authenticate", 
-				"", MessageBoxButton.OK, MessageBoxImage.Information);
+			UserLoginDialogWindow window = new UserLoginDialogWindow();
+			window.ShowDialog();
+			
 		}
 	}
 }
