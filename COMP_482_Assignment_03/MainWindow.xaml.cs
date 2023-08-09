@@ -23,22 +23,38 @@ namespace COMP_482_Assignment_03
 	public partial class MainWindow : Window
 	{
 
-		private readonly DispatcherTimer timer;
+		private readonly DispatcherTimer notifyTimer;
+		private readonly DispatcherTimer reAuthenticateTimer;
 		private bool isRunning = true;
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
-			timer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
-			timer.Interval = TimeSpan.FromSeconds(30);
-			timer.Tick += TimerTick;
-			timer.Start();
+			notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
+			notifyTimer.Interval = TimeSpan.FromSeconds(15);
+			notifyTimer.Tick += NotifyTimerTick;
+			notifyTimer.Start();
+			reAuthenticateTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
+			reAuthenticateTimer.Interval = TimeSpan.FromSeconds(15);
+			reAuthenticateTimer.Tick += ReAuthenticateTimerTick;
 		}
 
-		private void TimerTick(object? sender, EventArgs e)
+
+		private void NotifyTimerTick(object? sender, EventArgs e)
 		{
-			MessageBox.Show("timer: ", "re-athenticate", MessageBoxButton.OK, MessageBoxImage.Information);
+			reAuthenticateTimer.Start();
+			notifyTimer.Stop();
+			MessageBox.Show("No user activity in the last 15 seconds, you will need to re-authenticate in 15 seconds",
+				"re-authenticate notification", MessageBoxButton.OK, MessageBoxImage.Information);
+		}
+		
+		private void ReAuthenticateTimerTick(object? sender, EventArgs e)
+		{
+			MessageBox.Show("No user activity in the last 30 seconds, please re-authenticate", 
+				"", MessageBoxButton.OK, MessageBoxImage.Information);
+			notifyTimer.Start();
+			reAuthenticateTimer.Stop();
 		}
 	}
 }
