@@ -1,4 +1,6 @@
-﻿using System;
+﻿using COMP_482_Assignment_03.Utility;
+using COMP_482_Assignment_03.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,39 +24,34 @@ namespace COMP_482_Assignment_03
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-
 		private readonly DispatcherTimer notifyTimer;
-		private readonly DispatcherTimer reAuthenticateTimer;
-		private bool isRunning = true;
 
 		public MainWindow()
 		{
 			InitializeComponent();
 
 			notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
-			notifyTimer.Interval = TimeSpan.FromSeconds(15);
+			notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
 			notifyTimer.Tick += NotifyTimerTick;
 			notifyTimer.Start();
-			reAuthenticateTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
-			reAuthenticateTimer.Interval = TimeSpan.FromSeconds(15);
-			reAuthenticateTimer.Tick += ReAuthenticateTimerTick;
 		}
-
 
 		private void NotifyTimerTick(object? sender, EventArgs e)
 		{
-			reAuthenticateTimer.Start();
 			notifyTimer.Stop();
-			MessageBox.Show("No user activity in the last 15 seconds, you will need to re-authenticate in 15 seconds",
-				"re-authenticate notification", MessageBoxButton.OK, MessageBoxImage.Information);
+
+			TimerCountDownDialogWindow window = new TimerCountDownDialogWindow();
+			window.OnTimerFinish += ReAuthenticateTimerTick;
+			window.ShowDialog();
+
+			notifyTimer.Start();
 		}
 		
 		private void ReAuthenticateTimerTick(object? sender, EventArgs e)
 		{
+
 			MessageBox.Show("No user activity in the last 30 seconds, please re-authenticate", 
 				"", MessageBoxButton.OK, MessageBoxImage.Information);
-			notifyTimer.Start();
-			reAuthenticateTimer.Stop();
 		}
 	}
 }
