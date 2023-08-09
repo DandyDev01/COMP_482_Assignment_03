@@ -72,6 +72,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string password;
+		public string Password
+		{
+			get
+			{
+				return password;
+			}
+			set
+			{
+				OnPropertyChanged(ref password, value);
+			}
+		}
+
 		private StoreDepartment department;
 		public StoreDepartment Department
 		{
@@ -143,6 +156,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			lastName = employee.LastName;
 			phoneNumber = employee.PhoneNumber;
 			employeeNumber = employee.EmployeeNumber;
+			password = employee.Password;
 			Department = employee.Department;
 			role = employee.Role;
 			workTime = employee.WorkTime;
@@ -151,6 +165,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			BasicStringFieldValidation(nameof(LastName), LastName);
 			BasicStringFieldValidation(nameof(PhoneNumber), PhoneNumber);
 			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
+			BasicStringFieldValidation(nameof(Password), Password);
 		}
 
 		public IEnumerable GetErrors(string? propertyName)

@@ -18,13 +18,14 @@ namespace COMP_482_Assignment_03.Models
 		public EmployeeRole Role { get; set; }	
 		public EmployeeWorkTime WorkTime { get; set; }
 
-		public Employee(string _firstName, string _lastName, string _phoneNumber, string _EmployeeNumber, 
+		public Employee(string _firstName, string _lastName, string _phoneNumber, string _EmployeeNumber, string _password,
 			StoreDepartment _storeDepartment, EmployeeRole _role, EmployeeWorkTime _workTime)
 		{
 			FirstName = _firstName;
 			LastName = _lastName;
 			PhoneNumber = _phoneNumber;
 			EmployeeNumber = _EmployeeNumber;
+			Password = _password;
 			Department = _storeDepartment;
 			Role = _role;
 			WorkTime = _workTime;

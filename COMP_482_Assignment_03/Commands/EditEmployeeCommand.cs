@@ -29,9 +29,9 @@ namespace COMP_482_Assignment_03.Commands
 			window.DataContext = dialogContext;
 
 			Employee temp = new Employee(employeesVM.SelectedEmployee.FirstName, employeesVM.SelectedEmployee.LastName,
-				employeesVM.SelectedEmployee.PhoneNumber, employeesVM.SelectedEmployee.EmployeeNumber,
-				employeesVM.SelectedEmployee.Department, employeesVM.SelectedEmployee.Role, 
-				employeesVM.SelectedEmployee.WorkTime);
+				employeesVM.SelectedEmployee.PhoneNumber, employeesVM.SelectedEmployee.Password, 
+				employeesVM.SelectedEmployee.EmployeeNumber, employeesVM.SelectedEmployee.Department, 
+				employeesVM.SelectedEmployee.Role, employeesVM.SelectedEmployee.WorkTime);
 
 			window.ShowDialog();
 

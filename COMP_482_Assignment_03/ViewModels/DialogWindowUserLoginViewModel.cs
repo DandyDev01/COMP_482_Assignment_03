@@ -1,7 +1,9 @@
 ﻿using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Utility;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +12,7 @@ using System.Windows.Input;
 
 namespace COMP_482_Assignment_03.ViewModels
 {
-	public class DialogWindowUserLoginViewModel : ObservableObject
+	public class DialogWindowUserLoginViewModel : ObservableObject, INotifyDataErrorInfo
 	{
 		public ICommand SubmitCommand { get; }
 		public ICommand CancelCommand { get; }
@@ -25,6 +27,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref employeeNumber, value);
+				BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
 			}
 		}
 
@@ -38,12 +41,30 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref password, value);
+				BasicStringFieldValidation(nameof(Password), Password);
+			}
+		}
+
+		private bool isValid;
+		public bool IsValid
+		{
+			get
+			{
+				return isValid;
+			}
+			set
+			{
+				OnPropertyChanged(ref isValid, value);
 			}
 		}
 
 		private readonly Window window;
 		private readonly MainWindowViewModel mainWindowVM;
 		private readonly EmployeeManager employeeManager;
+		private readonly Dictionary<string, List<string>> propertyNameToError;
+
+		public bool HasErrors => propertyNameToError.Any();
+		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
 		public DialogWindowUserLoginViewModel(Window _window, MainWindowViewModel mainWindowViewModel, 
 			EmployeeManager _employeeManager)
@@ -51,12 +72,16 @@ namespace COMP_482_Assignment_03.ViewModels
 			window = _window;
 			mainWindowVM = mainWindowViewModel;
 			employeeManager = _employeeManager;
+			propertyNameToError = new Dictionary<string, List<string>>();
 
 			employeeNumber = string.Empty;
 			password = string.Empty;
 
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
+
+			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
+			BasicStringFieldValidation(nameof(Password), Password);
 		}
 
 		private void Cancel()
@@ -87,6 +112,37 @@ namespace COMP_482_Assignment_03.ViewModels
 			mainWindowVM.LoggedInEmployee = employee;
 
 			window.DialogResult = true;
+		}
+
+		public IEnumerable GetErrors(string? propertyName)
+		{
+			return propertyNameToError.GetValueOrDefault(propertyName, new List<string>());
+		}
+
+		private void BasicStringFieldValidation(string propertyName, string propertyValue)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (string.IsNullOrEmpty(propertyValue) || string.IsNullOrWhiteSpace(propertyValue))
+			{
+				propertyNameToError[propertyName].Add("Cannot be empty or white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
+			{
+				propertyNameToError[propertyName].Add("Cannot start with white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
 		}
 	}
 }

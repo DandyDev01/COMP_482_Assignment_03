@@ -1,4 +1,5 @@
 ﻿using COMP_482_Assignment_03.Utility;
+using COMP_482_Assignment_03.ViewModels;
 using COMP_482_Assignment_03.Windows;
 using System;
 using System.Collections.Generic;
@@ -40,18 +41,13 @@ namespace COMP_482_Assignment_03
 		{
 			notifyTimer.Stop();
 
+			MainWindowViewModel mainWindowVM = DataContext as MainWindowViewModel;
+
 			TimerCountDownDialogWindow window = new TimerCountDownDialogWindow();
-			window.OnTimerFinish += ReAuthenticateTimerTick;
+			window.OnTimerFinish += mainWindowVM.ReAuthenticate;
 			window.ShowDialog();
 
 			notifyTimer.Start();
-		}
-		
-		private void ReAuthenticateTimerTick(object? sender, EventArgs e)
-		{
-			UserLoginDialogWindow window = new UserLoginDialogWindow();
-			window.ShowDialog();
-			
 		}
 	}
 }

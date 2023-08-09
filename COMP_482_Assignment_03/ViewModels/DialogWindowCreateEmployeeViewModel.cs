@@ -26,7 +26,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public DialogWindowCreateEmployeeViewModel(Window _window)
 		{
 			window = _window;
-			Employee employee = new Employee("","","","", StoreDepartment.Grocery, EmployeeRole.StoreManager, 
+			Employee employee = new Employee("","","","", "", StoreDepartment.Grocery, EmployeeRole.StoreManager, 
 				EmployeeWorkTime.FullTime);
 			ObservableEmployee = new ObservableEmployee(employee);
 

@@ -2,6 +2,7 @@
 using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Services;
 using COMP_482_Assignment_03.Utility;
+using COMP_482_Assignment_03.Windows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EditOrderCommand { get; }
 		public ICommand EditItemCommand { get; }
 		public ICommand SignOutCommand { get; }
+		public ICommand SigninCommand { get; }
 		public ICommand HelpCommand { get; }
 
 		private Employee loggedInEmployee;
@@ -94,7 +96,18 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
 			SignOutCommand = null;
+			SigninCommand = null;
 			HelpCommand = null;
+		}
+
+		public void ReAuthenticate(object? sender, EventArgs e)
+		{
+			UserLoginDialogWindow window = new UserLoginDialogWindow();
+			DialogWindowUserLoginViewModel dataContext =
+				new DialogWindowUserLoginViewModel(window, this, employeesManager);
+
+			window.DataContext = dataContext;
+			window.ShowDialog();
 		}
 	}
 }
