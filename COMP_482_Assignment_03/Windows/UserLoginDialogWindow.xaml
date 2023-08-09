@@ -30,16 +30,20 @@
 
         <Label Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Grid.RowSpan="1"
                Content="Employee Number:"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="1"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="1"
+                 Text="{Binding EmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" Grid.RowSpan="1"
                Content="Password:"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="1"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="4" Grid.RowSpan="1" 
+                 Text="{Binding Password, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Button Grid.Column="4" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 IsCancel="True"
-                Content="Cancel"/>
+                Content="Cancel"
+                Command="{Binding CancelCommand}"/>
         <Button Grid.Column="5" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                Content="Submit"/>
+                Content="Submit"
+                Command="{Binding SubmitCommand}"/>
     </Grid>
 </Window>
