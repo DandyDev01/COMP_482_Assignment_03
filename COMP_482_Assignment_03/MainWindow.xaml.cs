@@ -27,6 +27,8 @@ namespace COMP_482_Assignment_03
 	{
 		private readonly DispatcherTimer notifyTimer;
 
+		private int secondsPasses = 0;
+
 		public MainWindow()
 		{
 			InitializeComponent();

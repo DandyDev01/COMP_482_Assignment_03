@@ -50,6 +50,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteItemCommand = new SelectItemsCommand(new SelectItemsToRemoveFromInventoryData(_inventory, 
 				ItemsListVM.Items));
 			EditItemCommand = new EditItemCommand(_inventory, this);
+
+			ItemsListVM.AddItemsCommand = CreateItemCommand;
+			ItemsListVM.RemoveItemsCommand = DeleteItemCommand;
 		}
 	}
 }

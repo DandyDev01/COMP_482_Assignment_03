@@ -11,6 +11,14 @@
                   VerticalAlignment="Stretch"
                   SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ItemsCollectionView}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Add Item(s)" Command="{Binding AddItemsCommand}"/>
+                    <MenuItem Header="Remove Item(s)"
+                              Command="{Binding RemoveItemsCommand}"
+                              IsEnabled="{Binding Any}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100">

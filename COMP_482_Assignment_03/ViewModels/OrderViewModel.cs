@@ -111,7 +111,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			errors = string.Empty;
 			date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
-			Order = new StoreOrder();
+			order = new StoreOrder();
 			orderTracker.Add(Order);
 
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, ItemsListVM.Items));
@@ -120,6 +120,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			CancelCommand = new ClearOrderCommand(this);
 			
 			ItemsListVM.ItemsCollectionView.CollectionChanged += Validate;
+
+			ItemsListVM.AddItemsCommand = AddItemsCommand;
+			ItemsListVM.RemoveItemsCommand = RemoveItemsCommand;
 
 			Validate(null, null);
 		}

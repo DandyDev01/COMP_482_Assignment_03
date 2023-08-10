@@ -4,6 +4,7 @@ using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -31,6 +32,21 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
 
+		private bool any;
+		public bool Any
+		{
+			get
+			{
+				return any;
+			}
+			set
+			{
+				OnPropertyChanged(ref any, value);
+			}
+		}
+
+		public ICommand? AddItemsCommand { get; set; }
+		public ICommand? RemoveItemsCommand { get; set; }	
 		public ICommand NameSort { get; }
 		public ICommand IDSort { get; }
 		public ICommand BrandSort { get; }
@@ -47,8 +63,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			Items = new ObservableCollection<Item>();
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 			selectedItem = Items.FirstOrDefault();
+			Any = Items.Any();
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
+
+			Items.CollectionChanged += UpdateAny;
 
 			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Name));
 			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.ID));
@@ -65,8 +84,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			Items = new ObservableCollection<Item>(items);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 			selectedItem = Items.FirstOrDefault();
+			Any = Items.Any();
 
 			collectionViewPropertySort = new CollectionViewPropertySort(ItemsCollectionView);
+
+			Items.CollectionChanged += UpdateAny;
 
 			NameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Name));
 			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.ID));
@@ -77,6 +99,12 @@ namespace COMP_482_Assignment_03.ViewModels
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
 		}
+
+		private void UpdateAny(object? sender, NotifyCollectionChangedEventArgs e)
+		{
+			Any = Items.Any();
+		}
+
 
 		public void Clear()
 		{

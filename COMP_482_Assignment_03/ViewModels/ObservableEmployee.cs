@@ -83,6 +83,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref password, value);
 				BasicStringFieldValidation(nameof(Password), Password);
+				Employee.Password = value;
 			}
 		}
 
