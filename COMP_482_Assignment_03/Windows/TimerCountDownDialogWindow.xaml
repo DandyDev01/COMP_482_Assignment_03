@@ -27,6 +27,7 @@
                 Name="ok_button"
                 HorizontalAlignment="Right"
                 Width="50"
+                IsDefault="True"
                 Content="Ok"/>
     </Grid>
 </Window>

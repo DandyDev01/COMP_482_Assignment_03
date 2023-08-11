@@ -40,6 +40,8 @@ namespace COMP_482_Assignment_03.Windows
 			
 			ok_button.Command = new RelayCommand(ok_button_clicked);
 
+			InputBindings.Add(new KeyBinding(ok_button.Command, Key.Escape, ModifierKeys.None));
+
 			Closed += HandleClose;
 		}
 
