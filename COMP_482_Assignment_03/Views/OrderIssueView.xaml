@@ -67,26 +67,6 @@
                  TextWrapping="Wrap"
                  Text="{Binding IssueDescription, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               VerticalAlignment="Bottom"
-               Content="Employee Name:"/>
-        <TextBox Grid.Column="0" Grid.Row="7" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 ToolTip="{Binding EmployeeNameErrors}"
-                 Height="20"
-                 VerticalAlignment="Top"
-                 Margin="5, 0, 0, 0"
-                 Text="{Binding EmployeeName, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="0" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               VerticalAlignment="Bottom"
-               Content="Employee Number:"/>
-        <TextBox Grid.Column="0" Grid.Row="9" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 ToolTip="{Binding EmployeeNumberErrors}"
-                 Height="20"
-                 VerticalAlignment="Top"
-                 Margin="5, 0, 0, 0"
-                 Text="{Binding EmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
-
         <Button Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 Command="{Binding CancelCommand}"
                 IsCancel="True"

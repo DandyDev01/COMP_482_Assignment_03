@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -68,36 +69,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private string employeeName;
-		public string EmployeeName
-		{
-			get
-			{
-				return employeeName;
-			}
-			set
-			{
-				OnPropertyChanged(ref employeeName, value);
-				BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
-			}
-		}
-
-		private string employeeNumber;
-		public string EmployeeNumber
-		{
-			get
-			{
-				return employeeNumber;
-			}
-			set
-			{
-				OnPropertyChanged(ref employeeNumber, value);
-				BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
-			}
-		}
-
-		private StoreOrder selectedOrder;
-		public StoreOrder SelectedOrder
+		private StoreOrder? selectedOrder;
+		public StoreOrder? SelectedOrder
 		{
 			get
 			{
@@ -114,8 +87,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private OrderIssue selectedIssue;
-		public OrderIssue SelectedIssue
+		private OrderIssue? selectedIssue;
+		public OrderIssue? SelectedIssue
 		{
 			get
 			{
@@ -137,7 +110,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 			set
 			{
-				OnPropertyChanged(ref isValid, value);
+				OnPropertyChanged(ref isValid, value && loggedInEmployee != null);
 			}
 		}
 
@@ -154,31 +127,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private string employeeNameErrors;
-		public string EmployeeNameErrors
-		{
-			get
-			{
-				return employeeNameErrors;
-			}
-			set
-			{
-				OnPropertyChanged(ref employeeNameErrors, value);
-			}
-		}
-
-		private string employeeNumberErrors;
-		public string EmployeeNumberErrors
-		{
-			get
-			{
-				return employeeNumberErrors;
-			}
-			set
-			{
-				OnPropertyChanged(ref employeeNumberErrors, value);
-			}
-		}
+		private Employee? loggedInEmployee;
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrderIssueTracker orderIssueTracker;
@@ -201,12 +150,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			propertyNameToError = new Dictionary<string, List<string>>();
 
 			Date = DateTime.Now.ToString("yyyy-MMM-ddd-dd");
-			employeeName = string.Empty;
-			employeeNumber = string.Empty;
 			issueDescription = string.Empty;
 
-			employeeNameErrors = string.Empty;
-			employeeNumberErrors = string.Empty;
 			issueDescriptionErrors = string.Empty;
 
 			SubmitCommand = new RelayCommand(Submit);
@@ -215,16 +160,14 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			ErrorsChanged += UpdateErrorMessages;
 
-			BasicStringFieldValidation(nameof(EmployeeName), EmployeeName);
-			BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
 			BasicStringFieldValidation(nameof(IssueDescription), IssueDescription);
 			SelectedOrderValidation(nameof(SelectedOrder), SelectedOrder);
 		}
 
+		public void LoggedInEmployeeChanged(Employee employee) => loggedInEmployee = employee;
+
 		private void Cancel()
 		{
-			EmployeeName = string.Empty;
-			EmployeeNumber = string.Empty;
 			IssueDescription = string.Empty;
 		}
 
@@ -233,14 +176,13 @@ namespace COMP_482_Assignment_03.ViewModels
 			Random random = new Random();
 
 			string issueID = random.Next(10000, 99999).ToString();
-			OrderIssue newIssue = new OrderIssue(issueID, SelectedOrder.ID, IssueDescription, EmployeeName, employeeNumber,
-				Date, SelectedDepartment, SelectedIssueType);
+			OrderIssue newIssue = new OrderIssue(issueID, SelectedOrder.ID, IssueDescription, 
+				loggedInEmployee.FirstName + " " + loggedInEmployee.LastName, 
+				loggedInEmployee.EmployeeNumber, Date, SelectedDepartment, SelectedIssueType);
 
 			orderIssueTracker.Add(newIssue);
 			OpenOrderIssues.Add(newIssue);
 
-			EmployeeName = string.Empty;
-			EmployeeNumber = string.Empty;
 			IssueDescription = string.Empty;
 			SelectedOrder = null;
 		}
@@ -298,24 +240,13 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private void UpdateErrorMessages(object? sender, DataErrorsChangedEventArgs e)
 		{
-			employeeNameErrors = string.Empty;
-			employeeNumberErrors = string.Empty;
 			issueDescriptionErrors = string.Empty;
-
-			foreach (var item in GetErrors(nameof(EmployeeName)))
-			{
-				EmployeeNameErrors += item + "\r\n";
-			}
 
 			foreach (var item in GetErrors(nameof(IssueDescription)))
 			{
 				IssueDescriptionErrors += item + "\r\n";
 			}
-
-			foreach (var item in GetErrors(nameof(EmployeeNumber)))
-			{
-				EmployeeNumberErrors += item + "\r\n";
-			}
 		}
+
 	}
 }

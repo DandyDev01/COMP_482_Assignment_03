@@ -14,6 +14,8 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public class MainWindowViewModel : ObservableObject
 	{
+		public Action<Employee> OnLoggedInEmployeeChanged;
+
 		public OrderViewModel OrderVM { get; }
 		public OrdersViewModel OrdersVM { get; }
 		public InventoryViewModel InventoryVM { get; }
@@ -42,6 +44,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref loggedInEmployee, value);
+
+				OnLoggedInEmployeeChanged?.Invoke(value);
 
 				if (value == null)
 					SignOutHeader = "Sign Out";
@@ -104,6 +108,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			SignOutCommand = new UserSignoutCommand(this);
 			SignInCommand = new RelayCommand(UserSignIn);
 			HelpCommand = null;
+
+			OnLoggedInEmployeeChanged += OrderIssueVM.LoggedInEmployeeChanged;
+			UserSignIn();
 		}
 
 		public void UserSignIn()
