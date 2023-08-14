@@ -160,7 +160,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public bool HasErrors => propertyNameToError.Any();
 		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
-		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker, OrderTracker _orderTracker)
+		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker, OrderTracker _orderTracker, Inventory _inventory)
 		{
 			orderIssueTracker = _orderIssueTracker;
 			orderTracker = _orderTracker;
@@ -179,7 +179,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
-			SelectOrderCommand = new SelectOrderCommand(_orderTracker, new SelectOrderForOrderIssueData(this));
+			SelectOrderCommand = new SelectOrderCommand(_orderTracker, new SelectOrderForOrderIssueData(this), _inventory);
 			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.ID));
 			OrderIDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.OrderID));
 			DescriptionSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.Description));

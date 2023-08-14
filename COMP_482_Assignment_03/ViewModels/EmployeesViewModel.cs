@@ -83,6 +83,28 @@ namespace COMP_482_Assignment_03.ViewModels
 			WorkTimeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.WorkTime));
 		}
 
+		public EmployeesViewModel(EmployeeManager _employeeManager, ICommand _createCommand, ICommand _cancelCommand)
+		{
+			employeeManager = _employeeManager;
+
+			Employees = new ObservableCollection<Employee>(employeeManager.Employees);
+			EmployeesCollectionView = CollectionViewSource.GetDefaultView(Employees);
+			selectedEmployee = Employees[0];
+
+			collectionViewPropertySort = new CollectionViewPropertySort(EmployeesCollectionView);
+
+			CreateEmployeeCommand = _createCommand;
+			DeleteEmployeeCommand = _cancelCommand;
+			EditEmployeeCommand = new EditEmployeeCommand(employeeManager, this);
+			FirstNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.FirstName));
+			LastNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.LastName));
+			PhoneNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.PhoneNumber));
+			EmployeeNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.EmployeeNumber));
+			RoleSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
+			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
+			WorkTimeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.WorkTime));
+		}
+
 		public void LoggedInEmployeeChanged(Employee employee)
 		{
 			IsValid = selectedEmployee != null && selectedEmployee != employee;

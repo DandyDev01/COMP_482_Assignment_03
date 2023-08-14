@@ -1,5 +1,6 @@
 ﻿using COMP_482_Assignment_03.Commands;
 using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Models.SelectOrderData;
 using COMP_482_Assignment_03.Utility;
 using System;
 using System.Collections.Generic;
@@ -48,7 +49,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrderTracker orderTracker;
 
-		public OrdersViewModel(OrderTracker _orderTracker)
+		public OrdersViewModel(OrderTracker _orderTracker, Inventory _inventory)
 		{
 			orderTracker = _orderTracker;
 			Orders = new ObservableCollection<Order>(orderTracker.Orders);
@@ -58,7 +59,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 
 			CreateOrderCommand = null;
-			//EditOrderCommand = new EditOrderCommand(inventory, orderTracker, this);
+			EditOrderCommand = new EditOrderCommand(_inventory, orderTracker, this);
 			ViewOrderCommand = new ViewOrderCommand(this);
 			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
 			RefreshCommand = new RelayCommand(Refresh);

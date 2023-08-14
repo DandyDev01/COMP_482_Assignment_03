@@ -94,9 +94,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			orderIssueTracker = new OrderIssueTracker(orderIssueDataService.GetAll().ToArray());
 			store = new Store(orderIssueTracker, inventory, employeesManager, orderTracker);
 
-			OrdersVM = new OrdersViewModel(orderTracker);
+			OrdersVM = new OrdersViewModel(orderTracker, inventory);
 			InventoryVM = new InventoryViewModel(inventory, orderTracker);
-			OrderIssueVM = new OrderIssueViewModel(orderIssueTracker, orderTracker);
+			OrderIssueVM = new OrderIssueViewModel(orderIssueTracker, orderTracker, inventory);
 			EmployeesVM = new EmployeesViewModel(employeesManager);
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);
 
@@ -107,7 +107,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
 			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);
-			EditEmployeeCommand = null;
+			EditEmployeeCommand = new SelectAndEditEmployeeCommand(employeesManager, EmployeesVM);
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
 			SignOutCommand = new UserSignoutCommand(this);
 			SignInCommand = new RelayCommand(UserSignIn);

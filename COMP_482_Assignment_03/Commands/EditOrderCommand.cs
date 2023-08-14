@@ -17,7 +17,8 @@ namespace COMP_482_Assignment_03.Commands
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
 		private readonly OrdersViewModel ordersVM;
-		private readonly SelectOrderForEditData selectOrderForEditData;
+		private readonly SelectOrderForEditData? selectOrderForEditData;
+		private readonly Order? order;
 		private Window window;
 
 		public EditOrderCommand(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM,
@@ -30,12 +31,28 @@ namespace COMP_482_Assignment_03.Commands
 			window = new Window();
 		}
 
+		public EditOrderCommand(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM)
+		{
+			inventory = _inventory;
+			orderTracker = _orderTracker;
+			ordersVM = _ordersVM;
+			window = new Window();
+		}
+
 		public override void Execute(object parameter)
 		{
 			window.Content = new OrderView();
 
-			window.DataContext = new OrderViewModel(inventory, orderTracker, ordersVM,
+			if (selectOrderForEditData != null)
+			{
+				window.DataContext = new OrderViewModel(inventory, orderTracker, ordersVM,
 						selectOrderForEditData.SelectedOrder, new RelayCommand(Cancel), new RelayCommand(Create));
+			}
+			else 
+			{
+				window.DataContext = new OrderViewModel(inventory, orderTracker, ordersVM,
+						ordersVM.SelectedOrder, new RelayCommand(Cancel), new RelayCommand(Create));
+			}
 
 			window.ShowDialog();
 		}

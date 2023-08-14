@@ -29,7 +29,7 @@ namespace COMP_482_Assignment_03.Commands
 
 			selectOrderForEditData = new SelectOrderForEditData();
 
-			selectOrderCommand = new SelectOrderCommand(orderTracker, selectOrderForEditData);
+			selectOrderCommand = new SelectOrderCommand(orderTracker, selectOrderForEditData, inventory);
 			editOrderCommand = new EditOrderCommand(inventory, orderTracker, ordersVM,
 				selectOrderForEditData);
 		}

@@ -15,17 +15,19 @@ namespace COMP_482_Assignment_03.Commands
 	{
 		private readonly OrderTracker orderTracker;
 		private readonly SelectOrderDataBase orderData;
+		private readonly Inventory inventory;
 
-		public SelectOrderCommand(OrderTracker _orderTracker, SelectOrderDataBase _orderData)
+		public SelectOrderCommand(OrderTracker _orderTracker, SelectOrderDataBase _orderData, Inventory _inventory)
 		{
 			orderTracker = _orderTracker;
 			orderData = _orderData;
+			inventory = _inventory;
 		}
 
 		public override void Execute(object parameter)
 		{
 			Window window = new SelectOrderDialogWindow();
-			OrdersViewModel dialogContext = new OrdersViewModel(orderTracker);
+			OrdersViewModel dialogContext = new OrdersViewModel(orderTracker, inventory);
 			window.DataContext = dialogContext;
 
 			window.ShowDialog();
