@@ -8,18 +8,18 @@ namespace COMP_482_Assignment_03.Models
 {
 	public class OrderTracker
 	{
-		public StoreOrder[] Orders { get { return orders.ToArray(); } }
+		public Order[] Orders { get { return orders.ToArray(); } }
 
-		public StoreOrder Last { get { return orders[orders.Count - 1]; } }
+		public Order Last { get { return orders[orders.Count - 1]; } }
 
-		private readonly List<StoreOrder> orders;
+		private readonly List<Order> orders;
 
-		public OrderTracker(StoreOrder[] _orders)
+		public OrderTracker(Order[] _orders)
 		{
 			orders = _orders.ToList();
 		}
 
-		public void Add(StoreOrder order)
+		public void Add(Order order)
 		{
 			if (order == null)
 				return;
@@ -27,12 +27,12 @@ namespace COMP_482_Assignment_03.Models
 			orders.Add(order);
 		}
 
-		public StoreOrder Remove(string ID)
+		public Order Remove(string ID)
 		{
 			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
 				return null;
 
-			StoreOrder order = orders.Where(x => x.ID == ID).FirstOrDefault();
+			Order order = orders.Where(x => x.ID == ID).FirstOrDefault();
 
 			if (order == null)
 				return null;
@@ -42,12 +42,12 @@ namespace COMP_482_Assignment_03.Models
 			return order;
 		}
 
-		public StoreOrder Get(string ID)
+		public Order Get(string ID)
 		{
 			if (string.IsNullOrEmpty(ID) || string.IsNullOrWhiteSpace(ID))
 				return null;
 
-			StoreOrder order = orders.Where(x => x.ID == ID).FirstOrDefault();
+			Order order = orders.Where(x => x.ID == ID).FirstOrDefault();
 
 			if (order == null)
 				return null;

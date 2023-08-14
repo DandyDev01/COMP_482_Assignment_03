@@ -16,10 +16,17 @@ namespace COMP_482_Assignment_03.Models.SelectOrderData
 			orderIssueVM = _orderIssueVM;
 		}
 
-		public StoreOrder SelectedOrder 
+		/// <summary>
+		/// sets and gets OrderIssueViewModel.selectedOrder 
+		/// </summary>
+		public Order SelectedOrder 
 		{
 			get => orderIssueVM.SelectedOrder;
-			set => orderIssueVM.SelectedOrder = value;
+			set
+			{
+				orderIssueVM.SelectedOrder = value;
+				orderIssueVM.SelectedOrderID = "Selected Order ID: " + value.ID;
+			}
 		}
 	}
 }

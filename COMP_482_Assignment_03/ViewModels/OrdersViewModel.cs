@@ -20,8 +20,16 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand EditOrderCommand { get; }
 		public ICommand CancelOrderCommand { get; }
 
-		private StoreOrder? selectedOrder;
-		public StoreOrder? SelectedOrder
+		public ICommand OrderIDSort { get; }
+		public ICommand OrderStatusSort { get; }
+		public ICommand OrderWeightSort { get; }
+		public ICommand OrderCostSort { get; }
+		public ICommand ExpectedDeliveryDateSort { get; }
+		public ICommand DateCreatedSort { get; }
+		public ICommand OrderDepartementSort { get; }
+
+		private Order? selectedOrder;
+		public Order? SelectedOrder
 		{
 			get
 			{
@@ -33,7 +41,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		public ObservableCollection<StoreOrder> Orders { get; }
+		public ObservableCollection<Order> Orders { get; }
 		public ICollectionView OrdersCollectionView { get; }
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
@@ -42,7 +50,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public OrdersViewModel(OrderTracker _orderTracker)
 		{
 			orderTracker = _orderTracker;
-			Orders = new ObservableCollection<StoreOrder>(orderTracker.Orders);
+			Orders = new ObservableCollection<Order>(orderTracker.Orders);
 			OrdersCollectionView = CollectionViewSource.GetDefaultView(Orders);
 
 			selectedOrder = Orders.FirstOrDefault();
@@ -50,6 +58,13 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			ViewOrderCommand = new ViewOrderCommand(this);
 			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
+			OrderIDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.ID));
+			OrderStatusSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.OrderStatus));
+			OrderWeightSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.Weight));
+			OrderCostSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.Cost));
+			ExpectedDeliveryDateSort = null;
+			DateCreatedSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.DataCreated));
+			OrderDepartementSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.Department));
 		}
 	}
 }

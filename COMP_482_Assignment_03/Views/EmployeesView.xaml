@@ -35,6 +35,14 @@
                   VerticalAlignment="Stretch"
                   SelectedItem="{Binding SelectedEmployee}"
                   ItemsSource="{Binding EmployeesCollectionView}">
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Create" Command="{Binding CreateEmployeeCommand}"/>
+                    <MenuItem Header="Remove"
+                              Command="{Binding DeleteEmployeeCommand}"
+                              IsEnabled="{Binding IsValid}"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100">

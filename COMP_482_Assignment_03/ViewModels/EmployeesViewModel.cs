@@ -39,8 +39,24 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref selectedEmployee, value);
+				IsValid = selectedEmployee != null && selectedEmployee != loggedInEmployee;
 			}
 		}
+
+		private bool isValid;
+		public bool IsValid
+		{
+			get
+			{
+				return isValid;
+			}
+			set
+			{
+				OnPropertyChanged(ref isValid, value);
+			}
+		}
+
+		private Employee? loggedInEmployee;
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly EmployeeManager employeeManager;
@@ -65,6 +81,12 @@ namespace COMP_482_Assignment_03.ViewModels
 			RoleSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Role));
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.Department));
 			WorkTimeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Employee.WorkTime));
+		}
+
+		public void LoggedInEmployeeChanged(Employee employee)
+		{
+			IsValid = selectedEmployee != null && selectedEmployee != employee;
+			loggedInEmployee = employee;
 		}
 	}
 }

@@ -24,6 +24,7 @@ namespace COMP_482_Assignment_03.Windows
 		public CreateItemDialogWindow()
 		{
 			InitializeComponent();
+			ItemNameBox.Focus();
 		}
 	}
 }

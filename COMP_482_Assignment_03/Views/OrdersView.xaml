@@ -44,7 +44,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Order ID" Command=""/>
+                        <GridViewColumnHeader Content="Order ID" Command="{Binding OrderIDSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding ID}"/>
@@ -52,7 +52,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Status" Command=""/>
+                        <GridViewColumnHeader Content="Status" Command="{Binding OrderStatusSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding OrderStatus}"/>
@@ -60,7 +60,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Weight" Command=""/>
+                        <GridViewColumnHeader Content="Weight" Command="{Binding OrderWeightSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Weight}"/>
@@ -68,7 +68,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Cost" Command=""/>
+                        <GridViewColumnHeader Content="Cost" Command="{Binding OrderCostSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Cost}"/>
@@ -76,7 +76,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="150">
-                        <GridViewColumnHeader Content="Exp Delivery Date" Command=""/>
+                        <GridViewColumnHeader Content="Exp Delivery Date" Command="{Binding ExpectedDeliveryDateSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="default"/>
@@ -84,18 +84,26 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Date Ordered" Command=""/>
+                        <GridViewColumnHeader Content="Ordered" Command="{Binding DateCreatedSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DateCreated}"/>
+                                <TextBlock Text="{Binding DataCreated}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Department" Command=""/>
+                        <GridViewColumnHeader Content="Last Modified" Command="{Binding DateCreatedSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="default"/>
+                                <TextBlock Text="{Binding DataLastModified}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="100">
+                        <GridViewColumnHeader Content="Department" Command="{Binding OrderDepartementSort}"/>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Department}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

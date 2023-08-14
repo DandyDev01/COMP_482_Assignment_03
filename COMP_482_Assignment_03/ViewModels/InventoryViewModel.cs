@@ -32,6 +32,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref searchTerm, value);
+				ItemsListVM.ItemsCollectionView.Refresh();
 			}
 		}
 
@@ -39,8 +40,11 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public InventoryViewModel(Inventory _inventory, OrderTracker _orderTracker)
 		{
-			ItemsListVM = new ItemsListViewModel(_inventory.Items);
 			searchTerm = string.Empty;
+
+			ItemsListVM = new ItemsListViewModel(_inventory.Items);
+			ItemsListVM.ItemsCollectionView.Filter = Filter;
+			
 
 			observableItems = _inventory.Items.GetObservableItems();
 
@@ -53,6 +57,23 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			ItemsListVM.AddItemsCommand = CreateItemCommand;
 			ItemsListVM.RemoveItemsCommand = DeleteItemCommand;
+		}
+
+		private bool Filter(object obj)
+		{
+			if (obj is Item item)
+			{
+
+				if (searchTerm.Equals(string.Empty)) return true;
+
+				if (item.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+				else if (item.ID.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+				else if (item.Brand.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+				else if (item.Department.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+				else if (item.Category.ToString().Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) return true;
+			}
+
+			return false;
 		}
 	}
 }

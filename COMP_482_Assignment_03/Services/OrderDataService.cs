@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace COMP_482_Assignment_03.Services
 {
-	public class OrderDataService : IDataService<StoreOrder>
+	public class OrderDataService : IDataService<Order>
 	{
-		public List<StoreOrder> GetAll()
+		public List<Order> GetAll()
 		{
-			return new List<StoreOrder>();
+			return new List<Order>();
 		}
 	}
 }

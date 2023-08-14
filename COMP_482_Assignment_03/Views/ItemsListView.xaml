@@ -12,7 +12,7 @@
                   SelectedItem="{Binding SelectedItem}"
                   ItemsSource="{Binding ItemsCollectionView}">
             <ListView.ContextMenu>
-                <ContextMenu>
+                <ContextMenu Visibility="{Binding HasContextMenu, Converter={StaticResource boolToVisibilityConverter}}">
                     <MenuItem Header="Add Item(s)" Command="{Binding AddItemsCommand}"/>
                     <MenuItem Header="Remove Item(s)"
                               Command="{Binding RemoveItemsCommand}"

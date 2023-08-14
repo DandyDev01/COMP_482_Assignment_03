@@ -22,6 +22,7 @@ namespace COMP_482_Assignment_03.Windows
 		public CreateEmployeeDialogWindow()
 		{
 			InitializeComponent();
+			FirstNameBox.Focus();
 		}
 	}
 }

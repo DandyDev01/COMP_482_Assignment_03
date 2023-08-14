@@ -24,10 +24,11 @@ namespace COMP_482_Assignment_03.Commands
 		public override void Execute(object parameter)
 		{
 			ordersVM.Orders.Add(orderVM.Order);
-			orderVM.Order = new StoreOrder();
+			orderVM.Order = new Order();
 			orderTracker.Add(orderVM.Order);
 			orderVM.ItemsListVM.Items.Clear();
 			orderVM.Date = DateTime.Now.ToString();
+			orderVM.OrderID = "Order ID: " + orderVM.Order.ID;
 		}
 	}
 }

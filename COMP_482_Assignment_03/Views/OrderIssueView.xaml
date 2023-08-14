@@ -42,7 +42,7 @@
                ToolTip="yyyy/mm/dd"/>
         <Label Grid.Column="10" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
                HorizontalAlignment="Right"
-               Content="{Binding SelectedOrder.ID}"
+               Content="{Binding SelectedOrderID}"
                ToolTip="selected order ID"/>
 
         <ComboBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"

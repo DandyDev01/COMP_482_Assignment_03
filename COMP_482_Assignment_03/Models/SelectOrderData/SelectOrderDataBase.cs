@@ -8,6 +8,6 @@ namespace COMP_482_Assignment_03.Models.SelectOrderData
 {
 	public interface SelectOrderDataBase
 	{
-		public StoreOrder SelectedOrder { get; set; }
+		public Order SelectedOrder { get; set; }
 	}
 }

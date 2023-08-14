@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
 
         <TextBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="Search"/>
+                 Text="{Binding SearchTerm, UpdateSourceTrigger=PropertyChanged}"/>
         <ComboBox Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"/>
         
         <Button  Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"

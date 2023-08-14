@@ -9,7 +9,7 @@ namespace COMP_482_Assignment_03.Models
 {
 	public enum OrderStatus { shipped, delivered };
 
-	public class StoreOrder
+	public class Order
 	{
 		public Item[] Items { get { return items.ToArray(); } }
 
@@ -23,7 +23,7 @@ namespace COMP_482_Assignment_03.Models
 
 		private readonly List<Item> items;
 
-		public StoreOrder()
+		public Order()
 		{
 			Random random = new Random();
 

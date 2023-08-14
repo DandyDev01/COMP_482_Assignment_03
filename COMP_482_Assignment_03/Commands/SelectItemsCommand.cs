@@ -22,8 +22,6 @@ namespace COMP_482_Assignment_03.Commands
 
 		public override void Execute(object parameter)
 		{
-			// TODO: ADD VALIDATION
-
 			Window window = new SelectItemsDialogWindow();
 			DialogWindowSelectedItemsViewModel dialogContext =
 				new DialogWindowSelectedItemsViewModel(window, selectItemsData);

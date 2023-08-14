@@ -110,6 +110,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			HelpCommand = null;
 
 			OnLoggedInEmployeeChanged += OrderIssueVM.LoggedInEmployeeChanged;
+			OnLoggedInEmployeeChanged += EmployeesVM.LoggedInEmployeeChanged;
 			UserSignIn();
 		}
 

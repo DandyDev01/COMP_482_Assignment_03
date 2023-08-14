@@ -36,6 +36,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string orderID;
+		public string OrderID
+		{
+			get
+			{
+				return orderID;
+			}
+			set
+			{
+				OnPropertyChanged(ref orderID, value);
+			}
+		}
+
 		public ItemsListViewModel ItemsListVM { get; }
 
 		public Array Departments { get; } = Enum.GetValues(typeof(StoreDepartment));
@@ -79,8 +92,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StoreOrder order;
-		public StoreOrder Order
+		private Order order;
+		public Order Order
 		{
 			get
 			{
@@ -111,8 +124,10 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			errors = string.Empty;
 			date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
-			order = new StoreOrder();
+			order = new Order();
 			orderTracker.Add(Order);
+
+			orderID = "Order ID: " + order.ID;
 
 			AddItemsCommand = new SelectItemsCommand(new SelectItemsForOrderData(inventory, orderTracker, ItemsListVM.Items));
 			RemoveItemsCommand = new SelectItemsCommand(new SelectItemsToRemoveFromOrderData(orderTracker, ItemsListVM.Items));

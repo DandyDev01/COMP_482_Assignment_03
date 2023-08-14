@@ -23,7 +23,7 @@ namespace COMP_482_Assignment_03.Commands
 		{
 			ViewOrderDialogWindow window = new ViewOrderDialogWindow();
 			ItemsListViewModel dialogContext =
-				new ItemsListViewModel(ordersViewModel.SelectedOrder.Items);
+				new ItemsListViewModel(ordersViewModel.SelectedOrder.Items, false);
 			window.list.DataContext = dialogContext;
 
 			window.ShowDialog();

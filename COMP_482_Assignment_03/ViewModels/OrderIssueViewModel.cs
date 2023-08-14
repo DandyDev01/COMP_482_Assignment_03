@@ -69,8 +69,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private StoreOrder? selectedOrder;
-		public StoreOrder? SelectedOrder
+		private Order? selectedOrder;
+		public Order? SelectedOrder
 		{
 			get
 			{
@@ -98,6 +98,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref selectedIssue, value);
 				SelectedOrder = orderTracker.Get(selectedIssue.OrderID);
+				SelectedOrderID = "Selected Order ID: " + selectedOrder.ID;
 			}
 		}
 
@@ -111,6 +112,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			set
 			{
 				OnPropertyChanged(ref isValid, value && loggedInEmployee != null);
+			}
+		}
+
+		private string selectedOrderID;
+		public string SelectedOrderID
+		{
+			get
+			{
+				return selectedOrderID;
+			}
+			set
+			{
+				OnPropertyChanged(ref selectedOrderID, value);
 			}
 		}
 
@@ -185,6 +199,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			IssueDescription = string.Empty;
 			SelectedOrder = null;
+			SelectedOrderID = "Selected Order ID: ";
 		}
 
 		public IEnumerable GetErrors(string? propertyName)
@@ -218,7 +233,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			IsValid = !HasErrors;
 		}
 
-		private void SelectedOrderValidation(string propertyName, StoreOrder propertyValue)
+		private void SelectedOrderValidation(string propertyName, Order propertyValue)
 		{
 			propertyNameToError.Remove(propertyName);
 

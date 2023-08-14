@@ -45,6 +45,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private bool hasContextMenu;
+		public bool HasContextMenu
+		{
+			get
+			{
+				return hasContextMenu;
+			}
+			set
+			{
+				OnPropertyChanged(ref hasContextMenu, value);
+			}
+		}
+
 		public ICommand? AddItemsCommand { get; set; }
 		public ICommand? RemoveItemsCommand { get; set; }	
 		public ICommand NameSort { get; }
@@ -58,8 +71,10 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 
-		public ItemsListViewModel()
+		public ItemsListViewModel(bool _hasContextMenu = true)
 		{
+			hasContextMenu = _hasContextMenu;
+
 			Items = new ObservableCollection<Item>();
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 			selectedItem = Items.FirstOrDefault();
@@ -79,8 +94,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
 		}
 
-		public ItemsListViewModel(Item[] items)
+		public ItemsListViewModel(Item[] items, bool _hasContextMenu = true)
 		{
+			hasContextMenu = _hasContextMenu;
+
 			Items = new ObservableCollection<Item>(items);
 			ItemsCollectionView = CollectionViewSource.GetDefaultView(Items);
 			selectedItem = Items.FirstOrDefault();

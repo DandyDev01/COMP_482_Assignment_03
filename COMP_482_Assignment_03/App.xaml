@@ -5,7 +5,7 @@
              xmlns:Utility="clr-namespace:COMP_482_Assignment_03.Utility"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-        <Utility:BoolToVisibilityConverter x:Key="IsEditConverter"/>
+        <Utility:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"/>
         <Utility:NullToVisibilityConverter x:Key="SelectedItemConverter"/>
         <Utility:InverseBooleanConverter x:Key="InverseBoolConverter"/>
         <Utility:NullToEnabledConverter x:Key="NullToEnabledConverter"/>
