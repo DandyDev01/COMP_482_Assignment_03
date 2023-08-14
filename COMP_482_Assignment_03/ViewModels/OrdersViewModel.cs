@@ -56,8 +56,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			selectedOrder = Orders.FirstOrDefault();
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 
+			CreateOrderCommand = null;
+			EditOrderCommand = null;
 			ViewOrderCommand = new ViewOrderCommand(this);
 			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
+
 			OrderIDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.ID));
 			OrderStatusSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.OrderStatus));
 			OrderWeightSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.Weight));

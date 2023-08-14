@@ -29,11 +29,11 @@
                 <MenuItem Header="Print"/>
                 <MenuItem Header="Create">
                     <MenuItem Header="Order" Command="{Binding CreateOrderCommand}"/>
+                    <MenuItem Header="Order Issue" Command="{Binding CreateOrderIssueCommand}"/>
                     <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
                     <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
                 </MenuItem>
                 <MenuItem Header="Delete">
-                    <MenuItem Header="Order" Command="{Binding DeleteOrderCommand}"/>
                     <MenuItem Header="Item" Command="{Binding DeleteItemCommand}"/>
                     <MenuItem Header="Employee" Command="{Binding DeleteEmployeeCommand}"/>
                 </MenuItem>
@@ -41,6 +41,7 @@
             <MenuItem Header="Edit">
                 <MenuItem Header="Order" Command="{Binding EditOrderCommand}"/>
                 <MenuItem Header="Item" Command="{Binding EditItemCommand}"/>
+                <MenuItem Header="Employee" Command="{Binding EditEmployeeCommand}"/>
             </MenuItem>
             <MenuItem Header="Help" Command="{Binding HelpCommand}">
             </MenuItem>

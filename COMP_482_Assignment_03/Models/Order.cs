@@ -7,8 +7,6 @@ using COMP_482_Assignment_03.Utility;
 
 namespace COMP_482_Assignment_03.Models
 {
-	public enum OrderStatus { shipped, delivered };
-
 	public class Order
 	{
 		public Item[] Items { get { return items.ToArray(); } }

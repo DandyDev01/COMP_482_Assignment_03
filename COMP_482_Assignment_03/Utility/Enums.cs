@@ -10,4 +10,6 @@ namespace COMP_482_Assignment_03.Utility
 	public enum IssueType { Missing_Item, Order_not_Received, Payment_Issue }
 	public enum EmployeeRole { Employee, DepartmentManager, StoreManager };
 	public enum EmployeeWorkTime { FullTime, PartTime, Seasonal, Perminant };
+	public enum Status { Pending, Complete, Review };
+	public enum OrderStatus { shipped, delivered, packing };
 }

@@ -23,9 +23,9 @@ namespace COMP_482_Assignment_03.ViewModels
 		public EmployeesViewModel EmployeesVM { get; }
 
 		public ICommand CreateOrderCommand{ get; }
+		public ICommand CreateOrderIssueCommand{ get; }
 		public ICommand CreateItemCommand { get; }
 		public ICommand CreateEmployeeCommand { get; }
-		public ICommand DeleteOrderCommand { get; }
 		public ICommand DeleteItemCommand { get; }
 		public ICommand DeleteEmployeeCommand { get; }
 		public ICommand EditOrderCommand { get; }
@@ -80,6 +80,8 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public MainWindowViewModel()
 		{
+			signOutHeader = string.Empty;
+
 			itemDataService = new ItemDataService();
 			orderDataService = new OrderDataService();
 			employeeDataService = new EmployeeDataService();
@@ -98,16 +100,16 @@ namespace COMP_482_Assignment_03.ViewModels
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);
 
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
+			CreateOrderIssueCommand = new RelayCommand(null);
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
 			CreateOrderCommand = new CreateOrderCommand(orderTracker, OrdersVM, OrderVM);
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
-			DeleteOrderCommand = null;
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
-			EditOrderCommand = null;
+			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM);
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
 			SignOutCommand = new UserSignoutCommand(this);
 			SignInCommand = new RelayCommand(UserSignIn);
-			HelpCommand = null;
+			HelpCommand = new RelayCommand(null);
 
 			OnLoggedInEmployeeChanged += OrderIssueVM.LoggedInEmployeeChanged;
 			OnLoggedInEmployeeChanged += EmployeesVM.LoggedInEmployeeChanged;
