@@ -232,6 +232,17 @@ namespace COMP_482_Assignment_03.ViewModels
 			return propertyNameToError.GetValueOrDefault(propertyName, new List<string>());
 		}
 
+		internal void InvokeError(string propertyName, string message)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			propertyNameToError[propertyName].Add(message);
+			ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			IsValid = false;
+		}
+
 		private void BasicStringFieldValidation(string propertyName, string propertyValue)
 		{
 			propertyNameToError.Remove(propertyName);

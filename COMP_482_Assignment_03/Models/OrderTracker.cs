@@ -10,7 +10,7 @@ namespace COMP_482_Assignment_03.Models
 	{
 		public Order[] Orders { get { return orders.ToArray(); } }
 
-		public Order Last { get { return orders[orders.Count - 1]; } }
+		public Order Queued { get; set; }
 
 		private readonly List<Order> orders;
 

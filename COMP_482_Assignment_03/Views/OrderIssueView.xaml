@@ -126,7 +126,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn Width="100">
-                        <GridViewColumnHeader Content="Department" Command="{Binding DepartmentSort}"/>
+                        <GridViewColumnHeader Content="Department" Command="{Binding DepartementSort}"/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Departement}"/>

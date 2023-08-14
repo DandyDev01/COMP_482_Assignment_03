@@ -22,6 +22,15 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CancelCommand { get; }
 		public ICommand SelectOrderCommand { get; }
 
+		public ICommand IDSort { get; }
+		public ICommand OrderIDSort { get; }
+		public ICommand DescriptionSort { get; }
+		public ICommand EmployeeNameSort { get; }
+		public ICommand EmployeeNumberSort { get; }
+		public ICommand DepartementSort { get; }
+		public ICommand IssueTypeSort { get; }
+		public ICommand DateCreatedSort { get; }
+
 		public ObservableCollection<OrderIssue> OpenOrderIssues { get; }
 		public ICollectionView OpenOrderIssuesCollectionView { get; }
 		public ItemsListViewModel ItemsListVM { get; }
@@ -171,6 +180,14 @@ namespace COMP_482_Assignment_03.ViewModels
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
 			SelectOrderCommand = new SelectOrderCommand(_orderTracker, new SelectOrderForOrderIssueData(this));
+			IDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.ID));
+			OrderIDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.OrderID));
+			DescriptionSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.Description));
+			EmployeeNameSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.EmployeeName));
+			EmployeeNumberSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.EmployeeNumber));
+			DepartementSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.Departement));
+			IssueTypeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.IssueType));
+			DateCreatedSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(OrderIssue.DateCreated));
 
 			ErrorsChanged += UpdateErrorMessages;
 

@@ -102,10 +102,12 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private readonly Item item;
 		private readonly Window window;
+		private readonly InventoryViewModel inventoryVM;
 
-		public DialogWindowCreateItemViewModel(Window _window)
+		public DialogWindowCreateItemViewModel(Window _window, InventoryViewModel _inventryVM)
 		{
 			window = _window;
+			inventoryVM = _inventryVM;
 
 			item = new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.Frozen, StoreDepartment.Grocery);
 			ObservableItem = new ObservableItem(item);
@@ -122,9 +124,12 @@ namespace COMP_482_Assignment_03.ViewModels
 			CancelCommand = new RelayCommand(Cancel);
 		}
 
-		public DialogWindowCreateItemViewModel(Window _window, Item _item) : this(_window)
+		public DialogWindowCreateItemViewModel(Window _window, InventoryViewModel _inventryVM, Item _item) 
+			: this(_window, _inventryVM)
 		{
+			ObservableItem.ErrorsChanged -= UpdateErrorMessages;
 			ObservableItem = new ObservableItem(_item);
+			ObservableItem.ErrorsChanged += UpdateErrorMessages;
 		}
 
 		private void UpdateErrorMessages(object? sender, DataErrorsChangedEventArgs e)
@@ -168,6 +173,19 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private void Create()
 		{
+
+			Item item = inventoryVM.ItemsListVM.Items.Where(x => x.ID.Equals(ObservableItem.ID, 
+				StringComparison.OrdinalIgnoreCase) && x != ObservableItem.Item).FirstOrDefault();
+
+			// an item with some ID already exists and that item is not the item 
+			// being edited
+			if (item != null && item != ObservableItem.Item)
+			{
+				ObservableItem.InvokeError(nameof(ObservableItem.ID), "Item with ID already exists");
+
+				return;
+			}
+
 			window.DialogResult = true;
 		}
 

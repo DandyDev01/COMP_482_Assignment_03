@@ -10,7 +10,7 @@ namespace COMP_482_Assignment_03.Models
 {
 	public class SelectItemsToRemoveFromOrderData : SelectItemsDataBase
 	{
-		public Item[] ItemsSource => orderTracker.Last.Items;
+		public Item[] ItemsSource => orderTracker.Queued.Items;
 
 		public OrderTracker OrderTracker => orderTracker;
 
@@ -25,7 +25,7 @@ namespace COMP_482_Assignment_03.Models
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{
-			Order order = orderTracker.Last;
+			Order order = orderTracker.Queued;
 
 			List<ObservableItem> selectedItems = itemsToSelectFrom.Where(x => x.IsSelected).ToList();
 			foreach (ObservableItem observableItem in selectedItems)

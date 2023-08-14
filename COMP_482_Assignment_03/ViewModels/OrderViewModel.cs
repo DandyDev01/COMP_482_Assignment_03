@@ -125,7 +125,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			errors = string.Empty;
 			date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
 			order = new Order();
-			orderTracker.Add(Order);
+			orderTracker.Queued = order;
 
 			orderID = "Order ID: " + order.ID;
 

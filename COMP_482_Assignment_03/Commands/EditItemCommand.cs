@@ -25,7 +25,7 @@ namespace COMP_482_Assignment_03.Commands
 		{
 			Window window = new CreateItemDialogWindow();
 			DialogWindowCreateItemViewModel dialogContext =
-				new DialogWindowCreateItemViewModel(window, inventoryVM.ItemsListVM.SelectedItem);
+				new DialogWindowCreateItemViewModel(window, inventoryVM, inventoryVM.ItemsListVM.SelectedItem);
 			window.DataContext = dialogContext;
 
 			Item selected = inventoryVM.ItemsListVM.SelectedItem;

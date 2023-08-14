@@ -26,7 +26,7 @@ namespace COMP_482_Assignment_03.Models
 
 		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{
-			Order order = orderTracker.Last;
+			Order order = orderTracker.Queued;
 
 			List<ObservableItem> selectedItems = itemsToSelectFrom.Where(x => x.IsSelected).ToList();
 			foreach (ObservableItem observableItem in selectedItems)
