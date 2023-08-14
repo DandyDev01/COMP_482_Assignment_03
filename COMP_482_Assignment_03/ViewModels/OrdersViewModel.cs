@@ -19,6 +19,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand ViewOrderCommand { get; }
 		public ICommand EditOrderCommand { get; }
 		public ICommand CancelOrderCommand { get; }
+		public ICommand RefreshCommand { get; }
 
 		public ICommand OrderIDSort { get; }
 		public ICommand OrderStatusSort { get; }
@@ -57,9 +58,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 
 			CreateOrderCommand = null;
-			EditOrderCommand = null;
+			//EditOrderCommand = new EditOrderCommand(inventory, orderTracker, this);
 			ViewOrderCommand = new ViewOrderCommand(this);
 			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
+			RefreshCommand = new RelayCommand(Refresh);
 
 			OrderIDSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.ID));
 			OrderStatusSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.OrderStatus));
@@ -68,6 +70,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			ExpectedDeliveryDateSort = null;
 			DateCreatedSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.DataCreated));
 			OrderDepartementSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Order.Department));
+		}
+
+		private void Refresh()
+		{
+			OrdersCollectionView.Refresh();
 		}
 	}
 }

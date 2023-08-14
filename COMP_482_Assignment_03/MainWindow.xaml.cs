@@ -36,7 +36,7 @@ namespace COMP_482_Assignment_03
 			notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
 			notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
 			notifyTimer.Tick += NotifyTimerTick;
-			notifyTimer.Start();
+			//notifyTimer.Start();
 		}
 
 		private void NotifyTimerTick(object? sender, EventArgs e)

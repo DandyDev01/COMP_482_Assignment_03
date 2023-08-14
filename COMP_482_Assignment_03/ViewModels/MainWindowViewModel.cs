@@ -28,6 +28,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand CreateEmployeeCommand { get; }
 		public ICommand DeleteItemCommand { get; }
 		public ICommand DeleteEmployeeCommand { get; }
+		public ICommand EditEmployeeCommand { get; }
 		public ICommand EditOrderCommand { get; }
 		public ICommand EditItemCommand { get; }
 		public ICommand SignOutCommand { get; }
@@ -105,7 +106,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			CreateOrderCommand = new CreateOrderCommand(orderTracker, OrdersVM, OrderVM);
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
-			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM);
+			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);
+			EditEmployeeCommand = null;
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
 			SignOutCommand = new UserSignoutCommand(this);
 			SignInCommand = new RelayCommand(UserSignIn);

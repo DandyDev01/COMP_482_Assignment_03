@@ -14,25 +14,31 @@ namespace COMP_482_Assignment_03.Commands
 		private readonly Inventory inventory;
 		private readonly OrderTracker orderTracker;
 		private readonly OrdersViewModel ordersVM;
+		private readonly OrderViewModel orderVM;
 		private readonly SelectOrderForEditData selectOrderForEditData;
 		private readonly SelectOrderCommand selectOrderCommand;
 		private readonly EditOrderCommand editOrderCommand;
 
-		public SelectAndEditOrderCommand(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM)
+		public SelectAndEditOrderCommand(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM,
+			OrderViewModel _orderVM)
 		{
 			inventory = _inventory;
 			orderTracker = _orderTracker;
 			ordersVM = _ordersVM;
+			orderVM = _orderVM;
 
 			selectOrderForEditData = new SelectOrderForEditData();
 
 			selectOrderCommand = new SelectOrderCommand(orderTracker, selectOrderForEditData);
-			editOrderCommand = new EditOrderCommand();
+			editOrderCommand = new EditOrderCommand(inventory, orderTracker, ordersVM,
+				selectOrderForEditData);
 		}
 
 		public override void Execute(object parameter)
 		{
-			
+			selectOrderCommand.Execute(null);
+
+			editOrderCommand.Execute(null);
 		}
 	}
 }

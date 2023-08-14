@@ -142,6 +142,46 @@ namespace COMP_482_Assignment_03.ViewModels
 			Validate(null, null);
 		}
 
+		/// <summary>
+		/// remove the order from the orderTracker
+		/// </summary>
+		/// <param name="_inventory"></param>
+		/// <param name="_orderTracker"></param>
+		/// <param name="_ordersVM"></param>
+		/// <param name="_order">order that will be removed from the order tracker</param>
+		public OrderViewModel(Inventory _inventory, OrderTracker _orderTracker, OrdersViewModel _ordersVM, Order _order,
+			ICommand _cancelCommand, ICommand _createCommand)
+		{
+			orderTracker = _orderTracker;
+			inventory = _inventory;
+			ordersVM = _ordersVM;
+			ItemsListVM = new ItemsListViewModel(_order.Items);
+			propertyNameToError = new Dictionary<string, List<string>>();
+			isValid = false;
+
+			errors = string.Empty;
+			date = DateTime.Now.ToString("yyyy-MMM-dd-ddd");
+			order = _order;
+			orderTracker.Queued = order;
+
+			orderID = "Order ID: " + order.ID;
+
+			AddItemsCommand = new SelectItemsCommand(
+				new SelectItemsForOrderData(inventory, orderTracker, ItemsListVM.Items));
+			RemoveItemsCommand = new SelectItemsCommand(
+				new SelectItemsToRemoveFromOrderData(orderTracker, ItemsListVM.Items));
+
+			CreateCommand = _createCommand;
+			CancelCommand = _cancelCommand;
+
+			ItemsListVM.ItemsCollectionView.CollectionChanged += Validate;
+
+			ItemsListVM.AddItemsCommand = AddItemsCommand;
+			ItemsListVM.RemoveItemsCommand = RemoveItemsCommand;
+
+			Validate(null, null);
+		}
+
 		private void Validate(object? sender, NotifyCollectionChangedEventArgs e)
 		{
 			propertyNameToError.Remove(nameof(ItemsListVM.ItemsCollectionView));
