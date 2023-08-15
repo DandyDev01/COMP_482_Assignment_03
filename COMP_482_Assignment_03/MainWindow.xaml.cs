@@ -27,29 +27,39 @@ namespace COMP_482_Assignment_03
 	{
 		private readonly DispatcherTimer notifyTimer;
 
-		private int secondsPasses = 0;
-
 		public MainWindow()
 		{
 			InitializeComponent();
+			createOrderMenuItem.Command = new RelayCommand(CreateOrder);
+			createOrderIssueMenuItem.Command = new RelayCommand(CreateOrderIssue);
 
-			notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
-			notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
-			notifyTimer.Tick += NotifyTimerTick;
+			//notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
+			//notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
+			//notifyTimer.Tick += NotifyTimerTick;
 			//notifyTimer.Start();
+		}
+
+		private void CreateOrderIssue()
+		{
+			tabControl.SelectedIndex = 3;
+		}
+
+		private void CreateOrder()
+		{
+			tabControl.SelectedIndex = 0;
 		}
 
 		private void NotifyTimerTick(object? sender, EventArgs e)
 		{
-			notifyTimer.Stop();
+			//notifyTimer.Stop();
 
-			MainWindowViewModel mainWindowVM = DataContext as MainWindowViewModel;
+			//MainWindowViewModel mainWindowVM = DataContext as MainWindowViewModel;
 
-			TimerCountDownDialogWindow window = new TimerCountDownDialogWindow();
-			window.OnTimerFinish += mainWindowVM.UserSignIn;
-			window.ShowDialog();
+			//TimerCountDownDialogWindow window = new TimerCountDownDialogWindow();
+			//window.OnTimerFinish += mainWindowVM.UserSignIn;
+			//window.ShowDialog();
 
-			notifyTimer.Start();
+			//notifyTimer.Start();
 		}
 	}
 }

@@ -64,6 +64,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string displayIssueID;
+		public string DisplayIssueID
+		{
+			get
+			{
+				return displayIssueID;
+			}
+			set
+			{
+				OnPropertyChanged(ref displayIssueID, value);
+			}
+		}
+
 		private string issueDescription;
 		public string IssueDescription
 		{
@@ -151,6 +164,9 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private Employee? loggedInEmployee;
+		private OrderIssue orderIssue;
+
+		private string issueID;
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 		private readonly OrderIssueTracker orderIssueTracker;
@@ -162,6 +178,11 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		public OrderIssueViewModel(OrderIssueTracker _orderIssueTracker, OrderTracker _orderTracker, Inventory _inventory)
 		{
+			Random random = new Random();
+
+			issueID = random.Next(10000, 99999).ToString();
+			displayIssueID = "Issue ID: " + issueID;
+
 			orderIssueTracker = _orderIssueTracker;
 			orderTracker = _orderTracker;
 
@@ -204,9 +225,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private void Submit()
 		{
-			Random random = new Random();
-
-			string issueID = random.Next(10000, 99999).ToString();
+			
 			OrderIssue newIssue = new OrderIssue(issueID, SelectedOrder.ID, IssueDescription, 
 				loggedInEmployee.FirstName + " " + loggedInEmployee.LastName, 
 				loggedInEmployee.EmployeeNumber, Date, SelectedDepartment, SelectedIssueType);
@@ -217,6 +236,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			IssueDescription = string.Empty;
 			SelectedOrder = null;
 			SelectedOrderID = "Selected Order ID: ";
+
+			Random random = new Random();
+			issueID = random.Next(10000, 99999).ToString();
+
+			DisplayIssueID = "Issue ID: " + issueID;
 		}
 
 		public IEnumerable GetErrors(string? propertyName)

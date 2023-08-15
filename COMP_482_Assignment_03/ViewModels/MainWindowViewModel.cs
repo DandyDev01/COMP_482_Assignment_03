@@ -22,8 +22,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		public OrderIssueViewModel OrderIssueVM { get; }
 		public EmployeesViewModel EmployeesVM { get; }
 
-		public ICommand CreateOrderCommand{ get; }
-		public ICommand CreateOrderIssueCommand{ get; }
 		public ICommand CreateItemCommand { get; }
 		public ICommand CreateEmployeeCommand { get; }
 		public ICommand DeleteItemCommand { get; }
@@ -101,9 +99,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);
 
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
-			CreateOrderIssueCommand = new RelayCommand(null);
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
-			CreateOrderCommand = new CreateOrderCommand(orderTracker, OrdersVM, OrderVM);
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
 			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);

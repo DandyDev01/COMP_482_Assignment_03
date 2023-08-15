@@ -28,8 +28,8 @@
             <MenuItem Header="File">
                 <MenuItem Header="Print"/>
                 <MenuItem Header="Create">
-                    <MenuItem Header="Order" Command="{Binding CreateOrderCommand}"/>
-                    <MenuItem Header="Order Issue" Command="{Binding CreateOrderIssueCommand}"/>
+                    <MenuItem Header="Order" Name="createOrderMenuItem"/>
+                    <MenuItem Header="Order Issue" Name="createOrderIssueMenuItem"/>
                     <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
                     <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
                 </MenuItem>
@@ -56,6 +56,7 @@
         </Menu>
 
         <TabControl Grid.Row="1"
+                    Name="tabControl"
                     Margin="20">
             <TabItem Header="Order">
                 <v:OrderView DataContext="{Binding OrderVM}"/>

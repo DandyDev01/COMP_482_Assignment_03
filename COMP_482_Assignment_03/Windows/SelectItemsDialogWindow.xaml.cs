@@ -27,6 +27,8 @@ namespace COMP_482_Assignment_03.Windows
 		{
 			InitializeComponent();
 
+			seachBox.Focus();
+
 			this.InputBindings.Add(new KeyBinding(new RelayCommand(Delete), Key.Delete, ModifierKeys.None));
 			list.SelectionChanged += ToggleItemSelection;
 		}
