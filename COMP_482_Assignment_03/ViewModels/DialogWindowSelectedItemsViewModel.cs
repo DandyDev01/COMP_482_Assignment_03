@@ -23,9 +23,10 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand BrandSort { get; }
 		public ICommand SizeSort { get; }
 		public ICommand QuantitySort { get; }
-		public ICommand PriceSort { get; }
 		public ICommand DepartmentSort { get; }
 		public ICommand CategorySort { get; }
+		public ICommand BuyPriceSort { get; }
+		public ICommand SellPriceSort { get; }
 
 		public ObservableCollection<Item> Items { get; }
 		public ICollectionView ItemsCollectionView { get; }
@@ -88,6 +89,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Quantity));
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Category));
+			SellPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.SellPrice));
+			BuyPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.BuyPrice));
 		}
 
 		private void Cancel()
