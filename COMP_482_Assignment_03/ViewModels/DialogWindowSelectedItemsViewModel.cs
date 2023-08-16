@@ -17,7 +17,7 @@ namespace COMP_482_Assignment_03.ViewModels
 	public class DialogWindowSelectedItemsViewModel : ObservableObject
 	{
 		public ICommand SubmitCommand { get; }
-		public ICommand CancelCommand { get; }
+		public ICommand CancelCommand { get; }ss
 		public ICommand NameSort { get; }
 		public ICommand IDSort { get; }
 		public ICommand BrandSort { get; }
