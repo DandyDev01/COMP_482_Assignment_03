@@ -26,14 +26,14 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="File">
-                <MenuItem Header="Print"/>
+                <MenuItem Header="Print" Command="{Binding PrintCommand}"/>
                 <MenuItem Header="Create">
                     <MenuItem Header="Order" Name="createOrderMenuItem"/>
                     <MenuItem Header="Order Issue" Name="createOrderIssueMenuItem"/>
                     <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
                     <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
                 </MenuItem>
-                <MenuItem Header="Delete">
+                <MenuItem Header="Delete" IsEnabled="{Binding LoggedInEmployee, Converter={StaticResource AuthenticationConverter}}">
                     <MenuItem Header="Item" Command="{Binding DeleteItemCommand}"/>
                     <MenuItem Header="Employee" Command="{Binding DeleteEmployeeCommand}"/>
                 </MenuItem>

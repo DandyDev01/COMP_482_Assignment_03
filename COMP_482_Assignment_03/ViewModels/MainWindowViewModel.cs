@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace COMP_482_Assignment_03.ViewModels
@@ -22,6 +23,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		public OrderIssueViewModel OrderIssueVM { get; }
 		public EmployeesViewModel EmployeesVM { get; }
 
+		public ICommand PrintCommand { get; }
 		public ICommand CreateItemCommand { get; }
 		public ICommand CreateEmployeeCommand { get; }
 		public ICommand DeleteItemCommand { get; }
@@ -98,10 +100,11 @@ namespace COMP_482_Assignment_03.ViewModels
 			EmployeesVM = new EmployeesViewModel(employeesManager);
 			OrderVM = new OrderViewModel(inventory, orderTracker, OrdersVM);
 
+			PrintCommand = new RelayCommand(Print);
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
-			DeleteItemCommand = new DeleteItemCommand(inventory, InventoryVM);
+			DeleteItemCommand = new DeleteItemCommand(InventoryVM);
 			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);
 			EditEmployeeCommand = new SelectAndEditEmployeeCommand(employeesManager, EmployeesVM);
 			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
@@ -111,6 +114,11 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			OnLoggedInEmployeeChanged += OrderIssueVM.LoggedInEmployeeChanged;
 			OnLoggedInEmployeeChanged += EmployeesVM.LoggedInEmployeeChanged;
+		}
+
+		private void Print()
+		{
+			MessageBox.Show("No printer connected", "Printer", MessageBoxButton.OK, MessageBoxImage.Information);
 		}
 
 		public void UserSignIn()

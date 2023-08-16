@@ -10,21 +10,16 @@ namespace COMP_482_Assignment_03.Commands
 {
 	public class DeleteItemCommand : BaseCommand
 	{
-		private readonly Inventory inventory;
 		private readonly InventoryViewModel inventoryVM;
 
-		public DeleteItemCommand(Inventory _inventory, InventoryViewModel _inventoryVM)
+		public DeleteItemCommand(InventoryViewModel _inventoryVM)
 		{
-			inventory = _inventory;
 			inventoryVM = _inventoryVM; 
 		}
 
 		public override void Execute(object parameter)
 		{
-			//TODO: ADD VALIDATION
-
-			inventory.Remove(inventoryVM.ItemsListVM.SelectedItem.ID);
-			inventoryVM.ItemsListVM.Items.Remove(inventoryVM.ItemsListVM.SelectedItem);
+			inventoryVM.DeleteItemCommand.Execute(parameter);
 		}
 	}
 }
