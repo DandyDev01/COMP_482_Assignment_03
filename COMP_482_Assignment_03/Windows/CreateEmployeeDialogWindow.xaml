@@ -8,7 +8,7 @@
         ResizeMode="NoResize"
         ShowInTaskbar="false"
         WindowStartupLocation="CenterOwner"
-        Title="CreateEmployeeDialogWindow" Height="450" Width="800">
+        Title="CreateEmployeeDialogWindow" Height="350" Width="800">
     <Window.InputBindings>
         <KeyBinding Key="Enter" Command="{Binding SubmitCommand}"/>
     </Window.InputBindings>
@@ -16,18 +16,16 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
@@ -35,76 +33,62 @@
 
         <Label Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="First Name"/>
-        <TextBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <TextBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
                  Name="FirstNameBox"
-                 Text="{Binding ObservableEmployee.FirstName, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding ObservableEmployee.FirstName, UpdateSourceTrigger=LostFocus}"/>
 
         <Label Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Last Name"/>
-        <TextBox Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.LastName, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                 Text="{Binding ObservableEmployee.LastName, UpdateSourceTrigger=LostFocus}"/>
 
         <Label Grid.Column="2" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Phone Number"/>
-        <TextBox Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
+               FontSize="10"
+               Content="xxx-xxx-xxxx"/>
+        <TextBox Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                 Text="{Binding ObservableEmployee.PhoneNumber, UpdateSourceTrigger=LostFocus}"/>
 
         <Label Grid.Column="3" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Employee Number"/>
-        <TextBox Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.EmployeeNumber, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="3" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
+               FontSize="10"
+               Content="xxxxx"/>
+        <TextBox Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                 Text="{Binding ObservableEmployee.EmployeeNumber, UpdateSourceTrigger=LostFocus}"/>
 
         <Label Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="Address"/>
-        <TextBox Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.Address, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="5" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="City"/>
-        <TextBox Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.City, UpdateSourceTrigger=PropertyChanged}"/>
-
-        <Label Grid.Column="6" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Password"/>
-        <TextBox Grid.Column="6" Grid.Row="1" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Text="{Binding ObservableEmployee.Password, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+                 Text="{Binding ObservableEmployee.Password, UpdateSourceTrigger=LostFocus}"/>
 
         
-        <Label Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Label Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Department"/>
-        <ComboBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <ComboBox Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1"
                   SelectedItem="{Binding ObservableEmployee.Department}"
                   ItemsSource="{Binding Departments}"/>
         
-        <Label Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Label Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Role"/>
-        <ComboBox Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <ComboBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1"
                   SelectedItem="{Binding ObservableEmployee.Role}"
                   ItemsSource="{Binding Roles}"/>
         
-        <Label Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Label Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
                Content="Work Time"/>
-        <ComboBox Grid.Column="2" Grid.Row="3" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <ComboBox Grid.Column="2" Grid.Row="4" Grid.ColumnSpan="1" Grid.RowSpan="1"
                   SelectedItem="{Binding ObservableEmployee.WorkTime}"
                   ItemsSource="{Binding WorkTimes}"/>
 
-        <Label Grid.Column="3" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="Employee Number"/>
+        
 
-        <Label Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="Address"/>
-
-        <Label Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="City"/>
-
-        <Label Grid.Column="6" Grid.Row="2" Grid.ColumnSpan="1" Grid.RowSpan="1"
-               Content="First Name"/>
-
-        <Button Grid.Column="5" Grid.Row="7" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Button Grid.Column="3" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 IsCancel="True"
                 Content="Cancel"
                 Command="{Binding CanceCommand}"/>
-        <Button Grid.Column="6" Grid.Row="7" Grid.ColumnSpan="1" Grid.RowSpan="1"
+        <Button Grid.Column="4" Grid.Row="8" Grid.ColumnSpan="1" Grid.RowSpan="1"
                 Content="submit"
                 IsEnabled="{Binding ObservableEmployee.IsValid}"
                 Command="{Binding SubmitCommand}"/>

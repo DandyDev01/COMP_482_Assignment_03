@@ -205,7 +205,7 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			OpenOrderIssues = new ObservableCollection<OrderIssue>();
 			OpenOrderIssuesCollectionView = CollectionViewSource.GetDefaultView(OpenOrderIssues);
-			ItemsListVM = new ItemsListViewModel();
+			ItemsListVM = new ItemsListViewModel(false);
 
 			collectionViewPropertySort = new CollectionViewPropertySort(OpenOrderIssuesCollectionView);
 			propertyNameToError = new Dictionary<string, List<string>>();

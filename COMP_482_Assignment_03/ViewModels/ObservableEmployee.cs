@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace COMP_482_Assignment_03.ViewModels
@@ -53,6 +54,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref phoneNumber, value);
 				BasicStringFieldValidation(nameof(PhoneNumber), PhoneNumber);
+				RegexValidation(nameof(PhoneNumber), PhoneNumber, phoneNumberRegex);
 				Employee.PhoneNumber = value;
 			}
 		}
@@ -68,6 +70,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			{
 				OnPropertyChanged(ref employeeNumber, value);
 				BasicStringFieldValidation(nameof(EmployeeNumber), EmployeeNumber);
+				RegexValidation(nameof(EmployeeNumber), EmployeeNumber, employeeNumberRegex);
 				Employee.EmployeeNumber = value;
 			}
 		}
@@ -148,11 +151,15 @@ namespace COMP_482_Assignment_03.ViewModels
 		public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
 		private readonly Dictionary<string, List<string>> propertyNameToError;
+		private readonly Regex phoneNumberRegex;
+		private readonly Regex employeeNumberRegex;
 
 		public ObservableEmployee(Employee employee)
 		{
 			Employee = employee;
 			propertyNameToError = new Dictionary<string, List<string>>();
+			phoneNumberRegex = new Regex("^[0-9]{3}-[0-9]{3}-[0-9]{4}$");
+			employeeNumberRegex = new Regex("^[0-9]{5}$");
 
 			firstName = employee.FirstName;
 			lastName = employee.LastName;
@@ -190,6 +197,26 @@ namespace COMP_482_Assignment_03.ViewModels
 			if (char.IsWhiteSpace(propertyValue.FirstOrDefault()))
 			{
 				propertyNameToError[propertyName].Add("Cannot start with white space");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+			}
+
+			if (propertyNameToError[propertyName].Any() == false)
+			{
+				propertyNameToError.Remove(propertyName);
+			}
+
+			IsValid = !HasErrors;
+		}
+
+		private void RegexValidation(string propertyName, string propertyValue, Regex regex)
+		{
+			propertyNameToError.Remove(propertyName);
+
+			List<string> errors = new List<string>();
+			propertyNameToError.Add(propertyName, errors);
+			if (regex.IsMatch(propertyValue) == false)
+			{
+				propertyNameToError[propertyName].Add("does not match regex: " + regex.ToString());
 				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
 			}
 
