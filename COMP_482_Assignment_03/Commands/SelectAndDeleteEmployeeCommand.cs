@@ -11,29 +11,26 @@ using System.Windows;
 
 namespace COMP_482_Assignment_03.Commands
 {
-	public class SelectAndEditEmployeeCommand : BaseCommand
+	public class SelectAndDeleteEmployeeCommand : BaseCommand
 	{
 		private readonly EmployeeManager employeeManager;
 		private readonly EmployeesViewModel employeesVM;
 		private Window window;
 
-		public SelectAndEditEmployeeCommand(EmployeeManager _employeeManager, EmployeesViewModel _employeesVM)
+		public SelectAndDeleteEmployeeCommand(EmployeeManager _employeeManager, EmployeesViewModel _employeesVM)
 		{
 			employeeManager = _employeeManager;
-			employeesVM= _employeesVM;
+			employeesVM = _employeesVM;
 			window = new SelectEmployeeDialogWindow();
 		}
 
 		public override void Execute(object parameter)
 		{
 			// open window to select employee
-			EmployeesViewModel employeesVM = new EmployeesViewModel(employeeManager, new RelayCommand(Submit), 
+			EmployeesViewModel employeesVM = new EmployeesViewModel(employeeManager, new RelayCommand(Submit),
 				new RelayCommand(Cancel));
 			window.DataContext = employeesVM;
 			window.ShowDialog();
-
-			EditEmployeeCommand editEmployeeCommand = new EditEmployeeCommand(employeeManager, employeesVM);
-			editEmployeeCommand.Execute(null);
 		}
 
 		private void Cancel()
@@ -44,6 +41,12 @@ namespace COMP_482_Assignment_03.Commands
 
 		private void Submit()
 		{
+			EmployeesViewModel vm = ((EmployeesViewModel)window.DataContext);
+			
+			employeeManager.Remove(vm.SelectedEmployee.EmployeeNumber);
+			employeesVM.Employees.Remove(vm.SelectedEmployee);
+			employeesVM.SelectedEmployee = vm.Employees[0];
+
 			window.DialogResult = true;
 			window = new SelectEmployeeDialogWindow();
 		}

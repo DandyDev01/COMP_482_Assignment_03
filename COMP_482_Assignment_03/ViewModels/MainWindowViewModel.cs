@@ -103,7 +103,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			PrintCommand = new RelayCommand(Print);
 			CreateItemCommand = new CreateItemCommand(inventory, InventoryVM);
 			CreateEmployeeCommand = new CreateEmployeeCommand(employeesManager, EmployeesVM);
-			DeleteEmployeeCommand = new DeleteEmployeeCommand(employeesManager, EmployeesVM);
+			DeleteEmployeeCommand = new SelectAndDeleteEmployeeCommand(employeesManager, EmployeesVM);
 			DeleteItemCommand = new DeleteItemCommand(InventoryVM);
 			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);
 			EditEmployeeCommand = new SelectAndEditEmployeeCommand(employeesManager, EmployeesVM);
