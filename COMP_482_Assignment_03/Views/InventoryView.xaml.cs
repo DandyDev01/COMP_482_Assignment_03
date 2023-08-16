@@ -26,18 +26,6 @@ namespace COMP_482_Assignment_03.Views
 		public InventoryView()
 		{
 			InitializeComponent();
-			this.InputBindings.Add(new KeyBinding(new RelayCommand(Delete), Key.Delete, ModifierKeys.None));
-		}
-
-		private void Delete()
-		{
-			InventoryViewModel viewModel = (InventoryViewModel)DataContext;
-
-			while (list.list.SelectedItems.Count > 0)
-			{
-				viewModel.ItemsListVM.SelectedItem = list.list.SelectedItems[0] as Item;
-				viewModel.DeleteItemCommand.Execute(null);
-			}		
 		}
 	}
 }

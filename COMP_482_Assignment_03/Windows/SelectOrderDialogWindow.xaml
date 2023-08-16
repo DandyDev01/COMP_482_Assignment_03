@@ -73,7 +73,7 @@
                         <GridViewColumnHeader Content="Date Ordered" Command=""/>
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding DateCreated}"/>
+                                <TextBlock Text="{Binding DataCreated}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

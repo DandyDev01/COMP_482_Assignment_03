@@ -1,4 +1,5 @@
-﻿using COMP_482_Assignment_03.Utility;
+﻿using COMP_482_Assignment_03.Models;
+using COMP_482_Assignment_03.Utility;
 using COMP_482_Assignment_03.ViewModels;
 using COMP_482_Assignment_03.Windows;
 using System;
@@ -25,6 +26,7 @@ namespace COMP_482_Assignment_03
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		private readonly MainWindowViewModel mainWindowVM;
 		private readonly DispatcherTimer notifyTimer;
 
 		public MainWindow()
@@ -32,6 +34,8 @@ namespace COMP_482_Assignment_03
 			InitializeComponent();
 			createOrderMenuItem.Command = new RelayCommand(CreateOrder);
 			createOrderIssueMenuItem.Command = new RelayCommand(CreateOrderIssue);
+			mainWindowVM = (MainWindowViewModel)DataContext;
+			mainWindowVM.OnLoggedInEmployeeChanged += LoggedInUserChanged;
 
 			//notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
 			//notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
@@ -60,6 +64,11 @@ namespace COMP_482_Assignment_03
 			//window.ShowDialog();
 
 			//notifyTimer.Start();
+		}
+
+		private void LoggedInUserChanged(Employee employee)
+		{
+			tabControl.SelectedIndex = 0;
 		}
 	}
 }

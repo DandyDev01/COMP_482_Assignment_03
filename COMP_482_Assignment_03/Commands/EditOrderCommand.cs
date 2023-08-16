@@ -59,6 +59,16 @@ namespace COMP_482_Assignment_03.Commands
 
 		private void Create()
 		{
+
+			if (selectOrderForEditData != null)
+			{
+				selectOrderForEditData.SelectedOrder.DataLastModified = DateTime.Now.ToString();
+			}
+			else
+			{
+				ordersVM.SelectedOrder.DataLastModified = DateTime.Now.ToString();
+			}
+
 			window.DialogResult = true;
 			window = new Window();
 		}

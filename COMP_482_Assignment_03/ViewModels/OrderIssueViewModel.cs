@@ -106,6 +106,11 @@ namespace COMP_482_Assignment_03.ViewModels
 					ItemsListVM.Populate(selectedOrder.Items);
 				else
 					ItemsListVM.Clear();
+
+				if (value == null)
+					SubmitButtonToolTip = "Must Select an order";
+				else
+					SubmitButtonToolTip = string.Empty;
 			}
 		}
 
@@ -163,6 +168,19 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
+		private string submitButtonToolTip;
+		public string SubmitButtonToolTip
+		{
+			get
+			{
+				return submitButtonToolTip;
+			}
+			set
+			{
+				OnPropertyChanged(ref submitButtonToolTip, value);
+			}
+		}
+
 		private Employee? loggedInEmployee;
 
 		private string issueID;
@@ -193,8 +211,9 @@ namespace COMP_482_Assignment_03.ViewModels
 			propertyNameToError = new Dictionary<string, List<string>>();
 
 			Date = DateTime.Now.ToString("yyyy-MMM-ddd-dd");
-			issueDescription = string.Empty;
 
+			submitButtonToolTip = "You must select and order and fill in the description of the issue.";
+			issueDescription = string.Empty;
 			issueDescriptionErrors = string.Empty;
 			selectedOrderID = string.Empty;
 
@@ -221,6 +240,7 @@ namespace COMP_482_Assignment_03.ViewModels
 		private void Cancel()
 		{
 			IssueDescription = string.Empty;
+			SelectedOrder = null;
 		}
 
 		private void Submit()
