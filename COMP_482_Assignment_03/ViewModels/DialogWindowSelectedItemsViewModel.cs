@@ -86,7 +86,6 @@ namespace COMP_482_Assignment_03.ViewModels
 			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Brand));
 			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Size));
 			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Price));
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(selectedItem.Category));
 		}

@@ -30,7 +30,7 @@ namespace COMP_482_Assignment_03.Commands
 
 			Item selected = inventoryVM.ItemsListVM.SelectedItem;
 
-			Item temp = new Item(selected.Name, selected.ID, selected.Price,
+			Item temp = new Item(selected.Name, selected.ID,
 				selected.Brand, selected.Size, selected.Quantity,
 				selected.SellPrice, selected.BuyPrice, selected.Category,
 				selected.Department);
@@ -41,7 +41,6 @@ namespace COMP_482_Assignment_03.Commands
 			{
 				selected.Name = temp.Name;
 				selected.ID = temp.ID;
-				selected.Price = temp.Price;
 				selected.Brand = temp.Brand;
 				selected.Size = temp.Size;
 				selected.Quantity = temp.Quantity;

@@ -65,9 +65,10 @@ namespace COMP_482_Assignment_03.ViewModels
 		public ICommand BrandSort { get; }
 		public ICommand SizeSort { get; }
 		public ICommand QuantitySort { get; }
-		public ICommand PriceSort { get; }
 		public ICommand DepartmentSort { get; }
 		public ICommand CategorySort { get; }
+		public ICommand BuyPriceSort { get; }
+		public ICommand SellPriceSort { get; }
 
 		private readonly CollectionViewPropertySort collectionViewPropertySort;
 
@@ -89,9 +90,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Brand));
 			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Size));
 			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Price));
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
+			SellPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.SellPrice));
+			BuyPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.BuyPrice));
 		}
 
 		public ItemsListViewModel(Item[] items, bool _hasContextMenu = true)
@@ -112,9 +114,10 @@ namespace COMP_482_Assignment_03.ViewModels
 			BrandSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Brand));
 			SizeSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Size));
 			QuantitySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Quantity));
-			PriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Price));
 			DepartmentSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Department));
 			CategorySort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.Category));
+			SellPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.SellPrice));
+			BuyPriceSort = new CollectionViewSortByPropertyCommand(collectionViewPropertySort, nameof(Item.BuyPrice));
 		}
 
 		private void UpdateAny(object? sender, NotifyCollectionChangedEventArgs e)

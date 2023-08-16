@@ -109,7 +109,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			window = _window;
 			inventoryVM = _inventryVM;
 
-			item = new Item("", "", "", "", "", 0, 0.00f, 0.00f, ItemCategory.Frozen, StoreDepartment.Grocery);
+			item = new Item("", "", "", "", 0, 0.00f, 0.00f, ItemCategory.Frozen, StoreDepartment.Grocery);
 			ObservableItem = new ObservableItem(item);
 			ObservableItem.ErrorsChanged += UpdateErrorMessages;
 

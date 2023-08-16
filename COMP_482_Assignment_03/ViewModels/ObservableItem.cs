@@ -44,20 +44,6 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private string price;
-		public string Price
-		{
-			get
-			{
-				return price;
-			}
-			set
-			{
-				OnPropertyChanged(ref price, value);
-				Item.Price = value;
-			}
-		}
-
 		private string brand;
 		public string Brand
 		{
@@ -203,7 +189,6 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			name = Item.Name;
 			id = Item.ID;
-			price = Item.Price;
 			brand = Item.Brand;
 			size = Item.Size;
 			sellPrice = Item.SellPrice;
