@@ -1,6 +1,7 @@
 ﻿using COMP_482_Assignment_03.Models;
 using COMP_482_Assignment_03.Utility;
 using COMP_482_Assignment_03.ViewModels;
+using COMP_482_Assignment_03.Views;
 using COMP_482_Assignment_03.Windows;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,11 @@ namespace COMP_482_Assignment_03
 			mainWindowVM = (MainWindowViewModel)DataContext;
 			mainWindowVM.OnLoggedInEmployeeChanged += LoggedInUserChanged;
 			mainWindowVM.UserSignIn();
+
+			tabControl.SelectedIndex = 1;
+			OrdersView ordersView = (OrdersView)tabControl.SelectedContent;
+			ordersView.CreateOrderButton.Command = new RelayCommand(CreateOrder);
+			tabControl.SelectedIndex = 0;
 
 			//notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
 			//notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);

@@ -26,8 +26,8 @@
         </Grid.RowDefinitions>
 
         <Button  Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
-                 Content="Create Order"
-                 Command="{Binding CreateOrderCommand}"/>
+                 Name="CreateOrderButton"
+                 Content="Create Order"/>
         <Button  Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="1" Grid.RowSpan="1"
                  Content="View Order"
                  IsEnabled="{Binding SelectedOrder, Converter={StaticResource NullToEnabledConverter}}"

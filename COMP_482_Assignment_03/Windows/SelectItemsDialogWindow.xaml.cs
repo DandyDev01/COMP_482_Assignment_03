@@ -35,6 +35,9 @@ namespace COMP_482_Assignment_03.Windows
 
 		private void ToggleItemSelection(object sender, SelectionChangedEventArgs e)
 		{
+			if (list.SelectedItem == null)
+				return;
+
 			ObservableItem item = list.SelectedItem as ObservableItem;
 			item.IsSelected = !item.IsSelected;
 		}

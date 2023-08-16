@@ -16,7 +16,6 @@ namespace COMP_482_Assignment_03.ViewModels
 {
 	public class OrdersViewModel : ObservableObject
 	{
-		public ICommand CreateOrderCommand { get; }
 		public ICommand ViewOrderCommand { get; }
 		public ICommand EditOrderCommand { get; }
 		public ICommand CancelOrderCommand { get; }
@@ -58,7 +57,6 @@ namespace COMP_482_Assignment_03.ViewModels
 			selectedOrder = Orders.FirstOrDefault();
 			collectionViewPropertySort = new CollectionViewPropertySort(OrdersCollectionView);
 
-			CreateOrderCommand = null;
 			EditOrderCommand = new EditOrderCommand(_inventory, orderTracker, this);
 			ViewOrderCommand = new ViewOrderCommand(this);
 			CancelOrderCommand = new CancelOrderCommand(this, orderTracker);
