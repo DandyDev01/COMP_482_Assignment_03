@@ -23,9 +23,13 @@ namespace COMP_482_Assignment_03.Windows
 	/// </summary>
 	public partial class SelectItemsDialogWindow : Window
 	{
-		public SelectItemsDialogWindow()
+		private readonly int maxSelections;
+		private int numberSelected;
+
+		public SelectItemsDialogWindow(int _maxSelections)
 		{
 			InitializeComponent();
+			maxSelections = _maxSelections;
 
 			seachBox.Focus();
 
@@ -40,6 +44,25 @@ namespace COMP_482_Assignment_03.Windows
 
 			ObservableItem item = list.SelectedItem as ObservableItem;
 			item.IsSelected = !item.IsSelected;
+
+			if (maxSelections == -1)
+				return;
+
+			if (item.IsSelected)
+			{
+				numberSelected += 1;
+				if (numberSelected > maxSelections)
+				{
+					item.IsSelected = false;
+					numberSelected -= 1;
+				}
+			}
+			else
+			{
+				numberSelected -= 1;
+			}
+
+			list.SelectedItem = null;
 		}
 
 		private void Delete()

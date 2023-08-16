@@ -32,8 +32,8 @@ namespace COMP_482_Assignment_03.ViewModels
 		public SelectItemsDataBase SelectItemsData { get { return selectItemsData; } }
 		public readonly ObservableCollection<ObservableItem> ObservableItems;
 
-		private ObservableItem selectedItem;
-		public ObservableItem SelectedItem
+		private ObservableItem? selectedItem;
+		public ObservableItem? SelectedItem
 		{
 			get
 			{
@@ -67,7 +67,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		{
 			window = _window;
 			selectItemsData = _selectItemsData;
-
 			ObservableItems = selectItemsData.ItemsSource.GetObservableItems();
 
 			Items = new ObservableCollection<Item>(selectItemsData.ItemsSource);

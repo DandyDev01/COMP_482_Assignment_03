@@ -14,15 +14,17 @@ namespace COMP_482_Assignment_03.Commands
 	public class SelectItemsCommand : BaseCommand
 	{
 		private readonly SelectItemsDataBase selectItemsData;
+		private readonly int maxSelections;
 
-		public SelectItemsCommand(SelectItemsDataBase _selectItemsData)
+		public SelectItemsCommand(SelectItemsDataBase _selectItemsData, int _maxSelections = -1)
 		{
 			selectItemsData = _selectItemsData;
+			maxSelections = _maxSelections;
 		}
 
 		public override void Execute(object parameter)
 		{
-			Window window = new SelectItemsDialogWindow();
+			Window window = new SelectItemsDialogWindow(maxSelections);
 			DialogWindowSelectedItemsViewModel dialogContext =
 				new DialogWindowSelectedItemsViewModel(window, selectItemsData);
 			window.DataContext = dialogContext;

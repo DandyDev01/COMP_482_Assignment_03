@@ -21,7 +21,7 @@ namespace COMP_482_Assignment_03.Models
 			inventory = _inventory;
 		}
 
-		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
+		public bool ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{
 			List<ObservableItem> selectedItems = itemsToSelectFrom.Where(x => x.IsSelected).ToList();
 			foreach (ObservableItem observableItem in selectedItems)
@@ -29,6 +29,8 @@ namespace COMP_482_Assignment_03.Models
 				inventory.Remove(observableItem.Item.ID);
 				sourceCollection.Remove(observableItem.Item);
 			}
+
+			return true;
 		}
 	}
 }

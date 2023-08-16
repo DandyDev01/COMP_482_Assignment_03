@@ -23,7 +23,7 @@ namespace COMP_482_Assignment_03.Models
 			sourceCollection = _sourceCollection;
 		}
 
-		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
+		public bool ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom)
 		{
 			Order order = orderTracker.Queued;
 
@@ -33,6 +33,8 @@ namespace COMP_482_Assignment_03.Models
 				order.Remove(observableItem.Item);
 				sourceCollection.Remove(observableItem.Item);
 			}
+
+			return true;
 		}
 	}
 }

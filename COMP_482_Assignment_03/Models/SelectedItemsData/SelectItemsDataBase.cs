@@ -12,6 +12,6 @@ namespace COMP_482_Assignment_03.Models
 	{
 		public Item[] ItemsSource { get; }
 
-		public void ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom);
+		public bool ManipulateData(ObservableCollection<ObservableItem> itemsToSelectFrom);
 	}
 }

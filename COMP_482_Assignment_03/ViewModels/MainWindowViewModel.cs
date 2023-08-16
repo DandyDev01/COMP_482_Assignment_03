@@ -107,7 +107,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			DeleteItemCommand = new DeleteItemCommand(InventoryVM);
 			EditOrderCommand = new SelectAndEditOrderCommand(inventory, orderTracker, OrdersVM, OrderVM);
 			EditEmployeeCommand = new SelectAndEditEmployeeCommand(employeesManager, EmployeesVM);
-			EditItemCommand = new EditItemCommand(inventory, InventoryVM);
+			EditItemCommand = new SelectAndEditItemCommand(inventory, InventoryVM);
 			SignOutCommand = new UserSignoutCommand(this);
 			SignInCommand = new RelayCommand(UserSignIn);
 			HelpCommand = new RelayCommand(null);
