@@ -12,6 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using System.Windows.Interop;
+using System.Runtime.InteropServices;
+using System.Windows.Controls.Primitives;
+using COMP_482_Assignment_03.ViewModels;
+using System.ComponentModel;
+
 namespace COMP_482_Assignment_03.Windows
 {
 	/// <summary>
@@ -23,6 +29,15 @@ namespace COMP_482_Assignment_03.Windows
 		{
 			InitializeComponent();
 			EmployeeNumberTextBox.Focus();
+			Closing += Check;
+		}
+
+		private void Check(object? sender, CancelEventArgs e)
+		{ 
+			if (((DialogWindowUserLoginViewModel)DataContext).MainWindowVM.LoggedInEmployee == null)
+			{
+				e.Cancel = true;
+			}
 		}
 	}
 }

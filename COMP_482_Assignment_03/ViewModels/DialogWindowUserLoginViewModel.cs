@@ -16,6 +16,8 @@ namespace COMP_482_Assignment_03.ViewModels
 	{
 		public ICommand SubmitCommand { get; }
 
+		public MainWindowViewModel MainWindowVM => mainWindowVM;
+
 		private string employeeNumber;
 		public string EmployeeNumber
 		{

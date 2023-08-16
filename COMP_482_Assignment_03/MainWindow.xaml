@@ -49,10 +49,6 @@
                       Visibility="{Binding LoggedInEmployee, Converter={StaticResource NullToVisibilityConverter}}"
                       Command="{Binding SignOutCommand}"
                       HorizontalAlignment="Right"/>
-            <MenuItem Header="Sign In" 
-                      Visibility="{Binding LoggedInEmployee, Converter={StaticResource InverseNullToVisibilityConverter}}"
-                      Command="{Binding SignInCommand}"
-                      HorizontalAlignment="Right"/>
         </Menu>
 
         <TabControl Grid.Row="1"
