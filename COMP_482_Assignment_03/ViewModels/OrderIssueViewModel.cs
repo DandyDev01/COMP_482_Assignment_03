@@ -164,7 +164,6 @@ namespace COMP_482_Assignment_03.ViewModels
 		}
 
 		private Employee? loggedInEmployee;
-		private OrderIssue orderIssue;
 
 		private string issueID;
 
@@ -197,6 +196,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			issueDescription = string.Empty;
 
 			issueDescriptionErrors = string.Empty;
+			selectedOrderID = string.Empty;
 
 			SubmitCommand = new RelayCommand(Submit);
 			CancelCommand = new RelayCommand(Cancel);
@@ -225,7 +225,6 @@ namespace COMP_482_Assignment_03.ViewModels
 
 		private void Submit()
 		{
-			
 			OrderIssue newIssue = new OrderIssue(issueID, SelectedOrder.ID, IssueDescription, 
 				loggedInEmployee.FirstName + " " + loggedInEmployee.LastName, 
 				loggedInEmployee.EmployeeNumber, Date, SelectedDepartment, SelectedIssueType);

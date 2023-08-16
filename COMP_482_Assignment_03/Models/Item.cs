@@ -17,13 +17,13 @@ namespace COMP_482_Assignment_03.Models
 		public string Brand { get; set; }
 		public string Size { get; set; }
 		public int Quantity { get; set; }
-		public float RetailCost { get; set; }
-		public float Cost { get; set; }
+		public float SellPrice { get; set; }
+		public float BuyPrice { get; set; }
 		public ItemCategory Category { get; set;  }
 		public StoreDepartment Department { get; set; }
 
 		public Item(string _name, string _id, string _price, string _brand, string _size, int _quantity, 
-			float _retailCost, float _cost, ItemCategory _category, StoreDepartment _department)
+			float _sellPrice, float _buyPrice, ItemCategory _category, StoreDepartment _department)
 		{
 			Name = _name;
 			ID = _id;
@@ -31,8 +31,8 @@ namespace COMP_482_Assignment_03.Models
 			Brand = _brand;
 			Size = _size;
 			Quantity = _quantity;
-			RetailCost = _retailCost;
-			Cost = _cost;
+			SellPrice = _sellPrice;
+			BuyPrice = _buyPrice;
 			Category = _category;
 			Department = _department;
 		}
@@ -45,8 +45,8 @@ namespace COMP_482_Assignment_03.Models
 			Brand = string.Empty;
 			Size = string.Empty;
 			Quantity = 0;
-			RetailCost = 0;
-			Cost = 0;
+			SellPrice = 0;
+			BuyPrice = 0;
 			Category = ItemCategory.Frozen;
 			Department = StoreDepartment.Grocery;
 		}

@@ -60,29 +60,29 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private string retailCostErrors;
-		public string RetailCostErrors
+		private string sellPriceErrors;
+		public string SellPriceErrors
 		{
 			get
 			{
-				return retailCostErrors;
+				return sellPriceErrors;
 			}
 			set
 			{
-				OnPropertyChanged(ref retailCostErrors, value);
+				OnPropertyChanged(ref sellPriceErrors, value);
 			}
 		}
 
-		private string costErrors;
-		public string CostErrors
+		private string buyPriceErrors;
+		public string BuyPriceErrors
 		{
 			get
 			{
-				return costErrors;
+				return buyPriceErrors;
 			}
 			set
 			{
-				OnPropertyChanged(ref costErrors, value);
+				OnPropertyChanged(ref buyPriceErrors, value);
 			}
 		}
 
@@ -116,8 +116,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			nameErrors = string.Empty;
 			idErrors = string.Empty;
 			brandErrors = string.Empty;
-			retailCostErrors = string.Empty;
-			costErrors = string.Empty;
+			sellPriceErrors = string.Empty;
+			buyPriceErrors = string.Empty;
 			quantityErrors = string.Empty;
 
 			SubmitCommand = new RelayCommand(Create);
@@ -137,8 +137,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			NameErrors = string.Empty;
 			IDErrors = string.Empty;
 			BrandErrors = string.Empty;
-			RetailCostErrors = string.Empty;
-			CostErrors = string.Empty;
+			SellPriceErrors = string.Empty;
+			BuyPriceErrors = string.Empty;
 
 			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.Name)))
 			{
@@ -155,14 +155,14 @@ namespace COMP_482_Assignment_03.ViewModels
 				BrandErrors += item + "\r\n";
 			}
 
-			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.RetailCost)))
+			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.SellPrice)))
 			{
-				RetailCostErrors += item + "\r\n";
+				SellPriceErrors += item + "\r\n";
 			}
 
-			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.Cost)))
+			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.BuyPrice)))
 			{
-				CostErrors += item + "\r\n";
+				BuyPriceErrors += item + "\r\n";
 			}
 
 			foreach (var item in ObservableItem.GetErrors(nameof(ObservableItem.Quantity)))

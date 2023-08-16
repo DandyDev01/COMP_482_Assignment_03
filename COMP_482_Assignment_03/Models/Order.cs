@@ -45,7 +45,7 @@ namespace COMP_482_Assignment_03.Models
 		{
 			items.Add(item);
 			Weight += 1;	
-			Cost += item.Cost;
+			Cost += item.BuyPrice;
 		}
 
 		public void Remove(Item item)

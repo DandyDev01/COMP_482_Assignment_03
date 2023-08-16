@@ -89,37 +89,35 @@ namespace COMP_482_Assignment_03.ViewModels
 			}
 		}
 
-		private float retailCost;
-		public float RetailCost
+		private float sellPrice;
+		public float SellPrice
 		{
 			get
 			{
-				return retailCost;
+				return sellPrice;
 			}
 			set
 			{
-				OnPropertyChanged(ref retailCost, value);
-				Item.RetailCost = value;
+				OnPropertyChanged(ref sellPrice, value);
+				Item.SellPrice = value;
 
-				CostToRetailCostValidation(retailCost, cost);
-				CostValidation(nameof(RetailCost), RetailCost);
+				PriceValidation(sellPrice, buyPrice);
 			}
 		}
 
-		private float cost;
-		public float Cost
+		private float buyPrice;
+		public float BuyPrice
 		{
 			get
 			{
-				return cost;
+				return buyPrice;
 			}
 			set
 			{
-				OnPropertyChanged(ref cost, value);
-				Item.Cost = value;
+				OnPropertyChanged(ref buyPrice, value);
+				Item.BuyPrice = value;
 
-				CostToRetailCostValidation(retailCost, cost);
-				CostValidation(nameof(Cost), Cost);
+				PriceValidation(sellPrice, buyPrice);
 			}
 		}
 
@@ -208,8 +206,8 @@ namespace COMP_482_Assignment_03.ViewModels
 			price = Item.Price;
 			brand = Item.Brand;
 			size = Item.Size;
-			retailCost = Item.RetailCost;
-			cost = Item.Cost;
+			sellPrice = Item.SellPrice;
+			buyPrice = Item.BuyPrice;
 			quantity = Item.Quantity;
 			category = Item.Category;
 			department = Item.Department;
@@ -221,9 +219,7 @@ namespace COMP_482_Assignment_03.ViewModels
 			BasicStringFieldValidation(nameof(Brand), Brand);
 			BasicStringFieldValidation(nameof(ID), ID);
 			BasicStringFieldValidation(nameof(Size), Size);
-			CostToRetailCostValidation(RetailCost, Cost);
-			CostValidation(nameof(RetailCost), RetailCost);
-			CostValidation(nameof(Cost), Cost);
+			PriceValidation(SellPrice, BuyPrice);
 			QuantityValidation();
 		}
 
@@ -269,56 +265,54 @@ namespace COMP_482_Assignment_03.ViewModels
 			IsValid = !HasErrors;
 		}
 
-		private void CostToRetailCostValidation(float retailCost, float cost)
+		private void PriceValidation(float sellPrice, float buyPrice)
 		{
-			propertyNameToError.Remove(nameof(RetailCost));
-			propertyNameToError.Remove(nameof(Cost));
+			propertyNameToError.Remove(nameof(SellPrice));
+			propertyNameToError.Remove(nameof(BuyPrice));
 
 			List<string> retailErrors = new List<string>();
 			List<string> errors = new List<string>();
-			propertyNameToError.Add(nameof(RetailCost), retailErrors);
-			propertyNameToError.Add(nameof(Cost), errors);
-			if (cost < retailCost)
-			{
-				propertyNameToError[nameof(RetailCost)].Add("cost cannot be less than retail cost");
-				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(RetailCost)));
 
-				propertyNameToError[nameof(Cost)].Add("retail cost cannot be greater than cost");
-				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(Cost)));
+			propertyNameToError.Add(nameof(SellPrice), retailErrors);
+			propertyNameToError.Add(nameof(BuyPrice), errors);
+			
+			
+			if (sellPrice < buyPrice)
+			{
+				propertyNameToError[nameof(SellPrice)].Add("Must be greater than buy price");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(SellPrice)));
+
+				propertyNameToError[nameof(BuyPrice)].Add("Must be less than sell price");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(BuyPrice)));
 			}
 
-			if (propertyNameToError[nameof(RetailCost)].Any() == false)
+			if (sellPrice < 0.01)
 			{
-				propertyNameToError.Remove(nameof(RetailCost));
+				propertyNameToError[nameof(SellPrice)].Add("Must be at least 0.01");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(SellPrice)));
 			}
 
-			if (propertyNameToError[nameof(Cost)].Any() == false)
+			if (buyPrice < 0.01)
 			{
-				propertyNameToError.Remove(nameof(Cost));
+				propertyNameToError[nameof(BuyPrice)].Add("Must be at least 0.01");
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(BuyPrice)));
+			}
+
+			if (propertyNameToError[nameof(SellPrice)].Any() == false)
+			{
+				propertyNameToError.Remove(nameof(SellPrice));
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(SellPrice)));
+			}
+
+			if (propertyNameToError[nameof(BuyPrice)].Any() == false)
+			{
+				propertyNameToError.Remove(nameof(BuyPrice));
+				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(nameof(BuyPrice)));
 			}
 
 			IsValid = !HasErrors;
 		}
 
-		private void CostValidation(string propertyName, float value)
-		{
-			propertyNameToError.Remove(propertyName);
-
-			List<string> errors = new List<string>();
-			propertyNameToError.Add(propertyName, errors);
-			if (value < 0.01)
-			{
-				propertyNameToError[propertyName].Add("must have cost at least 1 cent");
-				ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
-			}
-			if (propertyNameToError[propertyName].Any() == false)
-			{
-				propertyNameToError.Remove(propertyName);
-			}
-
-			IsValid = !HasErrors;
-		}
-	
 		private void QuantityValidation()
 		{
 			propertyNameToError.Remove(nameof(Quantity));

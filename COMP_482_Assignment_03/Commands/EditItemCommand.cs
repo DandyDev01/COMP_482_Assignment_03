@@ -32,7 +32,7 @@ namespace COMP_482_Assignment_03.Commands
 
 			Item temp = new Item(selected.Name, selected.ID, selected.Price,
 				selected.Brand, selected.Size, selected.Quantity,
-				selected.RetailCost, selected.Cost, selected.Category,
+				selected.SellPrice, selected.BuyPrice, selected.Category,
 				selected.Department);
 
 			window.ShowDialog();
@@ -45,7 +45,7 @@ namespace COMP_482_Assignment_03.Commands
 				selected.Brand = temp.Brand;
 				selected.Size = temp.Size;
 				selected.Quantity = temp.Quantity;
-				selected.Cost = temp.Cost;
+				selected.BuyPrice = temp.BuyPrice;
 				selected.Category = temp.Category;
 				selected.Department = temp.Department;
 
