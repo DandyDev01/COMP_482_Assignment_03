@@ -38,6 +38,9 @@ namespace COMP_482_Assignment_03.Commands
 		{
 			selectOrderCommand.Execute(null);
 
+			if (selectOrderForEditData.SelectedOrder == null)
+				return;
+			
 			editOrderCommand.Execute(null);
 		}
 	}

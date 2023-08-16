@@ -111,7 +111,6 @@ namespace COMP_482_Assignment_03.ViewModels
 
 			OnLoggedInEmployeeChanged += OrderIssueVM.LoggedInEmployeeChanged;
 			OnLoggedInEmployeeChanged += EmployeesVM.LoggedInEmployeeChanged;
-			UserSignIn();
 		}
 
 		public void UserSignIn()

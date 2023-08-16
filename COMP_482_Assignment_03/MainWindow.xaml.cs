@@ -36,6 +36,7 @@ namespace COMP_482_Assignment_03
 			createOrderIssueMenuItem.Command = new RelayCommand(CreateOrderIssue);
 			mainWindowVM = (MainWindowViewModel)DataContext;
 			mainWindowVM.OnLoggedInEmployeeChanged += LoggedInUserChanged;
+			mainWindowVM.UserSignIn();
 
 			//notifyTimer = new DispatcherTimer(DispatcherPriority.ApplicationIdle);
 			//notifyTimer.Interval = TimeSpan.FromSeconds(UserPrefs.ForcedLogOutTime);
