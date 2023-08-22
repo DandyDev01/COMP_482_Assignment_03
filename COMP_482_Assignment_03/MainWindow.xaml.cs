@@ -33,11 +33,15 @@ namespace COMP_482_Assignment_03
 		public MainWindow()
 		{
 			InitializeComponent();
+
 			createOrderMenuItem.Command = new RelayCommand(CreateOrder);
 			createOrderIssueMenuItem.Command = new RelayCommand(CreateOrderIssue);
 			mainWindowVM = (MainWindowViewModel)DataContext;
 			mainWindowVM.OnLoggedInEmployeeChanged += LoggedInUserChanged;
 			mainWindowVM.UserSignIn();
+
+			this.InputBindings.Add(new KeyBinding(createOrderMenuItem.Command, Key.O, ModifierKeys.Control));
+			this.InputBindings.Add(new KeyBinding(createOrderIssueMenuItem.Command, Key.J, ModifierKeys.Control));
 
 			tabControl.SelectedIndex = 1;
 			OrdersView ordersView = (OrdersView)tabControl.SelectedContent;

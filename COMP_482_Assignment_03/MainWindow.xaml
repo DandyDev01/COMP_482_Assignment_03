@@ -9,6 +9,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
 
+    <Window.InputBindings>
+        <KeyBinding Modifiers="Ctrl" Key="E" Command="{Binding CreateEmployeeCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="I" Command="{Binding CreateItemCommand}"/>
+        <KeyBinding Modifiers="Ctrl" Key="P" Command="{Binding PrintCommand}"/>
+        
+        <KeyBinding Modifiers="Ctrl+Shift" Key="I" Command="{Binding DeleteItemCommand}"/>
+        <KeyBinding Modifiers="Ctrl+Shift" Key="E" Command="{Binding DeleteEmployeeCommand}"/>
+    </Window.InputBindings>
+    
     <Window.DataContext>
         <vm:MainWindowViewModel/>
     </Window.DataContext>
@@ -26,16 +35,23 @@
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="File">
-                <MenuItem Header="Print" Command="{Binding PrintCommand}"/>
+                <MenuItem Header="Print" Command="{Binding PrintCommand}"
+                          InputGestureText="CTRL + P"/>
                 <MenuItem Header="Create">
-                    <MenuItem Header="Order" Name="createOrderMenuItem"/>
-                    <MenuItem Header="Order Issue" Name="createOrderIssueMenuItem"/>
-                    <MenuItem Header="Item" Command="{Binding CreateItemCommand}"/>
-                    <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"/>
+                    <MenuItem Header="Order" Name="createOrderMenuItem"
+                              InputGestureText="CTRL + O"/>
+                    <MenuItem Header="Order Issue" Name="createOrderIssueMenuItem"
+                              InputGestureText="CTRL  + J"/>
+                    <MenuItem Header="Item" Command="{Binding CreateItemCommand}"
+                              InputGestureText="CTRL + I"/>
+                    <MenuItem Header="Employee" Command="{Binding CreateEmployeeCommand}"
+                              InputGestureText="CTRL + E"/>
                 </MenuItem>
                 <MenuItem Header="Delete" IsEnabled="{Binding LoggedInEmployee, Converter={StaticResource AuthenticationConverter}}">
-                    <MenuItem Header="Item" Command="{Binding DeleteItemCommand}"/>
-                    <MenuItem Header="Employee" Command="{Binding DeleteEmployeeCommand}"/>
+                    <MenuItem Header="Item" Command="{Binding DeleteItemCommand}"
+                              InputGestureText="CTRL + SHIFT + I"/>
+                    <MenuItem Header="Employee" Command="{Binding DeleteEmployeeCommand}"
+                              InputGestureText="CTRL + SHIFT + E"/>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="Edit">
